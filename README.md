@@ -85,3 +85,15 @@ El flujo base utiliza la biblioteca estándar de Python. OR-Tools es opcional y 
 ## Licencia
 
 El código es públicamente visible, pero **no es software de código abierto**. La reutilización, redistribución o despliegue requiere autorización previa conforme a `LICENSE`.
+
+
+## BROWSER_PRIVATE experimental · P6-0G-1A4 beta.1
+
+La entrada [`browser-private.html`](browser-private.html) permite abrir proyectos locales en memoria, descargar una copia binaria, crear/editar parcialmente y generar una copia `.ghfproject` canónica sin enviar el contenido por las funciones autorizadas.
+
+- `SYNTHETIC`: probado automáticamente.
+- `ANONYMIZED` y `REAL`: soporte experimental parcial, pendiente de QA física multidispositivo.
+- no hay IndexedDB, PWA, motor ni XLSX en esta entrada.
+- la demo estable `index.html` permanece intacta.
+
+En GitHub Pages la ruta esperada es `.../browser-private.html`.

@@ -1,5 +1,16 @@
 # Registro de cambios
 
+## P6-0G-1A4 beta.1 · BROWSER_PRIVATE temporal y edición parcial
+
+- entrada modular independiente del monolito;
+- modo explícito antes de abrir datos;
+- red de proyecto denegada y persistencia nula;
+- parser ZIP endurecido con fflate 0.8.3 solo como DEFLATE;
+- copia binaria, serialización canónica y reapertura;
+- proyecto activo único, proyecto vacío y edición general parcial;
+- compatibilidad experimental REAL/ANONYMIZED pendiente de QA física;
+- la entrada estable permanece intacta.
+
 ## P6-0F.2 · saneamiento público y control de reidentificación · base funcional 0.6.3
 
 - conservación explícita de la autoría pública;

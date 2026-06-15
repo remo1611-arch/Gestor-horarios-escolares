@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es" data-app="browser-private">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; media-src 'none'; font-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Gestor de Horarios · Proyecto privado local</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="browser-private.css">
+  <script type="module" src="browser-private.bundle.mjs"></script>
+</head>
+<body>
+<header><div><strong>Gestor de Horarios Escolares</strong><span>Proyecto privado local</span></div><a href="index.html">Demo sintética estable</a></header>
+<main>
+  <section class="card" aria-labelledby="mode-title"><h1 id="mode-title">Elige el modo antes de abrir datos</h1><p class="lead">El modo privado temporal procesa el archivo en esta pestaña. La aplicación no lo envía ni lo persiste.</p>
+    <form id="mode-form"><label class="choice"><input type="radio" name="mode" value="BROWSER_PRIVATE_TEMPORAL" checked><span><b>Privado temporal</b><small>Predeterminado. Memoria de la pestaña, sin persistencia.</small></span></label><label class="choice"><input type="radio" name="mode" value="PUBLIC_DEMO"><span><b>Demo pública sintética</b><small>Abre la aplicación estable.</small></span></label><label class="choice disabled"><input type="radio" name="mode" value="LOCAL_PRIVATE" disabled><span><b>Servidor local privado</b><small>Python, CP-SAT y XLSX; se ejecuta en 127.0.0.1.</small></span></label><button id="continue-mode" type="submit">Confirmar modo</button></form><p id="mode-status" class="status" aria-live="polite"></p>
+  </section>
+  <section id="open-panel" class="card" hidden><h2>Abrir o crear</h2><label class="file"><span>Abrir .ghfproject local</span><input id="project-file" type="file" accept=".ghfproject,application/zip"></label><div class="new-row"><label>Clasificación del proyecto nuevo<select id="classification"><option value="SYNTHETIC">SYNTHETIC</option><option value="ANONYMIZED">ANONYMIZED</option><option value="REAL">REAL · experimental parcial</option></select></label><button id="new-project" type="button">Crear proyecto vacío</button></div><p class="warning">La compatibilidad REAL/ANONYMIZED de esta build es experimental y se limita a apertura, edición general parcial y descarga. No incluye motor, XLSX ni persistencia.</p></section>
+  <p id="status" class="status global" data-kind="info" aria-live="polite">Confirma un modo para comenzar.</p>
+  <section id="workspace" hidden>
+    <div class="grid"><section class="card"><h2>Proyecto activo</h2><div id="summary"></div><div class="actions"><button id="download-original" type="button">Descargar copia binaria</button><button id="download-canonical" type="button">Generar copia canónica</button><button id="declare-saved" type="button">Declaro la copia guardada</button><button id="close-project" type="button" class="danger">Cerrar proyecto</button></div></section>
+      <section class="card"><h2>Edición parcial en memoria</h2><form id="editor" class="editor"><label>Título<input name="title" maxlength="500"></label><label>Descripción<textarea name="description" maxlength="500"></textarea></label><label>Centro<input name="centerName" maxlength="500"></label><label>Tipo de centro<input name="centerType" maxlength="120"></label><label>Comunidad autónoma<input name="autonomousCommunity" maxlength="200"></label><label>Localidad<input name="locality" maxlength="200"></label><label>Responsable o rol<input name="responsibleRole" maxlength="200"></label><label>Curso académico<input name="academicYear" maxlength="20"></label><label>Clasificación<select name="classification"><option>SYNTHETIC</option><option>ANONYMIZED</option><option>REAL</option></select></label><button id="apply-edit" type="submit">Aplicar cambios en memoria</button></form></section></div>
+    <section class="card diagnostics"><h2>Diagnóstico de privacidad</h2><dl><dt>Persistencia detectada</dt><dd id="persistence">Comprobando…</dd><dt>Intentos de red bloqueados</dt><dd id="network-events">0</dd><dt>Build</dt><dd id="build-state"></dd></dl><p>La liberación al cerrar es best-effort: se eliminan referencias, se revocan Blob URL y se ponen a cero buffers controlados; el navegador y el sistema operativo deciden el borrado físico de RAM.</p></section>
+  </section>
+</main>
+<footer>El archivo se procesa localmente por las funciones autorizadas de BROWSER_PRIVATE. Extensiones, malware, sistema operativo y servicios del propio navegador quedan fuera de esta garantía.</footer>
+</body></html>

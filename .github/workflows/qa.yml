@@ -40,3 +40,8 @@ jobs:
 
       - name: Validar fixtures y motor sintético
         run: python qa/test_release_public.py
+
+      - name: Verificar distribución BROWSER_PRIVATE
+        run: |
+          python qa/test_browser_private_bundle.py
+          node --check browser-private.bundle.mjs

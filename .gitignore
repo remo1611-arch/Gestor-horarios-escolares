@@ -1,0 +1,45 @@
+# Datos privados o reales
+private/
+privado/
+datos_reales/
+*.env
+.env
+.env.*
+
+# Credenciales y secretos
+*token*
+*.key
+*.pem
+credentials*
+secrets*
+
+# Paquetes y copias de trabajo
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+BACKUP/
+backup/
+copias/
+temp/
+tmp/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Dependencias y cachés
+node_modules/
+__pycache__/
+*.pyc
+.cache/
+
+# Informes locales
+coverage/
+dist/
+build/

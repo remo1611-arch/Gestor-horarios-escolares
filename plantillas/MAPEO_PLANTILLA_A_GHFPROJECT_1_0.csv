@@ -1,0 +1,101 @@
+﻿hoja,columna,ruta_ghfproject,transformacion,autoridad
+10_Proyecto_Centro,codigo_proyecto,identity.projectId,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,titulo_proyecto,identity.title,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,estado,identity.status,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,codigo_centro,center.centerId,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,nombre_centro,center.name,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,tipo_centro,center.centerType,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,comunidad_autonoma,center.autonomousCommunity,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,localidad,center.locality,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,curso_academico,academicYear.label,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,fecha_inicio,academicYear.startDate,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,fecha_fin,academicYear.endDate,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,zona_horaria,timeModel.timezone,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,naturaleza_datos,metadata.dataNature,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,privacidad,metadata.privacyClassification,directa,PROYECTO_CANONICO
+10_Proyecto_Centro,notas,metadata.notes,directa,PROYECTO_CANONICO
+11_Tiempo,tipo_registro,discriminador DAY | SLOT,según discriminador,PROYECTO_CANONICO
+11_Tiempo,codigo,timeModel.days[].id | timeModel.slots[].id,directa,PROYECTO_CANONICO
+11_Tiempo,nombre,timeModel.days[].label | timeModel.slots[].label,directa,PROYECTO_CANONICO
+11_Tiempo,orden,timeModel.days[].order | timeModel.slots[].order,directa,PROYECTO_CANONICO
+11_Tiempo,tipo_tramo,timeModel.slots[].kind,directa,PROYECTO_CANONICO
+11_Tiempo,hora_inicio,timeModel.slots[].start,directa,PROYECTO_CANONICO
+11_Tiempo,hora_fin,timeModel.slots[].end,directa,PROYECTO_CANONICO
+11_Tiempo,cuenta_presencia,timeModel.slots[].countsPresence,SI/NO → boolean,PROYECTO_CANONICO
+20_Grupos,codigo_grupo,groups[].id,directa,PROYECTO_CANONICO
+20_Grupos,nombre,groups[].name,directa,PROYECTO_CANONICO
+20_Grupos,etapa,groups[].stage,directa,PROYECTO_CANONICO
+20_Grupos,nivel,groups[].level,directa,PROYECTO_CANONICO
+20_Grupos,seccion,groups[].section,directa,PROYECTO_CANONICO
+20_Grupos,codigo_tutor,groups[].tutorTeacherId,directa,PROYECTO_CANONICO
+20_Grupos,codigo_espacio_base,groups[].homeSpaceId,directa,PROYECTO_CANONICO
+20_Grupos,activo,groups[].active,SI/NO → boolean,PROYECTO_CANONICO
+21_Profesorado,codigo_docente,teachers[].id,directa,PROYECTO_CANONICO
+21_Profesorado,nombre_mostrar,teachers[].displayName,directa,PROYECTO_CANONICO
+21_Profesorado,fraccion_jornada,teachers[].employment.fraction,directa,PROYECTO_CANONICO
+21_Profesorado,itinerante,teachers[].employment.itinerant,SI/NO → boolean,PROYECTO_CANONICO
+21_Profesorado,tramos_presencia_semanal,teachers[].employment.weeklyPresenceSlots,directa,PROYECTO_CANONICO
+21_Profesorado,limite_lectivo_semanal,teachers[].workload.weeklyLectiveLimit,directa,PROYECTO_CANONICO
+21_Profesorado,objetivo_no_lectivos,teachers[].workload.targetNonLectiveSlots,directa,PROYECTO_CANONICO
+21_Profesorado,activo,teachers[].active,SI/NO → boolean,PROYECTO_CANONICO
+21_Profesorado,observaciones,staging-only,directa,STAGING
+22_Profesorado_Detalle,codigo_docente,teachers[].id (join),join por código,PROYECTO_CANONICO
+22_Profesorado_Detalle,tipo_registro,discriminador SPECIALTY | REDUCTION | ROLE,según discriminador,PROYECTO_CANONICO
+22_Profesorado_Detalle,codigo_detalle,teachers[].workload.reductions[].id,directa,PROYECTO_CANONICO
+22_Profesorado_Detalle,valor_tipo,teachers[].specialties[] | teachers[].workload.reductions[].type | teachers[].roles[].type,directa,PROYECTO_CANONICO
+22_Profesorado_Detalle,valor_numero,teachers[].workload.reductions[].weeklySlots,directa,PROYECTO_CANONICO
+22_Profesorado_Detalle,confirmado,teachers[].roles[].confirmed,SI/NO → boolean,PROYECTO_CANONICO
+22_Profesorado_Detalle,notas,teachers[].workload.reductions[].notes | teachers[].roles[].notes,directa,PROYECTO_CANONICO
+30_Materias,codigo_materia,subjects[].id,directa,PROYECTO_CANONICO
+30_Materias,nombre,subjects[].name,directa,PROYECTO_CANONICO
+30_Materias,categoria,subjects[].category,directa,PROYECTO_CANONICO
+30_Materias,codigo_oficial,subjects[].code,directa,PROYECTO_CANONICO
+31_Espacios,codigo_espacio,spaces[].id,directa,PROYECTO_CANONICO
+31_Espacios,nombre,spaces[].name,directa,PROYECTO_CANONICO
+31_Espacios,tipo,spaces[].type,directa,PROYECTO_CANONICO
+31_Espacios,capacidad,spaces[].capacity,directa,PROYECTO_CANONICO
+31_Espacios,activo,spaces[].active,SI/NO → boolean,PROYECTO_CANONICO
+40_Necesidades,codigo_necesidad,teachingNeeds[].id,directa,PROYECTO_CANONICO
+40_Necesidades,codigo_grupo,teachingNeeds[].groupId,directa,PROYECTO_CANONICO
+40_Necesidades,codigo_materia,teachingNeeds[].subjectId,directa,PROYECTO_CANONICO
+40_Necesidades,sesiones_semanales,teachingNeeds[].weeklySessions,directa,PROYECTO_CANONICO
+40_Necesidades,duracion_tramos,teachingNeeds[].durationSlots,directa,PROYECTO_CANONICO
+40_Necesidades,modalidad,teachingNeeds[].modality,directa,PROYECTO_CANONICO
+40_Necesidades,participantes_requeridos,teachingNeeds[].participantsRequired,directa,PROYECTO_CANONICO
+40_Necesidades,modo_docente,teachingNeeds[].teacherRequirement.mode,directa,PROYECTO_CANONICO
+40_Necesidades,modo_espacio,teachingNeeds[].spaceRequirement.mode,directa,PROYECTO_CANONICO
+40_Necesidades,activo,teachingNeeds[].active,SI/NO → boolean,PROYECTO_CANONICO
+40_Necesidades,observaciones,staging-only,directa,STAGING
+41_Necesidad_Detalle,codigo_necesidad,teachingNeeds[].id (join),join por código,PROYECTO_CANONICO
+41_Necesidad_Detalle,tipo_requisito,discriminador contractual,según discriminador,PROYECTO_CANONICO
+41_Necesidad_Detalle,valor,fixedTeacherIds[] | allowedTeacherIds[] | requiredSpecialties[] | fixedSpaceId | allowedSpaceIds[],directa,PROYECTO_CANONICO
+50_Disponibilidad,codigo_docente,availability[].teacherId,directa,PROYECTO_CANONICO
+50_Disponibilidad,codigo_dia,availability[].dayId,directa,PROYECTO_CANONICO
+50_Disponibilidad,codigo_tramo,availability[].slotId,directa,PROYECTO_CANONICO
+50_Disponibilidad,estado,availability[].status,directa,PROYECTO_CANONICO
+50_Disponibilidad,motivo,availability[].reason,directa,PROYECTO_CANONICO
+60_Actividades,codigo_actividad,organizationalActivities[].id,directa,PROYECTO_CANONICO
+60_Actividades,tipo,organizationalActivities[].type,directa,PROYECTO_CANONICO
+60_Actividades,etiqueta,organizationalActivities[].label,directa,PROYECTO_CANONICO
+60_Actividades,ocurrencias_semanales,organizationalActivities[].weeklyOccurrences,directa,PROYECTO_CANONICO
+60_Actividades,codigo_espacio,organizationalActivities[].spaceId,directa,PROYECTO_CANONICO
+60_Actividades,notas,staging-only,directa,STAGING
+61_Actividad_Detalle,codigo_actividad,organizationalActivities[].id (join),join por código,PROYECTO_CANONICO
+61_Actividad_Detalle,tipo_detalle,discriminador TEACHER | GROUP | DAY | SLOT,según discriminador,PROYECTO_CANONICO
+61_Actividad_Detalle,valor,participantTeacherIds[] | participantGroupIds[] | allowedDayIds[] | allowedSlotIds[],directa,PROYECTO_CANONICO
+70_Restricciones,codigo_restriccion,constraints[].id,directa,PROYECTO_CANONICO
+70_Restricciones,tipo,constraints[].type,directa,PROYECTO_CANONICO
+70_Restricciones,dureza,constraints[].hardness,directa,PROYECTO_CANONICO
+70_Restricciones,ambito,constraints[].scope,directa,PROYECTO_CANONICO
+70_Restricciones,peso,constraints[].weight,directa,PROYECTO_CANONICO
+70_Restricciones,activo,constraints[].active,SI/NO → boolean,PROYECTO_CANONICO
+70_Restricciones,parametros_json,constraints[].parameters,texto JSON → objeto,PROYECTO_CANONICO
+70_Restricciones,notas,staging-only,directa,STAGING
+71_Configuracion,codigo_perfil,solverConfiguration.profileId,directa,PROYECTO_CANONICO
+71_Configuracion,backend_preferido,solverConfiguration.backendPreference,directa,PROYECTO_CANONICO
+71_Configuracion,semilla,solverConfiguration.seed,directa,PROYECTO_CANONICO
+71_Configuracion,limite_tiempo_segundos,solverConfiguration.timeLimitSeconds,directa,PROYECTO_CANONICO
+71_Configuracion,modo_presencia_minima,solverConfiguration.prevalidation.minimumPresenceMode,directa,PROYECTO_CANONICO
+71_Configuracion,tramos_lectivos_semanales_esperados,solverConfiguration.prevalidation.weeklyLectiveSlotsExpected,directa,PROYECTO_CANONICO
+71_Configuracion,lectura_cuenta_como_lectiva,solverConfiguration.prevalidation.countReadingAsLective,SI/NO → boolean,PROYECTO_CANONICO
+71_Configuracion,permitir_avisos_en_borrador,workflowPolicy.allowWarningsInDraft,SI/NO → boolean,PROYECTO_CANONICO

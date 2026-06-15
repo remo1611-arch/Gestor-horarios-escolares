@@ -1,0 +1,42 @@
+name: QA pública
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Preparar Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.12'
+
+      - name: Verificar manifiesto
+        run: python scripts/verificar_manifest.py .
+
+      - name: Auditar publicación
+        run: python scripts/auditar_publicacion.py .
+
+      - name: Verificar sintaxis Python sin artefactos compilados
+        run: python scripts/verificar_sintaxis_python.py .
+
+      - name: Verificar sintaxis JavaScript incrustada
+        run: python scripts/verificar_sintaxis_javascript.py .
+
+      - name: Probar modos de ejecución
+        run: python qa/test_runtime_modes.py
+
+      - name: Validar fixtures y motor sintético
+        run: python qa/test_release_public.py

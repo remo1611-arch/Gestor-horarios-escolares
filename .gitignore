@@ -1,45 +1,44 @@
-# Datos privados o reales
+# Datos y proyectos privados
+*.ghfproject
+!fixtures/FIXTURE_GHFPROJECT_*_SINTETICO.ghfproject
 private/
-privado/
-datos_reales/
-*.env
+data-private/
+real-data/
+exports-real/
+backups/
+
+# Salidas, trabajos y evidencias
+motor/jobs/
+resultados/
+exports/
+*.pdf
+*.xlsx
+!plantillas/PLANTILLA_RECOGIDA_DATOS_GHFPROJECT_1_0.xlsx
+!plantillas/EJEMPLO_SINTETICO_PLANTILLA_GHFPROJECT_1_0.xlsx
+*.csv
+!plantillas/MAPEO_PLANTILLA_A_GHFPROJECT_1_0.csv
+!contratos_ghfproject/MAPEO_P5_4_2_A_GHFPROJECT_1_0.csv
+!contratos_ghfproject/RESOLUCION_43_PENDIENTES_P6_0B.csv
+*.log
+*.zip
+*.sqlite
+*.db
+
+# Secretos y credenciales
 .env
 .env.*
-
-# Credenciales y secretos
-*token*
-*.key
 *.pem
-credentials*
-secrets*
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets.*
+private-publication-denylist.txt
 
-# Paquetes y copias de trabajo
-*.zip
-*.7z
-*.rar
-*.tar
-*.tar.gz
-BACKUP/
-backup/
-copias/
-temp/
-tmp/
-
-# Sistema y editores
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.swp
-*~
-
-# Dependencias y cachés
-node_modules/
+# Python / editor / sistema
 __pycache__/
-*.pyc
-.cache/
-
-# Informes locales
-coverage/
-dist/
-build/
+*.py[cod]
+.venv/
+.DS_Store
+.idea/
+.vscode/

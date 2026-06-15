@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GHF DocumentModel 1.0",
+  "type": "object",
+  "required": [
+    "schemaId",
+    "contractVersion",
+    "generatedAt",
+    "metadata",
+    "calendar",
+    "entities",
+    "sessions",
+    "indexes",
+    "collections",
+    "validation",
+    "traceability",
+    "metrics"
+  ],
+  "properties": {
+    "schemaId": {
+      "const": "ghf_document_model_1.0"
+    },
+    "contractVersion": {
+      "const": "1.0"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "calendar": {
+      "type": "object"
+    },
+    "entities": {
+      "type": "object"
+    },
+    "sessions": {
+      "type": "array"
+    },
+    "indexes": {
+      "type": "object"
+    },
+    "collections": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "quality": {},
+    "traceability": {
+      "type": "object"
+    },
+    "metrics": {
+      "type": "object"
+    }
+  }
+}

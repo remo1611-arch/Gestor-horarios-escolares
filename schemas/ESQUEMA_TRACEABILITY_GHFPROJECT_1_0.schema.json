@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://horarios-Centro Demo.example/schemas/ghf-traceability-1.0.schema.json",
+  "title": "Documentos de trazabilidad GHFProject 1.0",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/index"
+    },
+    {
+      "$ref": "#/$defs/lineage"
+    },
+    {
+      "$ref": "#/$defs/event"
+    },
+    {
+      "$ref": "#/$defs/generationSummary"
+    },
+    {
+      "$ref": "#/$defs/acceptanceReceipt"
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaId",
+        "schemaVersion",
+        "projectId",
+        "eventCount",
+        "generationCount",
+        "acceptanceCount"
+      ],
+      "properties": {
+        "schemaId": {
+          "const": "ghf_traceability_index_1.0"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "eventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "acceptanceCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lastEventAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaId",
+        "schemaVersion",
+        "projectId",
+        "nodes",
+        "edges"
+      ],
+      "properties": {
+        "schemaId": {
+          "const": "ghf_lineage_1.0"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "kind",
+              "sha256"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "kind": {
+                "enum": [
+                  "PROJECT",
+                  "SNAPSHOT",
+                  "REQUEST",
+                  "RESPONSE",
+                  "CANDIDATE",
+                  "ACCEPTED_COPY"
+                ]
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "from",
+              "to",
+              "relation"
+            ],
+            "properties": {
+              "from": {
+                "$ref": "#/$defs/id"
+              },
+              "to": {
+                "$ref": "#/$defs/id"
+              },
+              "relation": {
+                "enum": [
+                  "DERIVED_FROM",
+                  "GENERATED_FROM",
+                  "ACCEPTED_FROM",
+                  "REPAIRED_FROM",
+                  "MIGRATED_FROM",
+                  "SNAPSHOT_OF"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaId",
+        "schemaVersion",
+        "eventId",
+        "projectId",
+        "timestamp",
+        "eventType",
+        "summary"
+      ],
+      "properties": {
+        "schemaId": {
+          "const": "ghf_trace_event_1.0"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "eventId": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "eventType": {
+          "enum": [
+            "PROJECT_CREATED",
+            "PROJECT_SAVED",
+            "MIGRATED",
+            "GENERATION_SUBMITTED",
+            "GENERATION_COMPLETED",
+            "ACCEPTED",
+            "REJECTED",
+            "REPAIRED",
+            "SNAPSHOT_CREATED",
+            "SNAPSHOT_RESTORED"
+          ]
+        },
+        "actor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "relatedIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "beforeSha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "afterSha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "generationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaId",
+        "schemaVersion",
+        "requestId",
+        "projectId",
+        "submittedAt",
+        "status",
+        "requestSha256",
+        "responseSha256",
+        "metrics",
+        "payloadRetention"
+      ],
+      "properties": {
+        "schemaId": {
+          "const": "ghf_generation_summary_1.0"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "requestId": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "status": {
+          "enum": [
+            "FEASIBLE",
+            "OPTIMAL",
+            "INFEASIBLE",
+            "FAILED",
+            "CANCELLED"
+          ]
+        },
+        "backend": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 64
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "requestSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "responseSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "metrics": {
+          "type": "object"
+        },
+        "payloadRetention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requestIncluded",
+            "responseIncluded"
+          ],
+          "properties": {
+            "requestIncluded": {
+              "type": "boolean"
+            },
+            "responseIncluded": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "acceptanceReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaId",
+        "schemaVersion",
+        "receiptId",
+        "projectId",
+        "decision",
+        "decidedAt",
+        "candidateId",
+        "sourceProjectSha256",
+        "resultProjectSha256",
+        "directWriteAllowed"
+      ],
+      "properties": {
+        "schemaId": {
+          "const": "ghf_acceptance_receipt_1.0"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "receiptId": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "decision": {
+          "enum": [
+            "ACCEPTED_FULL",
+            "ACCEPTED_PARTIAL",
+            "REJECTED"
+          ]
+        },
+        "decidedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "candidateId": {
+          "$ref": "#/$defs/id"
+        },
+        "sourceProjectSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "resultProjectSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "directWriteAllowed": {
+          "const": false
+        },
+        "acceptedSessionIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "rejectedSessionIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    }
+  }
+}

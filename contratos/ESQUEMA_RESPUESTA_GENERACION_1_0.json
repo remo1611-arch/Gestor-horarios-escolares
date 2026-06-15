@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ghf_generation_response_1.0",
+  "title": "Respuesta de generación P5-2",
+  "type": "object",
+  "required": [
+    "schemaId",
+    "contractVersion",
+    "responseId",
+    "requestId",
+    "status",
+    "policy",
+    "preview"
+  ],
+  "properties": {
+    "schemaId": {
+      "const": "ghf_generation_response_1.0"
+    },
+    "contractVersion": {
+      "const": "1.0"
+    },
+    "responseId": {
+      "type": "string"
+    },
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "OPTIMAL",
+        "FEASIBLE",
+        "TIME_LIMIT",
+        "PARTIAL",
+        "INFEASIBLE",
+        "ERROR",
+        "CANCELLED"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "directWriteAllowed": {
+          "const": false
+        },
+        "requiresExplicitAcceptance": {
+          "const": true
+        },
+        "targetMode": {
+          "const": "CREATE_SEPARATE_PREVIEW"
+        }
+      }
+    },
+    "preview": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

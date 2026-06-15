@@ -1,0 +1,55 @@
+﻿Bloque P5-4.2;Clasificación P6-0A;Decisión P6-0B;Destino GHFProject 1.0;Autoridad canónica;Inclusión;Tratamiento legacy;Justificación
+actividadesOrganizativas;PROYECTO_CANONICO;CORE_RENAME;project.json:organizationalActivities[];organizationalActivities[];Sí;No aplica.;Única fuente de actividades no curriculares.
+appVersion;TRAZABILIDAD;TRACE_ENVELOPE;envelope.json:application.version + metadata.sourceApplicationVersion;envelope.application.version;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Versión de origen, no regla de negocio.
+areas;PROYECTO_CANONICO;CORE_RENAME;project.json:subjects[];subjects[];Sí;No aplica.;"Alias legacy areas; la autoridad canónica es subjects."
+auditLog;TRAZABILIDAD;TRACE_EXTERNAL;traceability/audit.jsonl;traceability/audit.jsonl;No núcleo;No aplica.;Historial fuera de project.json.
+bridgeMeta;TRAZABILIDAD;TRACE_LEGACY;traceability/ + extensions/p5-legacy/;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Normalizar hashes y linaje; payload legacy opcional."
+centerRules;PROYECTO_CANONICO;CORE_SPLIT;project.json:constraints[] + solverConfiguration;constraints[];Sí normalizado;No aplica.;No conservar como autoridad paralela.
+centroCurso;PROYECTO_CANONICO;CORE_SPLIT;project.json:center + academicYear;center / academicYear;Sí;No aplica.;Separación de centro y curso.
+configuracionOrigen;LEGACY_MIGRABLE;EXTENSION_SOURCE;extensions/source-import/configuration-origin.json;extensions/source-import;No núcleo;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Solo evidencia opcional; valores normalizados pasan al núcleo."
+contractId;PROYECTO_CANONICO;CORE_MOVE;project.json:identity.contractId;identity.contractId;Sí;No aplica.;Identifica contrato de origen.
+createdAt;PROYECTO_CANONICO;CORE_MOVE;project.json:identity.createdAt;identity.createdAt;Sí;No aplica.;ISO 8601 completo.
+cupos;PENDIENTE_DECISION;LEGACY_EXTENSION;extensions/p5-legacy/cupos.json;ninguna en 1.0;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Semántica no demostrada y bloque vacío; no crear autoridad."
+dataRequirements;PENDIENTE_DECISION;EXCLUDE_REGENERATE;"No se persiste; informe de validación derivado";ninguna;No;No aplica.;Estado de completitud regenerable.
+dias;PROYECTO_CANONICO;CORE_MOVE;project.json:timeModel.days[];timeModel.days[];Sí;No aplica.;Autoridad temporal.
+disponibilidad;PROYECTO_CANONICO;CORE_RENAME;project.json:availability[];availability[];Sí;No aplica.;Disponibilidad normalizada.
+docentes;PROYECTO_CANONICO;CORE_RENAME;project.json:teachers[];teachers[];Sí;No aplica.;Autoridad docente.
+docentesStaging;LEGACY_MIGRABLE;EXTENSION_SOURCE;extensions/source-import/teachers-staging.json;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Staging opcional, nunca autoridad.
+editorPolicy;PENDIENTE_DECISION;CORE_SPLIT;project.json:workflowPolicy + exclusiones UI;workflowPolicy;Sí parcial;No aplica.;"Solo invariantes funcionales; enabled/historyLimit fuera."
+editorSettings;ESTADO_UI;EXCLUDE_UI;No se persiste;ninguna;No;No aplica.;Estado visual.
+espacios;PROYECTO_CANONICO;CORE_RENAME;project.json:spaces[];spaces[];Sí;No aplica.;Autoridad de espacios.
+generatorPolicy;CONFIGURACION_MOTOR;CORE_NORMALIZE;project.json:solverConfiguration;solverConfiguration;Sí;No aplica.;"Preferencias del proyecto; parámetros por ejecución permanecen en request."
+grupos;PROYECTO_CANONICO;CORE_RENAME;project.json:groups[];groups[];Sí;No aplica.;Autoridad de grupos.
+importPolicy;LEGACY_MIGRABLE;CORE_SPLIT;project.json:workflowPolicy + extensions/source-import;workflowPolicy;Sí parcial;No aplica.;"Reglas de aceptación al núcleo; detalles del adaptador fuera."
+incidenciasOrigen;CACHE_REGENERABLE;EXCLUDE_REGENERATE;"No se persiste; trazabilidad opcional";ninguna;No;No aplica.;Incidencias recalculables.
+necesidadesSemanales;PROYECTO_CANONICO;CORE_RENAME;project.json:teachingNeeds[];teachingNeeds[];Sí;No aplica.;Autoridad de demanda curricular y apoyos.
+p1Meta;LEGACY_MIGRABLE;LEGACY_TRACE;extensions/p5-legacy/ + traceability;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Metadatos históricos, no autoridad.
+p2Meta;LEGACY_MIGRABLE;LEGACY_TRACE;extensions/p5-legacy/ + traceability;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Metadatos históricos, no autoridad.
+p3Meta;LEGACY_MIGRABLE;LEGACY_TRACE;extensions/p5-legacy/ + traceability;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Metadatos históricos, no autoridad.
+p5Meta;LEGACY_MIGRABLE;LEGACY_TRACE;extensions/p5-legacy/ + traceability;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Metadatos históricos, no autoridad.
+p5_1Meta;TRAZABILIDAD;TRACE_NORMALIZE;traceability/;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Resumen e hashes; payload opcional."
+p5_2Meta;TRAZABILIDAD;TRACE_NORMALIZE;traceability/;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Resumen e hashes; payload opcional."
+p5_3_2Meta;TRAZABILIDAD;TRACE_NORMALIZE;traceability/;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Resumen e hashes; payload opcional."
+p5_4Meta;TRAZABILIDAD;TRACE_NORMALIZE;traceability/;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Resumen e hashes; payload opcional."
+perfilesCargaDocente;PROYECTO_CANONICO;CORE_MERGE;project.json:teachers[].employment/workload;teachers[];Sí normalizado;No aplica.;No mantener tabla paralela.
+phaseId;TRAZABILIDAD;TRACE_ENVELOPE;envelope.application.phase + metadata.sourcePhase;envelope.application.phase;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Fase de origen.
+policy;LEGACY_MIGRABLE;CORE_SPLIT;project.json:workflowPolicy + extensions/p5-legacy;workflowPolicy;Sí parcial;No aplica.;"Invariantes al núcleo; resto legacy opcional."
+preajustesVista;ESTADO_UI;EXCLUDE_UI;No se persiste;ninguna;No;No aplica.;Preferencias de visualización.
+prevalidationConfig;CONFIGURACION_MOTOR;CORE_SPLIT;project.json:solverConfiguration.prevalidation + constraints[];solverConfiguration;Sí;No aplica.;Configuración funcional normalizada.
+qaEvidence;CACHE_REGENERABLE;EXCLUDE_DERIVED;"Fuera del proyecto; QA de release";ninguna;No;No aplica.;Evidencia de pruebas, no estado del centro.
+reduccionesCargos;PROYECTO_CANONICO;CORE_MERGE;project.json:teachers[].workload.reductions + roles;teachers[];Sí normalizado;No aplica.;No mantener autoridad paralela.
+requirementsPolicyLegacy;LEGACY_MIGRABLE;LEGACY_EXTENSION;extensions/source-import/requirements-policy.json;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";No forma parte del proyecto operativo.
+requirementsRegistryLegacy;LEGACY_MIGRABLE;LEGACY_EXTENSION;extensions/source-import/requirements-registry.json;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";No forma parte del proyecto operativo.
+restricciones;PROYECTO_CANONICO;CORE_RENAME;project.json:constraints[];constraints[];Sí;No aplica.;Autoridad única de restricciones.
+scenario;PROYECTO_CANONICO;CORE_METADATA;project.json:metadata.dataNature/tags;metadata;Sí normalizado;No aplica.;No conservar etiqueta como autoridad de datos.
+scheduleVersions;SNAPSHOT_HISTORICO;SNAPSHOTS_EXTERNAL;snapshots/index.json + snapshots/*.json;snapshots/;Fuera núcleo;No aplica.;Historial externo con retención contractual.
+schemaId;PROYECTO_CANONICO;CORE_REPLACE;project.json:schemaId/schemaVersion;schemaId;Sí;No aplica.;ghf_project_1.0 / 1.0.0.
+sesiones;PROYECTO_CANONICO;CORE_RENAME;project.json:schedule.sessions[];schedule.sessions[];Sí;No aplica.;Única autoridad de colocaciones y bloqueos.
+sourceFiles;TRAZABILIDAD;TRACE_SOURCE;traceability/ + extensions/source-import;traceability;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";"Hashes y referencias; binarios solo adjuntos explícitos."
+sourcePhase;TRAZABILIDAD;CORE_METADATA;project.json:metadata.sourcePhase;metadata.sourcePhase;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Trazabilidad de origen.
+staffingPlan;PENDIENTE_DECISION;CORE_SPLIT;teachers[].roles/employment/workload + extension source-import;teachers[];Sí parcial;No aplica.;"Solo hechos confirmados al núcleo; plan y objetivos como evidencia."
+staging;LEGACY_MIGRABLE;EXTENSION_SOURCE;extensions/source-import/staging.json;ninguna;Condicionado;"Conservar en extensión solo cuando sea necesario para migración sin pérdida; nunca como autoridad paralela.";Staging opcional y no autoritativo.
+status;PROYECTO_CANONICO;CORE_MOVE;project.json:identity.status;identity.status;Sí;No aplica.;Estado del proyecto.
+tramos;PROYECTO_CANONICO;CORE_MOVE;project.json:timeModel.slots[];timeModel.slots[];Sí;No aplica.;Autoridad temporal.
+updatedAt;PROYECTO_CANONICO;CORE_MOVE;project.json:identity.updatedAt;identity.updatedAt;Sí;No aplica.;"ISO 8601 completo; abrir no lo cambia."
+validationPolicy;PROYECTO_CANONICO;CORE_SPLIT;project.json:workflowPolicy + constraints[];workflowPolicy;Sí normalizado;No aplica.;Reglas funcionales sin duplicar prevalidación.

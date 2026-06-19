@@ -1,0 +1,95 @@
+{
+  "corpusVersion": "web-solver-corpus-1.0",
+  "phase": "P12-0",
+  "status": "CONTRACTUAL_CORPUS_DEFINED",
+  "date": "2026-06-19",
+  "purpose": "Define a minimum set of known or expected test cases before implementing P12-1/P12-2.",
+  "rules": {
+    "exactCellEqualityRequired": false,
+    "hardValidityRequired": true,
+    "completePlacementRequiredUnlessExpectedPartialOrInfeasible": true,
+    "independentValidatorAuthoritative": true,
+    "cpSatOracleUsedWhenAvailable": true
+  },
+  "cases": [
+    {
+      "id": "P12-T00-MINI-SINGLE-WEEK-KNOWN",
+      "type": "embedded_minimal_contract_case",
+      "targetPhase": "P12-1",
+      "difficulty": "SMOKE",
+      "expectedStatus": "COMPLETE_HARD_VALID",
+      "expectedRequiredOccurrences": 6,
+      "knownReference": "p12/corpus/P12_T00_MINI_SINGLE_WEEK_KNOWN.json",
+      "requiredCapabilities": [
+        "single_week",
+        "teacher_no_overlap",
+        "group_no_overlap",
+        "space_no_overlap",
+        "teacher_availability"
+      ],
+      "p12_1Gate": "MUST_PASS"
+    },
+    {
+      "id": "P12-T01-MINI-SHARED-TEACHER-SPACE",
+      "type": "embedded_minimal_contract_case",
+      "targetPhase": "P12-1",
+      "difficulty": "BASIC_CONFLICTS",
+      "expectedStatus": "COMPLETE_HARD_VALID",
+      "expectedRequiredOccurrences": 8,
+      "knownReference": "p12/corpus/P12_T01_MINI_SHARED_TEACHER_SPACE.json",
+      "requiredCapabilities": [
+        "single_week",
+        "teacher_no_overlap",
+        "group_no_overlap",
+        "space_no_overlap",
+        "conflict_driven_ordering"
+      ],
+      "p12_1Gate": "MUST_PASS"
+    },
+    {
+      "id": "P12-T02-MINI-INFEASIBLE-OVERLOAD",
+      "type": "embedded_minimal_contract_case",
+      "targetPhase": "P12-1",
+      "difficulty": "INFEASIBLE_SMOKE",
+      "expectedStatus": "INFEASIBLE_OR_EXPLICIT_PARTIAL_WITH_NO_OFFICIAL_ACCEPTANCE",
+      "expectedRequiredOccurrences": 6,
+      "knownReference": "p12/corpus/P12_T02_MINI_INFEASIBLE_OVERLOAD.json",
+      "requiredCapabilities": [
+        "infeasibility_detection_or_explained_partial",
+        "no_silent_success"
+      ],
+      "p12_1Gate": "MUST_PASS"
+    },
+    {
+      "id": "P12-T03-FIXTURE-A6-LEGACY-COMPLETE",
+      "type": "existing_project_reference",
+      "targetPhase": "P12-1/P12-2",
+      "difficulty": "LEGACY_LARGE",
+      "projectPath": "data/fixture_centro_completo_a6.ghfproject",
+      "jsonPath": "data/fixture_centro_completo_a6.json",
+      "expectedStatus": "COMPLETE_HARD_VALID_REFERENCE_EXISTS",
+      "expectedAssignments": 502,
+      "expectedGroups": 15,
+      "expectedTeachers": 29,
+      "expectedSpaces": 14,
+      "p12_1Gate": "SHOULD_PASS_FOR_WEB_SOLVER_BASIC_LARGE_IF_SCOPE_CLAIMS_SUPPORT",
+      "p12_2Gate": "MUST_PASS_BEFORE_REMOVING_CP_SAT_DEPENDENCY_FOR_LARGE_LEGACY_CASES"
+    },
+    {
+      "id": "P12-T04-P11-S1-SYNTHETIC-REALISTIC-DOMAIN4-1",
+      "type": "existing_project_reference",
+      "targetPhase": "P12-2",
+      "difficulty": "ORGANIZATIONAL_DOMAIN_4_1",
+      "projectPath": "data/P11-S1_SYNTHETIC_REALISTIC.ghfproject",
+      "jsonPath": "data/P11-S1_SYNTHETIC_REALISTIC.json",
+      "expectedStatus": "COMPLETE_HARD_VALID_REFERENCE_EXISTS",
+      "expectedAssignments": 114,
+      "expectedActivities": 60,
+      "expectedGroups": 3,
+      "expectedTeachers": 10,
+      "expectedSpaces": 7,
+      "p12_1Gate": "MAY_BLOCK_WITH_EXPLICIT_UNSUPPORTED_DOMAIN4_1_REASON",
+      "p12_2Gate": "MUST_PASS_OR_EXPLICITLY_REMAIN_CP_SAT_ORACLE_ONLY"
+    }
+  ]
+}

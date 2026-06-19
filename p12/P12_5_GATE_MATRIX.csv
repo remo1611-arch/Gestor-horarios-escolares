@@ -1,0 +1,6 @@
+gate_id,priority,description,pass_condition,evidence
+P12-5-G01,P0,Analizador soporta caso medio,P12_WEB_MEDIUM supported=true,tools/p12_5_preflight.mjs
+P12-5-G02,P0,Generación web caso medio,P12_WEB_MEDIUM status COMPLETED selectedEngine WEB_SOLVER,tools/p12_5_preflight.mjs
+P12-5-G03,P0,Validación independiente,validateScheduleIndependently valid=true complete=true,tools/p12_5_preflight.mjs
+P12-5-G04,P1,No degradar casos complejos,P11-S1 sigue unsupported con razones explícitas,tools/p12_5_preflight.mjs
+P12-5-G05,P1,Continuidad fases previas,P12-0/1/2/3/4 preflight PASS,tools/p12_5_preflight.py

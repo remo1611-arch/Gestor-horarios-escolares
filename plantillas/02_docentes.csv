@@ -1,0 +1,6 @@
+Codigo;Docente;Funcion;Especialidad;Carga_objetivo;Reduccion_cargo;Otras_reducciones;LD;DC;Coberturas;Perfiles_esenciales;Procedencia;Vigente_desde;Vigente_hasta;Verificado_por;Fecha_verificacion;Estado
+DOC-001;Docente 01;Tutoría Grupo 1;Primaria;20;0;0;2;2;Sí;;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+DOC-002;Docente 02;Tutoría Grupo 2;Primaria;20;0;0;2;2;Sí;;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+DOC-003;Docente 03;Especialista;Inglés;18;0;0;2;2;Sí;;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+DOC-004;Docente 04;Especialista;Educación Física;18;0;0;2;2;Sí;;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+DOC-005;Docente 05;Apoyo;Primaria;18;0;0;2;2;Sí;APOYO;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado

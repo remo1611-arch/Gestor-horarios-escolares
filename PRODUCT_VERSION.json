@@ -1,0 +1,950 @@
+{
+  "name": "Gestor de Horarios Escolares",
+  "productVersion": "0.6.0-product-alpha.32",
+  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
+  "status": "PRODUCT_ALPHA_P12_6_WEB_PUBLIC_QA_GATE_PREPARADO_QA_REAL_PENDIENTE",
+  "date": "2026-06-19",
+  "technicalCore": {
+    "version": "0.6.0-alpha.25",
+    "phase": "A15_1_1_CONVERGENCIA_TECNICA_Y_LIMPIEZA_CONTRACTUAL",
+    "originalPackageSha256": "35735e75ed2334003f20d863f521c3b675d5fb104537bb1b434073f4f7e87398",
+    "protectedOraclePreserved": true,
+    "domainDeltaAudited": true,
+    "byteIdentical": false
+  },
+  "ordinaryNavigation": [
+    "Inicio",
+    "Datos",
+    "Organización",
+    "Horario",
+    "Gestión diaria",
+    "Documentos",
+    "Sistema"
+  ],
+  "technicalModeQuery": "modoTecnico=1",
+  "betaAuthorized": false,
+  "rcAuthorized": false,
+  "nextAuthorizedPhase": "P12_7_WEB_SOLVER_COMPLEJIDAD_MEDIA_AVANZADA_O_QA_REAL_GITHUB_PAGES",
+  "completedPhases": [
+    "P0_BASE_TECNICA_CONGELADA",
+    "P1_MODO_PRODUCTO",
+    "P2_ASISTENTE_CREACION_PROYECTO",
+    "P3_GENERADOR_UNICO_VISIBLE",
+    "P4_BIBLIOTECA_CENTROS_EJEMPLO",
+    "P5_EDICION_PROFESIONAL_REVISION_HUMANA",
+    "P5S_FUNDACION_SEMANTICA_DEL_PRODUCTO",
+    "P6_GESTION_DIARIA_COMO_PRODUCTO",
+    "P7_DOCUMENTOS_FINALES",
+    "P8_0_PREPARACION_SEGURA_PILOTO_REAL",
+    "P10_0_QA_FISICO_PRELIMINAR",
+    "P10M_0_MATRIZ_AUDITABLE_CAPACIDADES",
+    "P10M_0B_CORPUS_Y_ARNES_BENCHMARK",
+    "P10_1A_REAPLICACION_ACCESIBILIDAD_SOBRE_P10_0",
+    "P10M_1_MANIFIESTO_EJECUTABLE_DE_CAPACIDADES",
+    "P10M_2_VALIDADOR_SEMANTICO_INDEPENDIENTE",
+    "P10M_3_DOMINIO_EDUCATIVO_4_0",
+    "P10M_4_CP_SAT_COMPLETO_Y_PARIDAD",
+    "P10M_5_ASISTENTES_SEMANTICOS_EDUCATIVOS",
+    "P10M_6_CALIDAD_MULTIDIMENSIONAL",
+    "P10M_7_BENCHMARK_COMPARATIVO_FINAL",
+    "P11_0_APERTURA_PILOTO_PRIVADO_REAL",
+    "P11_F1_MINIMA_PRESENCIA_SERVICIOS_SEGMENTOS_ANCLADOS",
+    "P11_S1_REFERENCE_CENTER_SYNTHETIC_REALISTIC",
+    "P11_C1_CONSOLIDACION_FUNCIONAL",
+    "P11_C1_1_WINDOWS_UTF8_MAINTENANCE",
+    "P11_C1_2_LEGIBILIDAD_USUARIO_FINAL",
+    "P11_C1_3_REDISENO_HORARIO_USUARIO_FINAL",
+    "P11_C2_PRODUCTO_DOCUMENTAL_Y_FLUJO_USUARIO_FINAL",
+    "P11_C3_EDICION_SEGURA_CATALOGOS_Y_LIMPIEZA_UI",
+    "P11_C4_DOCUMENTOS_SIMPLIFICADOS",
+    "P11_C5_DOCUMENTOS_ASISTENTE_SIMPLE",
+    "P11_C5_1_DISTRIBUCION_LIMPIA_USUARIO_FINAL",
+    "P11_C5_2_HOTFIX_CP_SAT_UTF8_FECHAS_LOCALES",
+    "P11_C5_3_SANEAMIENTO_FINAL_HISTORIAL_FECHAS_HOST",
+    "P12_0_WEB_SOLVER_CONTRACT",
+    "P12_1_WEB_WORKER_SOLVER_MINIMO_ACREDITADO",
+    "P12_2_WEB_SOLVER_DOMINIO_ORGANIZATIVO_LIGERO",
+    "P12_3_PARIDAD_CP_SAT_ORACULO_PREPARADA",
+    "P12_5_WEB_SOLVER_CENTRO_MEDIO",
+    "P12_5_WEB_SOLVER_CENTRO_MEDIO",
+    "P12_6_WEB_PUBLIC_QA_GATE"
+  ],
+  "projectWizard": {
+    "contractVersion": "product-project-wizard-1.0",
+    "steps": [
+      "Centro",
+      "Calendario",
+      "Datos",
+      "Organización",
+      "Revisión"
+    ],
+    "draftStorage": "sessionStorage",
+    "technicalFieldsRequired": false,
+    "createsDraftWithoutCompleteData": true,
+    "reportsGenerationReadiness": true
+  },
+  "generation": {
+    "contractVersion": "product-generation-orchestrator-1.0",
+    "policyVersion": "product-generation-policy-1.2-p12-web-solver-org-light",
+    "ordinaryAction": "Generar horario",
+    "ordinaryEngineChoiceVisible": false,
+    "strategies": [
+      "HEURISTIC_ONLY",
+      "HEURISTIC_FIRST",
+      "COMBINED",
+      "CP_SAT_ONLY",
+      "CP_SAT_REQUIRED",
+      "WEB_SOLVER_ONLY"
+    ],
+    "multislotRequiresCpSat": true,
+    "partialHeuristicEscalatesToCpSat": true,
+    "commonRevalidation": true,
+    "engineDivergenceBlocksResult": true,
+    "webSolverP12_1": {
+      "contractVersion": "web-solver-runtime-1.0",
+      "ordinaryAction": "Generar horario",
+      "visibleAsSeparateEngine": false,
+      "pythonRequiredForSupportedScope": false,
+      "orToolsRequiredForSupportedScope": false,
+      "unsupportedComplexProjectsStillRequireCpSatOracle": true,
+      "supportedScope": [
+        "single_week",
+        "durationSlots_1",
+        "teacher/group/space_no_overlap",
+        "teacher_availability",
+        "space_compatibility"
+      ]
+    },
+    "webSolverP12_2": {
+      "contractVersion": "web-solver-runtime-1.1",
+      "ordinaryAction": "Generar horario",
+      "visibleAsSeparateEngine": false,
+      "pythonRequiredForSupportedScope": false,
+      "orToolsRequiredForSupportedScope": false,
+      "unsupportedComplexProjectsStillRequireCpSatOracle": true,
+      "supportedScope": [
+        "single_week",
+        "durationSlots_1",
+        "minimum_presence_simple",
+        "supported_hard_soft_rules",
+        "immediate_relations",
+        "teacher_presence",
+        "space_compatibility"
+      ]
+    }
+  },
+  "exampleLibrary": {
+    "contractVersion": "product-example-library-1.0",
+    "ordinaryExamples": 8,
+    "technicalExamples": 1,
+    "examples": [
+      "P12_WEB_MINI",
+      "CANONICAL_REFERENCE",
+      "P11_SYNTHETIC_REALISTIC",
+      "CEIP_RURAL",
+      "CEIP_URBAN_LARGE",
+      "IES_SMALL",
+      "CIFP_SYNTHETIC",
+      "IMPOSSIBLE",
+      "STRESS_1200"
+    ],
+    "allDataSynthetic": true,
+    "stressTechnicalOnly": true,
+    "canonicalReferenceCounts": {
+      "assignments": 502,
+      "groups": 15,
+      "teachers": 29,
+      "spaces": 14
+    },
+    "regressionGateParts": [
+      "CANONICAL_REFERENCE_NO_REGRESSION"
+    ],
+    "p11SyntheticMetrics": {
+      "activities": 60,
+      "assignments": 114,
+      "groups": 3,
+      "teachers": 10,
+      "spaces": 7,
+      "absences": 1,
+      "coverages": 2
+    },
+    "p12WebMini": {
+      "activities": 6,
+      "assignments": 0,
+      "groups": 2,
+      "teachers": 3,
+      "spaces": 3,
+      "expectedEngine": "WEB_SOLVER"
+    }
+  },
+  "professionalReview": {
+    "contractVersion": "product-review-contract-1.0",
+    "ordinaryEditor": "Horario → Revisar y editar",
+    "selection": [
+      "INDIVIDUAL",
+      "MULTIPLE"
+    ],
+    "atomicMultipleMoves": true,
+    "destinationExplanations": true,
+    "hardBlocksExplained": true,
+    "preferencesExplained": true,
+    "locksPreserved": true,
+    "removedSessionsRecoverableAfterLaterEdits": true,
+    "undoRedo": true,
+    "alternativeComparison": true,
+    "contextChangeWarning": true,
+    "historicalIntegrityVerification": true,
+    "officialClosureChecklist": true,
+    "officialClosureCreatesRecoverableRevision": true,
+    "humanDecisionRequired": true
+  },
+  "semanticFoundation": {
+    "contractVersion": "product-semantic-foundation-1.0",
+    "catalogVersion": "educational-domain-catalog-1.0",
+    "explanationVersion": "semantic-explanation-1.0",
+    "guidedActionVersion": "semantic-guided-action-1.0",
+    "languagePolicyVersion": "ordinary-language-policy-1.0",
+    "ruleCount": 49,
+    "auditedActiveCodes": 170,
+    "mappedActiveCodes": 170,
+    "fallbackActiveCodes": 0,
+    "locales": [
+      "es",
+      "gl"
+    ],
+    "importanceLevels": [
+      "REQUIRED",
+      "VERY_IMPORTANT",
+      "PREFERABLE",
+      "NEUTRAL"
+    ],
+    "migratedProductFlows": [
+      "P2_PROJECT_WIZARD",
+      "P3_GENERATION",
+      "P4_EXAMPLE_COVERAGE",
+      "P5_REVIEW_AND_CLOSURE",
+      "P6_DAILY_OPERATIONS"
+    ],
+    "protectedCoreModified": false,
+    "legacyTextAdapter": "CENTRALIZED_AND_AUDITED",
+    "ordinaryTechnicalVocabularyGate": true,
+    "subphases": [
+      "P5S-0_AUDIT",
+      "P5S-1_CONTRACT",
+      "P5S-2_ADAPTERS",
+      "P5S-3_MIGRATION_P2_P5",
+      "P5S-4_GUIDED_RESOLUTION",
+      "P5S-5_QA"
+    ]
+  },
+  "dailyOperationsProduct": {
+    "contractVersion": "product-daily-operations-1.0",
+    "policyVersion": "product-daily-policy-1.0",
+    "ordinaryTabs": [
+      "Hoy",
+      "Ausencias",
+      "Coberturas",
+      "Seguimiento",
+      "Informes"
+    ],
+    "draftAbsenceDoesNotCreateCoverages": true,
+    "confirmedAbsenceCreatesAffectedServices": true,
+    "semanticCandidateReasons": true,
+    "ordinaryNumericScoreVisible": false,
+    "nonRecommendedChoiceRequiresReason": true,
+    "communicationTrace": true,
+    "performedServiceTrace": true,
+    "uncoveredRequiresReason": true,
+    "scheduleChangeReconciliation": true,
+    "obsoleteDecisionsPreserved": true,
+    "privateReasonsExcludedFromReports": true,
+    "officialScheduleModified": false,
+    "humanDecisionRequired": true,
+    "protectedDailyCoreModified": false
+  },
+  "documentsProduct": {
+    "contractVersion": "product-documents-1.0",
+    "policyVersion": "product-document-policy-1.0",
+    "sessionVersion": "product-document-session-1.0",
+    "packageVersion": "product-document-package-1.0",
+    "ordinaryGroups": [
+      "Documentos oficiales",
+      "Documentos de trabajo"
+    ],
+    "technicalGroup": "Documentos técnicos",
+    "sameImmutableSnapshot": true,
+    "sameRevisionDateStatus": true,
+    "outputs": [
+      "HTML_A4",
+      "PDF_PRINT",
+      "XLSX_OOXML",
+      "ZIP_VERIFIABLE"
+    ],
+    "officialPackageGate": true,
+    "draftWatermarkPreserved": true,
+    "privateNotesExcluded": true,
+    "packageScopes": [
+      "WORKING_COPY",
+      "OFFICIAL",
+      "ARCHIVE"
+    ],
+    "manifestSha256": true,
+    "technicalDocumentsOrdinaryVisible": false,
+    "protectedDocumentCoreModified": false
+  },
+  "pilotPreparation": {
+    "contractVersion": "product-pilot-preparation-1.0",
+    "publicSummaryVersion": "product-pilot-public-summary-1.0",
+    "decisionTemplateVersion": "product-pilot-decision-template-1.0",
+    "incidentRegisterVersion": "product-pilot-incident-register-1.0",
+    "realProjectIncluded": false,
+    "realPilotExecuted": false,
+    "leadershipAcceptanceRecorded": false,
+    "browserPersistenceUsed": false,
+    "privateAndPublicEvidenceSeparated": true,
+    "cryptographicIntegrityRequired": true,
+    "verifiedRecoveryCopyRequired": true,
+    "ruleDomains": 9,
+    "pilotTasks": 12,
+    "p8_1Gate": "READY_FOR_P8_1_REAL_DATA_AUDIT",
+    "p8_1BlockedUntilRealProject": true,
+    "betaAuthorized": false,
+    "releaseAuthorized": false,
+    "qa": {
+      "contractual": "81/81",
+      "functional": "30/30",
+      "productRegressions": "P2 25/25 · P3 27/27 · P4 45/45 · P5 26/26 · P6 32/32 · P7 39/39",
+      "nodeReexecuted": "379/379",
+      "nodeInheritedProtectedA12": "16/16",
+      "protectedCore": "317/317"
+    }
+  },
+  "physicalPreliminaryQa": {
+    "qaContractVersion": "product-preliminary-physical-qa-1.0",
+    "evidenceContractVersion": "product-preliminary-physical-evidence-1.0",
+    "matrixContractVersion": "product-preliminary-physical-matrix-1.0",
+    "publicSummaryContractVersion": "product-preliminary-physical-public-summary-1.0",
+    "profiles": [
+      "ANDROID_MOBILE",
+      "TABLET",
+      "PC_DESKTOP",
+      "EXCEL_365",
+      "A4_PRINT"
+    ],
+    "requiredProfiles": 5,
+    "uniqueAutomaticChecks": 18,
+    "manualChecks": 54,
+    "verifiedProfiles": 0,
+    "preliminary": true,
+    "finalQaRequiredAfterPilot": true,
+    "realEvidenceIncluded": false,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "qa": "86/86",
+    "functional": "27/27",
+    "productRegressions": "P8-0 30/30 · P7 39/39 · P6 32/32 · P5 26/26 · P4 45/45 · P3 27/27 · P2 25/25",
+    "historicalNode": "395/395 (379 general + 16 A12)",
+    "protectedCore": "317/317"
+  },
+  "accessibilityUsability": {
+    "contractVersion": "product-accessibility-usability-1.0",
+    "evidenceVersion": "product-accessibility-evidence-1.0",
+    "usabilitySessionVersion": "product-usability-session-1.0",
+    "matrixVersion": "product-accessibility-matrix-1.0",
+    "publicSummaryVersion": "product-accessibility-public-summary-1.0",
+    "profiles": [
+      "KEYBOARD_FOCUS",
+      "SCREEN_READER",
+      "ZOOM_REFLOW_CONTRAST",
+      "TOUCH_MOTOR"
+    ],
+    "requiredProfiles": 4,
+    "uniqueAutomaticChecks": 30,
+    "manualChecks": 40,
+    "usabilityTasks": 12,
+    "requiredIndependentSessions": 3,
+    "verifiedProfiles": 0,
+    "verifiedUsabilitySessions": 0,
+    "preferences": [
+      "TEXT_SCALE",
+      "HIGH_CONTRAST",
+      "REDUCED_MOTION",
+      "SPACIOUS_CONTROLS"
+    ],
+    "realEvidenceIncluded": false,
+    "finalQaRequiredAfterPilot": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "phase": "P10-1A",
+    "participantUniquenessRequired": true,
+    "duplicateParticipantSessionsDoNotCount": true,
+    "qa": "8/8",
+    "staticQa": "20/20"
+  },
+  "p10mPreflight": {
+    "capabilityMatrixVersion": "p10m-capability-matrix-1.0",
+    "benchmarkContractVersion": "p10m-benchmark-contract-1.1",
+    "corpusVersion": "p10m-benchmark-corpus-2.0",
+    "currentCases": 7,
+    "futureCases": 0,
+    "unsupportedCasesMustRemainExplicit": true,
+    "solverOrDomainChanged": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL",
+    "qa": "P10M-7 functional 17/17 · static 12/12 · schema PASS",
+    "nodeSuite": "546/546 generales + A12 16/16 = 562/562 modular",
+    "productRegressions": "251/251",
+    "protectedCore": "P10M-6 preserved as declared base · P10M-7 delta 24 modified + 17 new",
+    "ortoolsReal": "9.15.6755 · REAL_PROVIDER · noFallback=true",
+    "capabilityCount": 19,
+    "executableDomain4Cases": 4,
+    "domain4Cases": 4
+  },
+  "p10mCapabilityManifest": {
+    "contractVersion": "p10m-capability-manifest-1.0",
+    "evaluationContractVersion": "p10m-capability-evaluation-1.0",
+    "capabilities": 19,
+    "supported": 5,
+    "partial": 14,
+    "storedNotApplied": 0,
+    "unsupported": 0,
+    "requiredProbes": 19,
+    "unknownRequiredCapability": "BLOCK",
+    "unsupportedRequiredCapability": "BLOCK",
+    "partialRequiredCapability": "ALLOW_WITH_EXACT_P10M4_RUNTIME_OR_BLOCK",
+    "multislotRequiresCpSat": true,
+    "officialClosureRequiresIndependentValidator": true,
+    "noSilentFallback": true,
+    "solverOrDomainChanged": true,
+    "independentValidatorComplete": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL",
+    "qa": "P10M-4 P10M JS 69/69 · orquestador 27/27 · auditor real 11/11 · estático 12/12",
+    "nodeSuite": "499/499",
+    "productRegressions": "251/251",
+    "protectedCore": "P10M-3 preserved as immutable base · P10M-4 delta 38+16 audited",
+    "ortoolsReal": "9.15.6755 · REAL_PROVIDER · noFallback=true",
+    "python": "20/20 · OOXML A12 PASS"
+  },
+  "p10mIndependentValidator": {
+    "contractVersion": "p10m-independent-semantic-validator-1.1",
+    "modes": [
+      "INCREMENTAL",
+      "CANDIDATE",
+      "OFFICIAL"
+    ],
+    "validatedSources": [
+      "HEURISTIC",
+      "CP_SAT",
+      "MANUAL_EDIT",
+      "IMPORTED_PROJECT",
+      "IMPORTED_PROPOSAL",
+      "OFFICIAL_CLOSURE",
+      "UNKNOWN"
+    ],
+    "evaluators": 20,
+    "independentFrom": [
+      "validateProject",
+      "validateAcceptedAssignments",
+      "revalidateProposal",
+      "generator.mjs",
+      "cp_sat_adapter.py"
+    ],
+    "generationGate": true,
+    "manualEditGate": true,
+    "importDiagnostic": true,
+    "officialClosureGate": true,
+    "benchmarkGate": true,
+    "preferencesDiagnosticOnly": true,
+    "unsupportedRequirementsExplicit": true,
+    "solverOrDomainChanged": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "qa": "17/17 functional base · validator 1.1 integrated in P10M-4",
+    "nodeSuite": "499/499",
+    "protectedCore": "P10M-4 delta auditable",
+    "browserPhysicalEvidence": "PENDING"
+  },
+  "domain4": {
+    "contractVersion": "educational-domain-4.0",
+    "projectSchemaVersion": "4.0",
+    "projectContractVersion": "3.0",
+    "migration": "educational-domain-migration-3.0-to-4.0",
+    "legacyDefaultWeek": "W1",
+    "weeklySessionsMeaning": "sesiones por cada semana aplicable",
+    "cycleModes": [
+      "WEEKLY",
+      "AB",
+      "CUSTOM"
+    ],
+    "modeled": [
+      "weekCycles",
+      "sitesAndTravel",
+      "resourcesAndSeatCapacity",
+      "activityRelations",
+      "splitSets",
+      "multislotAssignments"
+    ],
+    "independentValidation": true,
+    "ordinaryEditing": true,
+    "automaticGeneration": "CP_SAT_REQUIRED_FOR_NONTRIVIAL_DOMAIN4",
+    "downgrade": "ONLY_WHEN_LOSSLESS",
+    "silentDegradation": false,
+    "heuristicScope": "LEGACY_COMPATIBLE_ONLY",
+    "cpSatSemanticContract": "p10m-cp-sat-domain4-1.0",
+    "parityContract": "p10m-engine-parity-contract-1.0"
+  },
+  "qaP10M3": {
+    "domainTests": "26/26",
+    "capabilityManifestTests": "11/11",
+    "independentValidatorTests": "17/17",
+    "preflightCorpusTests": "4/4",
+    "staticChecks": "32/32",
+    "nodeSuite": "488/488",
+    "productRegressions": "251/251",
+    "pythonUnitTests": "9/9",
+    "xlsxOoxml": "PASS",
+    "protectedCoreDelta": "310 unchanged + 7 audited changes / 317",
+    "manifest": "606/606",
+    "cleanZipValidation": "EXTERNAL_CLOSURE_REPORT"
+  },
+  "p10mEngineParity": {
+    "contractVersion": "p10m-engine-parity-contract-1.0",
+    "semanticContractVersion": "p10m-cp-sat-domain4-1.0",
+    "projectSchemaVersion": "4.0",
+    "provider": "Google OR-Tools CP-SAT",
+    "providerVersion": "9.15.6755",
+    "realProviderRequired": true,
+    "noFallback": true,
+    "legacyCompatibleProjects": "HEURISTIC_ALLOWED",
+    "domain4NonTrivialProjects": "CP_SAT_REQUIRED",
+    "forcedHeuristicOnDomain4": "BLOCK",
+    "features": [
+      "WEEK_CYCLES",
+      "MULTISLOT_ACTIVITIES",
+      "ACTIVITY_RELATIONS",
+      "MULTI_SITE_TRAVEL",
+      "RESOURCES_AND_CAPACITY",
+      "SPLITS_CONCURRENCY"
+    ],
+    "independentRevalidationRequired": true,
+    "audit": "11/11",
+    "pythonParityTests": "8/8",
+    "javascriptParityTests": "10/10",
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL"
+  },
+  "qaP10M4": {
+    "parityAudit": "11/11",
+    "javascriptParity": "10/10",
+    "pythonParity": "8/8",
+    "p10mJavaScript": "69/69",
+    "staticChecks": "12/12",
+    "nodeSuite": "499/499",
+    "productRegressions": "251/251",
+    "pythonFunctional": "20/20",
+    "xlsxOoxml": "PASS",
+    "manifest": "624/624",
+    "cleanZipValidation": "EXTERNAL_CLOSURE_REPORT",
+    "reproducibleBuild": "EXTERNAL_CLOSURE_REPORT",
+    "orchestratorProductGeneration": "27/27",
+    "declaredDelta": "38 modified · 17 added · 0 removed · 0 undeclared"
+  },
+  "p10mSemanticAssistants": {
+    "contractVersion": "product-semantic-assistants-1.0",
+    "assistants": 8,
+    "ordinaryJsonEditingRequired": false,
+    "ordinaryPipeSyntaxRequired": false,
+    "technicalEditorSeparated": true,
+    "referenceIntegrityProtected": true,
+    "unknownCommandsBlocked": true,
+    "independentValidatorStillAuthoritative": true,
+    "cpSatParityStillRequired": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL",
+    "qa": "24/24 functional · 42/42 static · schema PASS · panel físico pendiente",
+    "physicalEvidence": "PENDING"
+  },
+  "releaseAuthorized": false,
+  "p10mMultidimensionalQuality": {
+    "contractVersion": "product-multidimensional-quality-1.0",
+    "dimensions": 11,
+    "aggregateScore": false,
+    "hiddenWeights": false,
+    "humanDecisionRequired": true,
+    "comparison": "PARETO_DOMINANCE_AND_EXPLICIT_TRADE_OFFS",
+    "thresholds": "DESCRIPTIVE_DEFAULTS_NOT_PEDAGOGICAL_TRUTH",
+    "independentValidator": "p10m-independent-semantic-validator-1.1",
+    "integratedIn": [
+      "PROPOSAL",
+      "REVIEW",
+      "ALTERNATIVE_COMPARISON",
+      "DOCUMENT_MODEL",
+      "QUALITY_DOCUMENT",
+      "XLSX"
+    ],
+    "legacyMetricsPreserved": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL",
+    "qa": "22/22 functional · 47/47 static · schema PASS",
+    "physicalEvidence": "PENDING",
+    "nodeSuite": "545/545 modular (529 general + 16 A12)",
+    "productRegressions": "251/251",
+    "pythonFunctional": "20/20",
+    "xlsxOoxml": "PASS",
+    "orTools": "9.15.6755 real · available=true · noFallback=true",
+    "browserLogicalPanel": "8 checks prepared · physical execution pending",
+    "manifest": "654/654",
+    "packageAudit": "220/220",
+    "declaredDelta": "17 modified · 14 added · 0 removed · 0 undeclared"
+  },
+  "p10mBenchmarkFinal": {
+    "contractVersion": "p10m-benchmark-contract-1.1",
+    "evidenceVersion": "p10m-benchmark-evidence-1.1",
+    "corpusVersion": "p10m-benchmark-corpus-2.0",
+    "caseCount": 11,
+    "allSynthetic": true,
+    "realProjectIncluded": false,
+    "resultSummary": {
+      "pass": 6,
+      "timeLimitNoSolution": 4,
+      "provenInfeasible": 1,
+      "fail": 0
+    },
+    "engines": [
+      "HEURISTIC",
+      "GOOGLE_OR_TOOLS_CP_SAT_9_15_6755"
+    ],
+    "cpSatReal": true,
+    "noFallback": true,
+    "independentValidator": "p10m-independent-semantic-validator-1.1",
+    "qualityComparison": "PARETO_DOMINANCE_AND_EXPLICIT_TRADE_OFFS",
+    "aggregateScore": false,
+    "hiddenWeights": false,
+    "sameSeedReplay": true,
+    "canonicalReference": "502/502 both engines · multidimensional equivalent",
+    "cifpMultislot": "66/66 CP-SAT",
+    "domain4Cases": "4/4 complete with CP-SAT",
+    "impossibleCase": "INFEASIBLE proven by CP-SAT",
+    "operationalLimitsExplicit": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "nextPhase": "P11_PILOTO_PRIVADO_REAL",
+    "evidence": "p10m/evidence/P10M7_BENCHMARK_EVIDENCE.json",
+    "physicalEvidence": "PENDING",
+    "realPilot": "PENDING",
+    "evidenceDigest": "sha256-27fe086a45a029bbab48d207bc61e17a9593a2765fdc98b3ae3589e45fe8aad0"
+  },
+  "privatePilotWorkspace": {
+    "contractVersion": "product-private-pilot-workspace-1.0",
+    "publicSummaryVersion": "product-private-pilot-public-summary-1.0",
+    "taskEvidenceVersion": "product-private-pilot-task-evidence-1.0",
+    "phase": "P11_R0_PROYECTO_PRIVADO_PROVISIONAL_LOCAL_PENDIENTE",
+    "requiredTasks": 12,
+    "realProjectIncluded": false,
+    "realPilotExecuted": false,
+    "leadershipDecisionRecorded": false,
+    "acceptedPrivacyClasses": [
+      "REAL",
+      "ANONYMIZED"
+    ],
+    "syntheticProjectBlocksPilot": true,
+    "matchingP8PreparationRequired": true,
+    "verifiedIntegrityRequired": true,
+    "pendingMigrationBlocks": true,
+    "browserPersistenceUsed": false,
+    "automaticUpload": false,
+    "privateAndPublicEvidenceSeparated": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false,
+    "gate": "READY_FOR_LOCAL_PRIVATE_PROVISIONAL_PROJECT",
+    "nextPhase": "P11_R0_PROYECTO_PRIVADO_PROVISIONAL_LOCAL",
+    "qa": {
+      "functional": "25/25",
+      "static": "30/30",
+      "nodeModular": "587/587 (571 general + 16 A12)",
+      "pythonWithRealOrtools": "20/20",
+      "ortools": "9.15.6755",
+      "ooxml": "PASS",
+      "realProjectEvidence": "0/1"
+    }
+  },
+  "p11ConsolidatedMinimum": {
+    "contractVersion": "organizational-domain-4.1",
+    "fixtureContractVersion": "p11-synthetic-realistic-1.0",
+    "scopeFrozen": true,
+    "presenceStatuses": [
+      "PRESENT_REQUIRED",
+      "AUTHORIZED_AWAY",
+      "OTHER_SITE",
+      "OUTSIDE_WORKDAY",
+      "PENDING"
+    ],
+    "unknownOrMissingAvailability": "BLOCK",
+    "serviceTypes": [
+      "ENTRY",
+      "ORDINARY_GUARD",
+      "BREAK",
+      "EXIT",
+      "CUSTOM"
+    ],
+    "anchoredRelations": [
+      "IMMEDIATELY_BEFORE",
+      "IMMEDIATELY_AFTER"
+    ],
+    "engines": [
+      "HEURISTIC",
+      "GOOGLE_OR_TOOLS_CP_SAT_9_15_6755"
+    ],
+    "independentValidatorRequired": true,
+    "heuristicResult": "114/114 · independent 20/20 · 0 blockers",
+    "cpSatResult": "OPTIMAL 114/114 · independent 20/20 · 0 blockers · noFallback=true",
+    "publicFixture": "data/P11-S1_SYNTHETIC_REALISTIC.ghfproject",
+    "realProjectIncluded": false,
+    "privatePilotExecuted": false,
+    "physicalQa": "PENDING",
+    "betaAuthorized": false,
+    "nextPhase": "P11_R0_PROYECTO_PRIVADO_PROVISIONAL_LOCAL"
+  },
+  "maintenanceCorrection": {
+    "id": "P11-C1.1-WINDOWS-UTF8",
+    "scope": "SUBPROCESS_TEXT_ENCODING_ONLY",
+    "rootCause": "Windows inherited cp1252 for the Python adapter subprocess and rejected non-ASCII JSON characters.",
+    "fix": "Explicit UTF-8 encoding for CP-SAT subprocess stdin/stdout/stderr and capability query.",
+    "functionalDomainChanged": false,
+    "publicExampleChanged": false,
+    "privateDataIncluded": false,
+    "regressionTest": "tests/test_cp_sat_server.py::test_unicode_payload_is_sent_to_adapter_as_utf8"
+  },
+  "scheduleUserExperience": {
+    "contractVersion": "product-schedule-user-view-1.0",
+    "scope": "PRESENTATION_LAYER_ONLY",
+    "globalViewOrdinaryDefault": false,
+    "defaultView": "FIRST_GROUP_OR_SELECTED_FILTER",
+    "technicalTokensHiddenInOrdinaryView": true,
+    "simulatedBadgeRepeatedPerCell": false,
+    "simulatedStateExplainedInSummary": true,
+    "pendingClosureChecklistVisible": true,
+    "engineDomainChanged": false,
+    "privateDataIncluded": false
+  },
+  "p11C3EditingSafety": {
+    "scope": "ORDINARY_UI_AND_SAFE_EDITING_LAYER",
+    "solverChanged": false,
+    "domainChanged": false,
+    "fixes": [
+      "subjectForm",
+      "renderOrganization route",
+      "availability teacher selector",
+      "ordinary labels in daily operations"
+    ],
+    "catalogs": [
+      "subjects",
+      "specialties",
+      "groups"
+    ],
+    "technicalFieldsOrdinaryHidden": [
+      "externalId"
+    ],
+    "documentPicker": "searchable_collapsible_groups",
+    "excelReimport": "deferred_until_diff_preview_and_row_validation"
+  },
+  "p11C4DocumentsSimplified": {
+    "scope": "ORDINARY_DOCUMENTS_UI_ONLY",
+    "solverChanged": false,
+    "domainChanged": false,
+    "defaultInterface": "quick_actions_first",
+    "advancedSelector": "collapsed_by_default",
+    "visiblePrimaryActions": [
+      "printAllSchedules",
+      "selectedPackage",
+      "xlsxOnly",
+      "workingPackage"
+    ],
+    "technicalArchive": "technicalModeOnly",
+    "searchStillAvailable": true,
+    "excelReimport": "deferred_until_diff_preview_and_row_validation"
+  },
+  "p11C5DocumentsAssistantSimple": {
+    "scope": "ORDINARY_DOCUMENTS_UI_REDESIGN_ONLY",
+    "solverChanged": false,
+    "domainChanged": false,
+    "defaultInterface": "need_based_assistant",
+    "entryPoints": [
+      "group_schedule",
+      "teacher_schedule",
+      "space_schedule",
+      "services_guards",
+      "complete_dossier",
+      "pending_validation"
+    ],
+    "entitySelection": [
+      "group",
+      "teacher",
+      "space"
+    ],
+    "outputs": [
+      "preview",
+      "pdf_print",
+      "html",
+      "xlsx",
+      "working_package",
+      "official_package_when_ready"
+    ],
+    "advancedCatalog": "collapsed_by_default",
+    "excelReimport": "deferred_until_diff_preview_and_row_validation"
+  },
+  "distribution": {
+    "type": "USER_FINAL_CLEAN_PACKAGE",
+    "technicalDossierSeparated": true,
+    "functionalChanges": false,
+    "excludedFromUserPackage": [
+      "tests",
+      "qa",
+      "docs",
+      "schemas",
+      "p10m",
+      "p11",
+      "semantic",
+      "private",
+      "technical closure documents",
+      "development QA data"
+    ],
+    "keptForUser": [
+      "runtime app",
+      "example projects",
+      "controlled CSV templates",
+      "local CP-SAT server",
+      "local static server"
+    ]
+  },
+  "maintenanceCorrectionUtf8Date": {
+    "id": "P11-C5-2",
+    "scope": "Corrección mínima de servidor CP-SAT, diagnóstico cliente y fechas locales; sin cambios en solver, dominio, datos de ejemplo ni persistencia.",
+    "fixes": [
+      "Forzar UTF-8 en el proceso hijo cp_sat_adapter.py mediante -X utf8, PYTHONIOENCODING=utf-8 y PYTHONUTF8=1.",
+      "Devolver errores JSON limpios en tools/serve.py si solve/cancel/capabilities lanzan excepción.",
+      "Mostrar en el cliente JS el error plano devuelto por el servidor CP-SAT cuando exista.",
+      "Calcular fechas civiles por fecha local en app.mjs y validaciones de core.mjs, evitando off-by-one de UTC."
+    ],
+    "solverChanged": false,
+    "domainChanged": false,
+    "projectDataChanged": false,
+    "physicalQaPending": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false
+  },
+  "version": "0.6.0-product-alpha.26",
+  "notes": "P12-0 abre la línea de motor web local: CP-SAT queda como oráculo de comparación, no como dependencia obligatoria del usuario final futuro. Esta entrega no modifica el solver ni activa generación web avanzada.",
+  "maintenanceCorrectionC53": {
+    "id": "P11-C5-3",
+    "scope": "Saneamiento técnico final sobre P11-C5-2: historial inmediato, snapshots, redo heredado, fechas locales restantes y Host local.",
+    "fixes": [
+      "Limitar editCommands a 20 comandos y compactarlo en normalización y edición.",
+      "Excluir editCommands de snapshots restaurables y limpiarlo al restaurar snapshot.",
+      "Invalidar ramas UNDONE al crear una edición nueva en la API heredada y en el editor manual.",
+      "Limpiar editCommands al aceptar una propuesta porque el horario pasa a una base nueva.",
+      "Corregir usos restantes de fecha local de hoy en import/export, informes y asistente.",
+      "Rechazar peticiones al servidor local si Host no es localhost/127.0.0.1/loopback IPv6."
+    ],
+    "solverChanged": false,
+    "domainChanged": false,
+    "projectDataChanged": false,
+    "promptConfirmMigration": "PENDING_UX_PHASE",
+    "physicalQaPending": true,
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "releaseAuthorized": false
+  },
+  "webSolverTransition": {
+    "currentRuntimeGenerationChanged": false,
+    "p12_1Implemented": true,
+    "p12_2Implemented": true,
+    "p12_3OracleHarnessImplemented": true,
+    "p12_4StaticPublicationPrepared": true,
+    "cpSatRemoved": false,
+    "cpSatOracleRetained": true,
+    "githubPagesTargetPrepared": true,
+    "githubPagesDeploymentTested": false,
+    "p12_5MediumWebSolverImplemented": true
+  },
+  "p12OracleComparison": {
+    "contractVersion": "p12-web-vs-cp-sat-oracle-1.0",
+    "phase": "P12_3_PARIDAD_CP_SAT_ORACULO_PREPARADA",
+    "webSolverExpanded": false,
+    "cpSatAsDeveloperOracle": true,
+    "cpSatAsUserRuntimeDependency": false,
+    "parityClaimRequiresActualCpSatExecution": true,
+    "preflightTool": "tools/p12_3_preflight.py",
+    "cases": [
+      "P12_WEB_MINI",
+      "P12_ORG41_LIGHT"
+    ]
+  },
+  "staticWebPublication": {
+    "contractVersion": "p12-static-web-publication-1.0",
+    "phase": "P12_5_WEB_SOLVER_CENTRO_MEDIO",
+    "githubPagesCompatible": true,
+    "backendRequiredForOrdinaryWebUse": false,
+    "pythonRequiredForSupportedWebSolverCases": false,
+    "orToolsRequiredForSupportedWebSolverCases": false,
+    "cpSatRuntimeRemoved": false,
+    "cpSatKeptAsExternalDeveloperOracle": true,
+    "dataStorage": "local-browser-indexeddb-and-user-exported-files",
+    "forbidden": "Remote backend upload of real projects without explicit governance",
+    "supportedGenerationExamples": [
+      "P12_WEB_MINI",
+      "P12_ORG41_LIGHT"
+    ],
+    "unsupportedGenerationExamples": [
+      "P11_SYNTHETIC_REALISTIC",
+      "CIFP_SYNTHETIC",
+      "STRESS_1200"
+    ],
+    "staticPreflightTool": "tools/p12_4_static_preflight.py"
+  },
+  "p12_5MediumWebSolver": {
+    "contractVersion": "p12-web-solver-medium-1.0",
+    "runtimeVersion": "web-solver-runtime-1.2",
+    "example": "P12_WEB_MEDIUM",
+    "pythonRequired": false,
+    "orToolsRequired": false,
+    "backendRequired": false,
+    "supportedExamples": [
+      "P12_WEB_MINI",
+      "P12_ORG41_LIGHT",
+      "P12_WEB_MEDIUM"
+    ],
+    "unsupportedStill": [
+      "P11_SYNTHETIC_REALISTIC",
+      "CIFP_SYNTHETIC",
+      "STRESS_1200",
+      "Frián real completo"
+    ],
+    "preflight": "tools/p12_5_preflight.py"
+  },
+  "p12_6WebPublicQaGate": {
+    "staticExport": "dist/github_pages",
+    "pythonRequiredForUser": false,
+    "orToolsRequiredForUser": false,
+    "serverRequiredForUser": false,
+    "solverCoverageExpanded": false,
+    "githubPagesReadyForUpload": true,
+    "realGitHubPagesQaPending": true,
+    "cpSatParityClaimed": false,
+    "preflight": "tools/p12_6_static_export_preflight.py"
+  }
+}

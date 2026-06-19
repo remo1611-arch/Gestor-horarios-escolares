@@ -1,0 +1,15 @@
+{
+  "id": "p12-6-github-pages-static-export",
+  "productVersion": "0.6.0-product-alpha.32",
+  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
+  "createdFor": "GitHub Pages upload",
+  "pythonFilesIncluded": false,
+  "solverServerIncluded": false,
+  "orToolsRequired": false,
+  "supportedWebExamples": [
+    "P12_WEB_MINI",
+    "P12_ORG41_LIGHT",
+    "P12_WEB_MEDIUM"
+  ],
+  "warning": "Do not upload real school projects or private data to a public repository."
+}

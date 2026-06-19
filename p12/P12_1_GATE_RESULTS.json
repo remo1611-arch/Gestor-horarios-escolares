@@ -1,0 +1,8 @@
+{
+  "resultVersion": "web-solver-p12-1-gate-results-1.0",
+  "phase": "P12-1",
+  "date": "2026-06-19",
+  "status": "GENERATED_BY_TOOLS_P12_1_PREFLIGHT",
+  "source": "tools/p12_1_preflight.mjs",
+  "expected": "Run node tools/p12_1_preflight.mjs from package root."
+}

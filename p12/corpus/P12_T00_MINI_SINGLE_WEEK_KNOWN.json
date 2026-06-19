@@ -1,0 +1,72 @@
+{
+  "id": "P12-T00-MINI-SINGLE-WEEK-KNOWN",
+  "format": "web-solver-mini-case-1.0",
+  "periods": [
+    "L1",
+    "L2",
+    "M1",
+    "M2",
+    "X1",
+    "X2"
+  ],
+  "teachers": [
+    "T_A",
+    "T_B"
+  ],
+  "groups": [
+    "G_1"
+  ],
+  "spaces": [
+    "AULA_1",
+    "AULA_2"
+  ],
+  "activities": [
+    {
+      "id": "MAT_1",
+      "teacher": "T_A",
+      "group": "G_1",
+      "spaceOptions": [
+        "AULA_1"
+      ],
+      "occurrences": 3
+    },
+    {
+      "id": "LEN_1",
+      "teacher": "T_B",
+      "group": "G_1",
+      "spaceOptions": [
+        "AULA_2"
+      ],
+      "occurrences": 3
+    }
+  ],
+  "availability": {
+    "T_A": [
+      "L1",
+      "M1",
+      "X1"
+    ],
+    "T_B": [
+      "L2",
+      "M2",
+      "X2"
+    ]
+  },
+  "knownSolution": {
+    "MAT_1": [
+      "L1",
+      "M1",
+      "X1"
+    ],
+    "LEN_1": [
+      "L2",
+      "M2",
+      "X2"
+    ]
+  },
+  "expected": {
+    "hardValid": true,
+    "complete": true,
+    "placements": 6
+  }
+}

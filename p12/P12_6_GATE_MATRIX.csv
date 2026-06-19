@@ -1,0 +1,9 @@
+id,area,criterion,priority,expected_evidence,status
+P12-6-G01,static,dist/github_pages exists,P0,Folder and static manifest present,PREPARED
+P12-6-G02,static,No Python server files in static export,P0,No .py files and no solver directory,PREPARED
+P12-6-G03,web solver,P12 web examples generate in browser,P0,P12-5 preflight PASS,PREPARED
+P12-6-G04,oracle,CP-SAT not claimed without execution,P0,P12-3 report shows oracleSkipped when unavailable,PREPARED
+P12-6-G05,privacy,No real school data in public static export,P0,Only synthetic/demo data allowed,PREPARED
+P12-6-G06,github,GitHub Pages real URL tested,P1,User evidence from deployed URL,PENDING_REAL_QA
+P12-6-G07,mobile,Android browser real QA,P1,User evidence JSON/screenshots,PENDING_REAL_QA
+P12-6-G08,desktop,Windows browser real QA,P1,User evidence JSON/screenshots,PENDING_REAL_QA

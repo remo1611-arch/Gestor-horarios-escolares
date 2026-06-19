@@ -1,0 +1,50 @@
+{
+  "contractVersion": "web-solver-runtime-1.1",
+  "phase": "P12-2",
+  "status": "WEB_SOLVER_ORGANIZATIONAL_LIGHT_IMPLEMENTED",
+  "date": "2026-06-19",
+  "inheritsFrom": [
+    "web-solver-contract-1.0",
+    "web-solver-runtime-1.0"
+  ],
+  "runtime": {
+    "backendRequired": false,
+    "pythonRequiredForSupportedScope": false,
+    "orToolsRequiredForSupportedScope": false,
+    "workerRequired": true,
+    "wasmUsed": false,
+    "cpSatRetainedAsDevelopmentOracle": true
+  },
+  "supportedScope": [
+    "single_week",
+    "durationSlots_1",
+    "teacher_group_space_no_overlap",
+    "teacher_presence_and_unavailability",
+    "space_compatibility",
+    "fixed_occurrences_single_slot",
+    "minimum_presence_simple",
+    "ld_dc_max_simultaneous_ld_basic",
+    "hard_rules_FORBID_DAY_SLOT_REQUIRE_DAY_SLOT_REQUIRE_SPACE_TAG",
+    "soft_rules_PREFER_DAY_SLOT_AVOID_EDGE_SLOTS",
+    "immediate_activity_relations_BEFORE_AFTER"
+  ],
+  "unsupportedScope": [
+    "multiweek_AB_CUSTOM_cycles",
+    "durationSlots_greater_than_1",
+    "multi_site_travel",
+    "domain_resources",
+    "split_sets",
+    "simultaneous_desdobles",
+    "organization_services",
+    "anchored_segments",
+    "break_zone_duties",
+    "exact_workload_target",
+    "full_Frian_project"
+  ],
+  "gates": {
+    "noSilentDowngrade": true,
+    "independentValidationRequired": true,
+    "unsupportedProjectsMustRemainBlockedOrUseCpSatOracle": true,
+    "githubPagesGenerationForSupportedScope": true
+  }
+}

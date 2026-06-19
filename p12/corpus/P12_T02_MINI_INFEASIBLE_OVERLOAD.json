@@ -1,0 +1,56 @@
+{
+  "id": "P12-T02-MINI-INFEASIBLE-OVERLOAD",
+  "format": "web-solver-mini-case-1.0",
+  "periods": [
+    "L1",
+    "L2",
+    "M1",
+    "M2"
+  ],
+  "teachers": [
+    "T_ONLY"
+  ],
+  "groups": [
+    "G_1",
+    "G_2"
+  ],
+  "spaces": [
+    "AULA_1"
+  ],
+  "activities": [
+    {
+      "id": "A_G1",
+      "teacher": "T_ONLY",
+      "group": "G_1",
+      "spaceOptions": [
+        "AULA_1"
+      ],
+      "occurrences": 3
+    },
+    {
+      "id": "A_G2",
+      "teacher": "T_ONLY",
+      "group": "G_2",
+      "spaceOptions": [
+        "AULA_1"
+      ],
+      "occurrences": 3
+    }
+  ],
+  "availability": {
+    "T_ONLY": [
+      "L1",
+      "L2",
+      "M1",
+      "M2"
+    ]
+  },
+  "knownSolution": null,
+  "expected": {
+    "hardValid": false,
+    "complete": false,
+    "placementsRequested": 6,
+    "availableTeacherSlots": 4,
+    "status": "INFEASIBLE_OR_EXPLICIT_PARTIAL_WITH_NO_OFFICIAL_ACCEPTANCE"
+  }
+}

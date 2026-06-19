@@ -1,4 +1,0 @@
-# P6-0E no requiere paquetes externos para servidor, preflight, importación,
-# motor heurístico, archivo .ghfproject ni exportación XLSX.
-# Todo el flujo base utiliza exclusivamente la biblioteca estándar de Python.
-# OR-Tools sigue siendo opcional y no debe instalarse ni asumirse automáticamente.

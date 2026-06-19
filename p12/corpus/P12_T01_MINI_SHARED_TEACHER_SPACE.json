@@ -1,0 +1,78 @@
+{
+  "id": "P12-T01-MINI-SHARED-TEACHER-SPACE",
+  "format": "web-solver-mini-case-1.0",
+  "periods": [
+    "L1",
+    "L2",
+    "M1",
+    "M2",
+    "X1",
+    "X2",
+    "J1",
+    "J2"
+  ],
+  "teachers": [
+    "T_SHARED",
+    "T_B"
+  ],
+  "groups": [
+    "G_1",
+    "G_2"
+  ],
+  "spaces": [
+    "AULA_COMUN",
+    "AULA_B"
+  ],
+  "activities": [
+    {
+      "id": "SCI_G1",
+      "teacher": "T_SHARED",
+      "group": "G_1",
+      "spaceOptions": [
+        "AULA_COMUN"
+      ],
+      "occurrences": 4
+    },
+    {
+      "id": "SCI_G2",
+      "teacher": "T_SHARED",
+      "group": "G_2",
+      "spaceOptions": [
+        "AULA_COMUN"
+      ],
+      "occurrences": 4
+    }
+  ],
+  "availability": {
+    "T_SHARED": [
+      "L1",
+      "L2",
+      "M1",
+      "M2",
+      "X1",
+      "X2",
+      "J1",
+      "J2"
+    ]
+  },
+  "knownSolution": {
+    "SCI_G1": [
+      "L1",
+      "M1",
+      "X1",
+      "J1"
+    ],
+    "SCI_G2": [
+      "L2",
+      "M2",
+      "X2",
+      "J2"
+    ]
+  },
+  "expected": {
+    "hardValid": true,
+    "complete": true,
+    "placements": 8,
+    "mustAvoidSimultaneousSharedTeacherAndSpace": true
+  }
+}

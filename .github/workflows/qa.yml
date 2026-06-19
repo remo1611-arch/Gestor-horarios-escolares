@@ -1,4 +1,4 @@
-name: QA pública
+name: QA publicación web P12
 
 on:
   push:
@@ -7,41 +7,22 @@ on:
 permissions:
   contents: read
 
-env:
-  PYTHONDONTWRITEBYTECODE: '1'
-
 jobs:
   qa:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Obtener repositorio
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-
-      - name: Preparar Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
-
-      - name: Verificar manifiesto
-        run: python scripts/verificar_manifest.py .
-
-      - name: Auditar publicación
-        run: python scripts/auditar_publicacion.py .
-
-      - name: Verificar sintaxis Python sin artefactos compilados
-        run: python scripts/verificar_sintaxis_python.py .
-
-      - name: Verificar sintaxis JavaScript incrustada
-        run: python scripts/verificar_sintaxis_javascript.py .
-
-      - name: Probar modos de ejecución
-        run: python qa/test_runtime_modes.py
-
-      - name: Validar fixtures y motor sintético
-        run: python qa/test_release_public.py
-
-      - name: Verificar distribución BROWSER_PRIVATE
-        run: |
-          python qa/test_browser_private_bundle.py
-          node --check browser-private.bundle.mjs
+          node-version: '22'
+      - name: Verificar manifiesto público
+        run: python scripts/verificar_manifest_publico.py .
+      - name: Verificar manifiesto estático
+        run: python scripts/verificar_static_manifest.py .
+      - name: Auditar publicación web
+        run: python scripts/auditar_publicacion_web.py .
+      - name: Verificar sintaxis JavaScript
+        run: python scripts/verificar_sintaxis_js.py .

@@ -1,28 +1,24 @@
-# Datos y proyectos privados
-*.ghfproject
-!fixtures/FIXTURE_GHFPROJECT_*_SINTETICO.ghfproject
+# Datos privados y reales
 private/
 data-private/
 real-data/
 exports-real/
 backups/
-
-# Salidas, trabajos y evidencias
-motor/jobs/
 resultados/
 exports/
-*.pdf
-*.xlsx
-!plantillas/PLANTILLA_RECOGIDA_DATOS_GHFPROJECT_1_0.xlsx
-!plantillas/EJEMPLO_SINTETICO_PLANTILLA_GHFPROJECT_1_0.xlsx
-*.csv
-!plantillas/MAPEO_PLANTILLA_A_GHFPROJECT_1_0.csv
-!contratos_ghfproject/MAPEO_P5_4_2_A_GHFPROJECT_1_0.csv
-!contratos_ghfproject/RESOLUCION_43_PENDIENTES_P6_0B.csv
+logs/
 *.log
-*.zip
 *.sqlite
 *.db
+*.zip
+*.7z
+*.rar
+*.pdf
+*.xlsx
+
+# Proyectos: solo se permiten los sintéticos publicados en data/
+*.ghfproject
+!data/*.ghfproject
 
 # Secretos y credenciales
 .env

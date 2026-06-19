@@ -1,0 +1,10 @@
+Codigo;Actividad;Tipo;Materia_catalogo;Grupos;Docentes;Sesiones_semanales;Etiquetas_espacio;Dias_permitidos;Tramos_permitidos;Dias_preferentes;Tramos_preferentes;Prioridad;Maximo_diario;Obligatoria;Procedencia;Vigente_desde;Vigente_hasta;Verificado_por;Fecha_verificacion;Estado
+ACT-001;Lengua Grupo 1;TEACHING;MAT-001;GRP-001;DOC-001;5;AULA;;;;;70;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-002;Matemáticas Grupo 1;TEACHING;MAT-002;GRP-001;DOC-001;5;AULA;;;;;70;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-003;Inglés Grupo 1;TEACHING;MAT-003;GRP-001;DOC-003;3;AULA;;;;;60;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-004;Educación Física Grupo 1;TEACHING;MAT-004;GRP-001;DOC-004;2;DEPORTIVO;;;;;60;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-005;Lengua Grupo 2;TEACHING;MAT-001;GRP-002;DOC-002;5;AULA;;;;;70;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-006;Matemáticas Grupo 2;TEACHING;MAT-002;GRP-002;DOC-002;5;AULA;;;;;70;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-007;Inglés Grupo 2;TEACHING;MAT-003;GRP-002;DOC-003;3;AULA;;;;;60;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-008;Educación Física Grupo 2;TEACHING;MAT-004;GRP-002;DOC-004;2;DEPORTIVO;;;;;60;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado
+ACT-009;Apoyo compartido;SUPPORT;MAT-001;GRP-001;DOC-001|DOC-005;1;AULA;;;TUE|THU;;50;1;Sí;Plantilla sintética neutra;2026-09-01;2027-08-31;Responsable de validación;2026-06-16;Confirmado

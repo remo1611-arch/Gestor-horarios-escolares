@@ -1,0 +1,74 @@
+{
+  "id": "p12-6-web-public-qa-gate-1.0",
+  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
+  "productVersion": "0.6.0-product-alpha.32",
+  "basePhase": "P12_5_WEB_SOLVER_CENTRO_MEDIO",
+  "purpose": "Prepare a static GitHub Pages distribution and a verifiable QA gate for browser-only use without Python/OR-Tools as a user dependency.",
+  "scope": {
+    "functionalChanges": false,
+    "solverExpansion": false,
+    "documentsChanged": false,
+    "xadeChanged": false,
+    "exportsChanged": false,
+    "githubPagesStaticExport": true,
+    "browserOnlySupportedExamples": [
+      "P12_WEB_MINI",
+      "P12_ORG41_LIGHT",
+      "P12_WEB_MEDIUM"
+    ]
+  },
+  "runtimePolicy": {
+    "userRequiresPython": false,
+    "userRequiresOrTools": false,
+    "backendRequired": false,
+    "cpSatRole": "external_oracle_for_development_only",
+    "dataLocality": "browser_storage_and_user_downloads",
+    "realDataInPublicRepo": "forbidden"
+  },
+  "staticExport": {
+    "path": "dist/github_pages",
+    "uploadInstruction": "Upload the contents of dist/github_pages to GitHub Pages; do not upload private projects.",
+    "excludes": [
+      "tools",
+      "solver",
+      "requirements-solver.txt",
+      "*.py",
+      "*.pyc",
+      "__pycache__"
+    ]
+  },
+  "gates": [
+    {
+      "id": "P12-6-G01",
+      "name": "Static export exists",
+      "required": true
+    },
+    {
+      "id": "P12-6-G02",
+      "name": "Static export contains no Python/server/solver runtime files",
+      "required": true
+    },
+    {
+      "id": "P12-6-G03",
+      "name": "P12 web examples remain generable with WEB_SOLVER",
+      "required": true
+    },
+    {
+      "id": "P12-6-G04",
+      "name": "CP-SAT parity is not claimed unless external oracle runs",
+      "required": true
+    },
+    {
+      "id": "P12-6-G05",
+      "name": "No public real-school data in static export",
+      "required": true
+    }
+  ],
+  "status": "READY_FOR_REAL_GITHUB_PAGES_UPLOAD_AND_BROWSER_QA",
+  "notAuthorized": [
+    "beta",
+    "rc",
+    "release",
+    "frian_real_browser_complete_claim"
+  ]
+}

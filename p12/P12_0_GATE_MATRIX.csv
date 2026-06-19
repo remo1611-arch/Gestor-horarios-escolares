@@ -1,0 +1,9 @@
+id,bloque,criterio,prioridad,evidencia,p12_1,p12_2
+P12-G01,Validez,No aceptar solución con conflicto duro,BLOCKER,Validador independiente con 0 bloqueos,MUST,MUST
+P12-G02,Completitud,Colocar todas las ocurrencias requeridas o declarar parcialidad,BLOCKER,Informe de generación,MUST,MUST
+P12-G03,Parcialidad,Parcial no puede cerrar horario oficial,BLOCKER,Intento de cierre bloqueado,MUST,MUST
+P12-G04,UI,Web Worker no bloquea la interfaz,BLOCKER,QA navegador real,MUST,MUST
+P12-G05,Paridad,Comparación CP-SAT para capacidades compartidas,BLOCKER,Informe A/B contra oráculo,SHOULD,MUST
+P12-G06,Reproducibilidad,Misma semilla reproduce estado comparable,HIGH,Registro de semilla y resultado,MUST,MUST
+P12-G07,Privacidad,Sin backend remoto con datos reales,BLOCKER,Inspección de red/arquitectura,MUST,MUST
+P12-G08,Alcance,No cambios en XADE/documentos/interfaz en P12-1,HIGH,Diff de archivos, MUST, SHOULD

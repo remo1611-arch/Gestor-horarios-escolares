@@ -1,0 +1,54 @@
+{
+  "contractVersion": "web-solver-runtime-1.0",
+  "phase": "P12-1",
+  "status": "WEB_WORKER_SOLVER_MINIMUM_IMPLEMENTED_FOR_P12_1_SCOPE",
+  "date": "2026-06-19",
+  "inheritsFrom": "web-solver-contract-1.0",
+  "runtime": {
+    "backendRequired": false,
+    "pythonRequiredForEndUserTarget": false,
+    "orToolsRequiredForEndUserTarget": false,
+    "workerRequired": true,
+    "wasmUsed": false,
+    "cpSatRetainedAsDevelopmentOracle": true
+  },
+  "supportedScope": [
+    "single_week",
+    "durationSlots_1",
+    "teacher_no_overlap",
+    "group_no_overlap",
+    "space_no_overlap",
+    "teacher_availability",
+    "space_tags_and_allowed_spaces",
+    "fixed_occurrences_single_slot",
+    "hard_validated_before_acceptance",
+    "deterministic_seeded_run"
+  ],
+  "unsupportedInP12_1": [
+    "multiweek_AB_CUSTOM_cycles",
+    "durationSlots_greater_than_1",
+    "multi_site_travel_rules",
+    "domain_resources",
+    "activity_relations",
+    "split_sets",
+    "organizational_services",
+    "anchored_segments",
+    "minimum_presence",
+    "break_zone_duties"
+  ],
+  "gates": {
+    "miniCorpusT00": "MUST_PASS_COMPLETE",
+    "miniCorpusT01": "MUST_PASS_COMPLETE",
+    "miniCorpusT02": "MUST_NOT_REPORT_FALSE_COMPLETE",
+    "p11SyntheticDomain4_1": "MUST_BLOCK_WITH_EXPLICIT_UNSUPPORTED_REASON",
+    "noPythonOrOrToolsForSupportedScope": "MUST_PASS",
+    "p12WebMiniExample": "MUST_PASS_COMPLETE_WITHOUT_CP_SAT"
+  },
+  "notAuthorized": [
+    "beta",
+    "rc",
+    "release",
+    "remove_cp_sat_oracle",
+    "claim_frian_browser_ready"
+  ]
+}

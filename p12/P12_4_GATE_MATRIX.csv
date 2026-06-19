@@ -1,0 +1,7 @@
+gate_id,priority,description,pass_condition,evidence
+P12-5-G01,P0,Recursos estáticos completos,Todas las rutas CORE_ASSETS del service worker existen,tools/p12_4_static_preflight.py
+P12-5-G02,P0,Generación web P12-1 sin CP-SAT,P12_WEB_MINI termina COMPLETED con selectedEngine WEB_SOLVER,tools/p12_2_preflight.mjs
+P12-5-G03,P0,Generación web P12-2 sin CP-SAT,P12_ORG41_LIGHT termina COMPLETED con selectedEngine WEB_SOLVER,tools/p12_2_preflight.mjs
+P12-5-G04,P0,Sin dependencia Python/OR-Tools en uso web compatible,cpSat capabilities simulado como unavailable y el WEB_SOLVER sigue generando,tools/p12_4_static_preflight.py
+P12-5-G05,P1,Casos complejos no se degradan silenciosamente,P11-S1 permanece unsupported con razones explícitas,tools/p12_2_preflight.mjs
+P12-5-G06,P1,No se modifica XADE/documentos/XLSX,La fase solo añade contrato y publicación estática,P12_4_STATIC_WEB_PUBLICATION_CONTRACT.json

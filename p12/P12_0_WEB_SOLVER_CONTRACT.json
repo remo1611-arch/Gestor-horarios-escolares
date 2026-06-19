@@ -1,0 +1,78 @@
+{
+  "contractVersion": "web-solver-contract-1.0",
+  "phase": "P12-0",
+  "status": "CONTRACT_CLOSED_NO_FUNCTIONAL_IMPLEMENTATION",
+  "date": "2026-06-19",
+  "targetArchitecture": {
+    "hosting": "static_site_compatible_with_github_pages",
+    "dataLocation": "user_browser_or_local_files",
+    "backendRequired": false,
+    "pythonRequiredForEndUserTarget": false,
+    "orToolsRequiredForEndUserTarget": false,
+    "cpSatRetainedAsDevelopmentOracle": true,
+    "allowedRuntime": [
+      "JavaScript Web Worker",
+      "WebAssembly only after parity gate"
+    ],
+    "forbiddenRuntime": [
+      "remote solver for real center data",
+      "silent fallback to weaker solver"
+    ]
+  },
+  "scopeFreeze": {
+    "functionalGenerationChangedInP12_0": false,
+    "uiRedesignAllowed": false,
+    "documentModelChangesAllowed": false,
+    "xadeExportChangesAllowed": false,
+    "projectSchemaBreakingChangesAllowed": false,
+    "serviceWorkerOnlyVersionBumpAllowed": true
+  },
+  "definitions": {
+    "hardValidSolution": "A candidate with zero independent-validator blockers in the hard-rule families declared in the active project contract.",
+    "completeSolution": "A hard-valid candidate placing every required activity/occurrence expected by the project contract.",
+    "partialSolution": "A hard-valid candidate with unplaced required activities, explicitly marked as partial with reasoned pending items and never accepted as official schedule.",
+    "knownSolutionCase": "A fixture with an existing accepted/reference placement count and explicit expected validity status used as a regression target, not necessarily exact cell-by-cell equality.",
+    "cpSatOracle": "A non-runtime development comparator used to check feasibility, completeness, parity and quality, not a dependency required by the final web user."
+  },
+  "p12_1MinimumCapabilities": [
+    "single_week",
+    "teacher_no_overlap",
+    "group_no_overlap",
+    "space_no_overlap",
+    "teacher_availability",
+    "space_compatibility",
+    "activity_required_sessions",
+    "deterministic_seeded_run",
+    "web_worker_non_blocking",
+    "complete_or_explained_partial",
+    "independent_revalidation_before_acceptance"
+  ],
+  "p12_2CandidateCapabilities": [
+    "presence_statuses",
+    "services_and_guards",
+    "anchored_segments",
+    "partial_availability",
+    "soft_preferences",
+    "quality_dimensions",
+    "limited_activity_relations",
+    "domain4_1_subset"
+  ],
+  "acceptanceGates": {
+    "noInvalidAcceptedCandidate": "BLOCKER",
+    "noSilentDowngrade": "BLOCKER",
+    "workerMustNotBlockUi": "BLOCKER",
+    "sameProjectInSameSeedIsReplayable": "HIGH",
+    "partialSolutionExplicitAndNotOfficial": "BLOCKER",
+    "comparisonAgainstCpSatOracleForSharedScope": "BLOCKER_BEFORE_REPLACING_CP_SAT",
+    "physicalBrowserQaBeforeGitHubPagesPilot": "BLOCKER"
+  },
+  "outOfScopeForP12_0": [
+    "Implement a new solver",
+    "Remove CP-SAT files",
+    "Change the user interface flow",
+    "Change XADE/export mapping",
+    "Change document outputs",
+    "Run real Frián data",
+    "Promise GitHub Pages production use"
+  ]
+}

@@ -2,20 +2,20 @@
 
 ## Versión cubierta
 
-La versión funcional cubierta por esta revisión es `0.6.3`.
+`0.6.0-product-alpha.32` · `P12_6_WEB_PUBLIC_QA_GATE`.
 
 ## Comunicación responsable
 
-No abra incidencias públicas que contengan datos de centros, docentes, alumnado, horarios reales, rutas locales, logs o archivos `.ghfproject` reales.
+No abras incidencias públicas que contengan datos reales de centros, docentes, alumnado, horarios, rutas locales, logs ni archivos `.ghfproject` reales.
 
-Para comunicar una vulnerabilidad:
+Si detectas una vulnerabilidad:
 
-1. utilice **Security → Advisories → Report a vulnerability** cuando el repositorio tenga activado el reporte privado;
-2. si esa opción todavía no está disponible, contacte primero con el mantenedor mediante la cuenta de GitHub `@remo1611-arch`, sin adjuntar datos reales ni publicar el detalle técnico explotable.
+1. usa **Security → Advisories → Report a vulnerability** si está activado;
+2. si no está disponible, contacta primero con el mantenedor `@remo1611-arch` sin adjuntar datos reales ni publicar detalles explotables.
 
 ## Límites de despliegue
 
-- `LOCAL_PRIVATE` debe permanecer enlazado a `127.0.0.1` para datos reales;
-- `PUBLIC_DEMO` solo admite contenido `SYNTHETIC`;
-- `servidor_ghf.py` usa componentes de desarrollo de la biblioteca estándar y no debe exponerse directamente como servicio de producción;
-- CORS no sustituye autenticación, autorización, aislamiento, límites de concurrencia ni rate limiting.
+- Esta publicación es estática y está pensada para GitHub Pages.
+- No debe convertirse en API pública añadiendo un servidor sin gobierno de privacidad.
+- No subas proyectos reales a repositorios públicos.
+- CORS no sustituye autenticación, autorización, aislamiento ni control de datos.

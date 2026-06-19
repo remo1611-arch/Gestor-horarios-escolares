@@ -1,0 +1,68 @@
+{
+  "contractVersion": "p12-web-solver-medium-1.0",
+  "phase": "P12_5_WEB_SOLVER_CENTRO_MEDIO",
+  "createdAt": "2026-06-19T12:30:00Z",
+  "purpose": "Acreditar generación web local para un caso medio sintético, manteniendo GitHub Pages como destino y sin Python/OR-Tools para proyectos compatibles.",
+  "runtime": {
+    "browserOnlyForSupportedCases": true,
+    "webWorker": true,
+    "pythonRequired": false,
+    "orToolsRequired": false,
+    "backendRequired": false
+  },
+  "newCoverage": [
+    "5 grupos",
+    "8 docentes",
+    "8 espacios",
+    "servicio simple de recreo",
+    "guardia simple",
+    "apoyo simple",
+    "disponibilidad parcial",
+    "presencia mínima simple",
+    "reglas duras/blandas simples"
+  ],
+  "stillUnsupported": [
+    "Frián real completo",
+    "multitramos",
+    "ciclos A/B",
+    "multisedes",
+    "desplazamientos",
+    "recursos de dominio",
+    "desdobles/concurrencias",
+    "segmentos anclados complejos",
+    "servicios con recursos/sedes",
+    "recreos zonificados complejos"
+  ],
+  "gates": [
+    {
+      "id": "P12-5-G01",
+      "name": "P12_WEB_MEDIUM soportado por analizador",
+      "required": true
+    },
+    {
+      "id": "P12-5-G02",
+      "name": "P12_WEB_MEDIUM genera COMPLETED con WEB_SOLVER sin CP-SAT",
+      "required": true
+    },
+    {
+      "id": "P12-5-G03",
+      "name": "Validador independiente PASS",
+      "required": true
+    },
+    {
+      "id": "P12-5-G04",
+      "name": "P11-S1 complejo sigue bloqueado con razones explícitas",
+      "required": true
+    },
+    {
+      "id": "P12-5-G05",
+      "name": "Continuidad P12-1/P12-2/P12-3/P12-4",
+      "required": true
+    }
+  ],
+  "releaseDecision": {
+    "betaAuthorized": false,
+    "rcAuthorized": false,
+    "reason": "Aún falta paridad real contra CP-SAT y piloto con datos privados controlados."
+  }
+}

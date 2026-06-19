@@ -1,99 +1,68 @@
-# Gestor de Horarios Escolares
+# Gestor de Horarios Escolares · Web P12
 
-Aplicación para recopilar, validar, generar, reparar, documentar y exportar horarios escolares.
+Aplicación web estática para crear, revisar, generar, editar, documentar y exportar horarios escolares con datos locales del navegador.
 
-**Base funcional:** `0.6.3`
+**Versión publicada:** `0.6.0-product-alpha.32`  
+**Fase:** `P12_6_WEB_PUBLIC_QA_GATE`  
+**Estado:** app web publicable en GitHub Pages para QA real con datos sintéticos y generación `WEB_SOLVER` en casos compatibles. No es beta, RC ni release final.
 
-**Revisión de publicación:** `P6-0F.2`
+## Uso previsto
 
-**Estado:** candidata saneada para publicación en un repositorio público con datos exclusivamente sintéticos.
+Esta publicación está pensada como **demo pública sintética y QA multidispositivo**:
 
-## Modos de trabajo
+- abre desde GitHub Pages;
+- trabaja en el navegador del usuario;
+- no requiere Python;
+- no requiere OR-Tools;
+- no usa backend remoto;
+- los proyectos se guardan localmente mediante el navegador y archivos exportados por la persona usuaria;
+- genera con `WEB_SOLVER` los ejemplos P12 compatibles.
 
-### `PUBLIC_DEMO`
+GitHub Pages aloja archivos HTML, CSS y JavaScript de forma estática. Por eso esta rama pública no incluye servidor Python ni CP-SAT como runtime de usuario.
 
-- solo acepta datos declarados `SYNTHETIC`;
-- está destinado a demostración y QA multidispositivo;
-- no debe utilizarse con nombres, horarios, restricciones ni evidencias reales;
-- la interfaz estática puede publicarse mediante GitHub Pages desde `index.html`;
-- el servidor Python incluido no es un servidor de producción para Internet.
+## Ejemplos acreditados para generar en navegador
 
-### `LOCAL_PRIVATE`
+- `P12_WEB_MINI` · ejemplo mínimo.
+- `P12_ORG41_LIGHT` · organización ligera.
+- `P12_WEB_MEDIUM` · centro medio sintético.
 
-- se ejecuta en `127.0.0.1`;
-- admite proyectos `REAL` almacenados localmente;
-- es la modalidad prevista para los datos reales del centro;
-- los trabajos se guardan fuera del repositorio o en `motor/jobs/`, ruta ignorada por Git.
+## Límites conocidos
 
-## Arranque local privado
+No está acreditado todavía:
 
-```bash
-python servidor_ghf.py --mode local-private --host 127.0.0.1 --port 8993
-```
+- Frián real completo en navegador;
+- ciclos A/B complejos;
+- multitramos;
+- sedes y desplazamientos;
+- desdobles y simultaneidades complejas;
+- recursos complejos;
+- recreos por zonas;
+- paridad real ejecutada contra CP-SAT en Windows;
+- beta, RC o release.
 
-Abra:
+CP-SAT se conserva como **oráculo técnico externo de comparación**, no como dependencia de esta publicación web.
 
-```text
-http://127.0.0.1:8993/?v=0_6_3
-```
+## Privacidad
 
-## Demo pública de desarrollo
+No subas proyectos reales, horarios reales, capturas, exportaciones, logs ni evidencias de centro a este repositorio público. Los ejemplos incluidos deben permanecer inequívocamente sintéticos.
 
-```bash
-python servidor_ghf.py --mode public-demo --host 127.0.0.1 --port 8993
-```
+## Publicación en GitHub Pages
 
-La interfaz estática puede servirse desde GitHub Pages, pero cualquier API pública requiere una implementación de producción separada. No despliegue directamente `http.server` en Internet.
+1. Sube el contenido de esta carpeta a la raíz del repositorio.
+2. Comprueba que existen `index.html`, `.nojekyll`, `sw.js`, `manifest.webmanifest` y `STATIC_MANIFEST_SHA256.txt`.
+3. En GitHub: `Settings → Pages → Deploy from a branch`.
+4. Selecciona rama `main` y carpeta `/ (root)`.
+5. Abre la URL de Pages y prueba: `Biblioteca de ejemplos → Ejemplo web P12-5 → Generar horario`.
 
-## QA antes de publicar
-
-```bash
-python scripts/verificar_manifest.py .
-python scripts/auditar_publicacion.py .
-python scripts/verificar_sintaxis_python.py .
-python scripts/verificar_sintaxis_javascript.py .
-python qa/test_runtime_modes.py
-python qa/test_release_public.py
-```
-
-Para comprobar nombres o referencias privadas sin incorporarlos al repositorio, cree fuera del proyecto un archivo con un término literal por línea y ejecute:
+## QA local antes de publicar
 
 ```bash
-python scripts/auditar_publicacion.py . --denylist /ruta/privada/denylist.txt
+python scripts/verificar_manifest_publico.py .
+python scripts/verificar_static_manifest.py .
+python scripts/auditar_publicacion_web.py .
+python scripts/verificar_sintaxis_js.py .
 ```
-
-La CI repite automáticamente el manifiesto, la auditoría semántica de publicación, la sintaxis, los modos, los dos fixtures `.ghfproject` y el caso sintético de 502 sesiones.
-
-## Reglas de publicación
-
-- no subir proyectos, plantillas, capturas, exportaciones, logs o evidencias reales;
-- no incorporar `.env`, claves, tokens, bases de datos, ZIP ni archivos compilados;
-- mantener `index.html` en la raíz;
-- regenerar `MANIFEST_SHA256.txt` después de cualquier cambio público:
-
-```bash
-python scripts/generar_manifest.py .
-python scripts/verificar_manifest.py .
-```
-
-Consulte `PUBLICACION_GITHUB.md`, `PRIVACY.md` y `SECURITY.md` antes del primer `push`.
-
-## Dependencias
-
-El flujo base utiliza la biblioteca estándar de Python. OR-Tools es opcional y no se instala ni se presupone automáticamente.
 
 ## Licencia
 
-El código es públicamente visible, pero **no es software de código abierto**. La reutilización, redistribución o despliegue requiere autorización previa conforme a `LICENSE`.
-
-
-## BROWSER_PRIVATE experimental · P6-0G-1A4 beta.1
-
-La entrada [`browser-private.html`](browser-private.html) permite abrir proyectos locales en memoria, descargar una copia binaria, crear/editar parcialmente y generar una copia `.ghfproject` canónica sin enviar el contenido por las funciones autorizadas.
-
-- `SYNTHETIC`: probado automáticamente.
-- `ANONYMIZED` y `REAL`: soporte experimental parcial, pendiente de QA física multidispositivo.
-- no hay IndexedDB, PWA, motor ni XLSX en esta entrada.
-- la demo estable `index.html` permanece intacta.
-
-En GitHub Pages la ruta esperada es `.../browser-private.html`.
+Código públicamente visible para evaluación, demostración y trazabilidad. No se concede permiso de reutilización, redistribución, despliegue ni creación de obras derivadas sin autorización previa del titular. Consulta `LICENSE`.

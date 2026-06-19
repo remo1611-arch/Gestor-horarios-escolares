@@ -1,0 +1,59 @@
+{
+  "contractVersion": "p12-web-vs-cp-sat-oracle-1.0",
+  "phase": "P12_3_PARIDAD_CP_SAT_ORACULO_PREPARADA",
+  "createdAt": "2026-06-19T12:00:00Z",
+  "purpose": "Comparar el motor web P12 con CP-SAT como oráculo técnico cuando OR-Tools esté disponible, sin convertir CP-SAT en dependencia de usuario final.",
+  "nonGoals": [
+    "No amplía restricciones del motor web.",
+    "No modifica XADE, documentos, XLSX ni exportación.",
+    "No declara paridad si CP-SAT no se ejecuta realmente.",
+    "No autoriza Frián real completo, beta, RC ni release."
+  ],
+  "cases": [
+    {
+      "id": "P12_WEB_MINI",
+      "source": "example_library",
+      "expectedWebStatus": "COMPLETED",
+      "expectedScope": "P12-1 simple"
+    },
+    {
+      "id": "P12_ORG41_LIGHT",
+      "source": "example_library",
+      "expectedWebStatus": "COMPLETED",
+      "expectedScope": "P12-2 organizativo ligero"
+    }
+  ],
+  "gates": [
+    {
+      "id": "P12-3-G01",
+      "name": "Motor web no genera solución inválida",
+      "required": true
+    },
+    {
+      "id": "P12-3-G02",
+      "name": "Validador independiente aprueba cada propuesta web completa",
+      "required": true
+    },
+    {
+      "id": "P12-3-G03",
+      "name": "Si CP-SAT está disponible, no puede declarar infeasible frente a una propuesta web completa válida sin bloquear divergencia",
+      "required": true
+    },
+    {
+      "id": "P12-3-G04",
+      "name": "Si CP-SAT no está disponible, el informe marca oracleSkipped y no acredita paridad",
+      "required": true
+    },
+    {
+      "id": "P12-3-G05",
+      "name": "El resultado conserva CP-SAT como oráculo técnico, no como dependencia del usuario final",
+      "required": true
+    }
+  ],
+  "oraclePolicy": {
+    "cpSatAsRuntimeDependencyForUser": false,
+    "cpSatAsDeveloperOracle": true,
+    "allowedWhenUnavailable": "SKIP_WITH_EXPLICIT_STATUS",
+    "forbidden": "PASSING_PARITY_WITHOUT_ORACLE_EXECUTION"
+  }
+}

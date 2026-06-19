@@ -1,0 +1,6 @@
+gate_id,priority,description,pass_condition,evidence
+P12-3-G01,P0,El motor web no genera solución inválida,Web status COMPLETED/PARTIAL controlado y validación independiente sin bloqueos,tools/p12_3_oracle_compare.mjs
+P12-3-G02,P0,Propuesta web completa validada,independent.valid=true e independent.complete=true para casos esperados completos,tools/p12_3_oracle_compare.mjs
+P12-3-G03,P0,Divergencia CP-SAT controlada,si CP-SAT dice INFEASIBLE y web completa válida se marca divergence=BLOCKING,tools/p12_3_oracle_compare.mjs
+P12-3-G04,P1,Sin falsa paridad,si CP-SAT no está disponible se marca oracleSkipped=true,tools/p12_3_oracle_compare.mjs
+P12-3-G05,P1,Sin dependencia de usuario final,WEB_SOLVER sigue operativo sin Python/OR-Tools en casos compatibles,PRODUCT_VERSION.json

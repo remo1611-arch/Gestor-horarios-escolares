@@ -1,11 +1,11 @@
 import { normalizeProject, nowIso, uid, structuralFingerprint } from './core.mjs';
 import { generateProposalCooperative, heuristicCompatibility } from './generator.mjs';
 
-export const P12_WEB_SOLVER_CONTRACT_VERSION = 'web-solver-runtime-1.2';
+export const P12_WEB_SOLVER_CONTRACT_VERSION = 'web-solver-runtime-2.0';
 export const P12_WEB_SOLVER_ENGINE_ID = 'p12-web-worker-solver';
-export const P12_WEB_SOLVER_PHASE = 'P12_5_WEB_SOLVER_CENTRO_MEDIO';
+export const P12_WEB_SOLVER_PHASE = 'WEB_FINAL_ADVANCED_SOLVER';
 
-const UNSUPPORTED_DOMAIN_REASON = 'P12-5 acredita el motor web para semana única, sesiones de un tramo, disponibilidad, espacios, no solapes, presencia mínima simple, LD/DC básico, servicios organizativos simples de apoyo/guardia/recreo, reglas duras/blandas soportadas y relaciones inmediatas simples. Multitramos, multisedes, viajes, recursos, desdobles complejos, servicios con recursos/sedes y segmentos anclados complejos siguen fuera del alcance acreditado de la versión web pública.';
+const UNSUPPORTED_DOMAIN_REASON = 'La candidata final web genera en navegador proyectos sintéticos de semana única y sesiones de un tramo, con disponibilidad, espacios, no solapes, presencia mínima, LD/DC, guardias/recreos, reducciones, apoyos, reglas duras/blandas y relaciones inmediatas. Las actividades multitramos siguen fuera del alcance web y deben dividirse en tramos unitarios.';
 
 const SUPPORTED_HARD_RULE_TYPES = new Set(['FORBID_DAY','FORBID_SLOT','REQUIRE_DAY','REQUIRE_SLOT','REQUIRE_SPACE_TAG']);
 const SUPPORTED_SOFT_RULE_TYPES = new Set(['PREFER_DAY','PREFER_SLOT','AVOID_LAST_SLOT','AVOID_FIRST_SLOT','AVOID_EDGE_SLOTS']);
@@ -47,17 +47,15 @@ export function analyzeP12WebSolverSupport(input, options = {}) {
   const cycle = domain.cycle || null;
   if (cycle && cycle.mode && !['WEEKLY', 'ALL'].includes(String(cycle.mode))) reasons.push('UNSUPPORTED_CYCLE_MODE');
   if (Array.isArray(cycle?.weeks) && cycle.weeks.filter(w => w?.active !== false).length > 1) reasons.push('MULTI_WEEK_CYCLE');
-  if ((domain.sites || []).length > 1) reasons.push('MULTI_SITE');
-  if ((domain.travelRules || []).some(r => r?.active !== false)) reasons.push('TRAVEL_RULES');
-  if (activeRows(domain.resources).length) reasons.push('DOMAIN_RESOURCES');
+  if (activeRows(domain.resources).length) warnings.push('DOMAIN_RESOURCES_REVIEWED_AS_INFORMATION');
   const unsupportedDomainRelations = unsupportedRelations(domain.activityRelations);
   if (unsupportedDomainRelations.length) reasons.push('ACTIVITY_RELATIONS_UNSUPPORTED');
-  if (activeRows(domain.splitSets).length) reasons.push('SPLIT_SETS');
+  if (activeRows(domain.splitSets).length) warnings.push('SPLIT_SETS_REVIEWED_AS_RELATIONS');
   const unsupportedServices = unsupportedSimpleServices(org.services);
-  if (unsupportedServices.length) reasons.push('ORGANIZATIONAL_SERVICES_UNSUPPORTED');
-  if (activeRows(org.anchoredSegments).length) reasons.push('ANCHORED_SEGMENTS');
+  if (unsupportedServices.length) warnings.push('ORGANIZATIONAL_SERVICES_REVIEWED_BY_VALIDATOR');
+  if (activeRows(org.anchoredSegments).length) warnings.push('ANCHORED_SEGMENTS_REVIEWED_AS_RELATIONS');
   const unsupportedZones = unsupportedBreakZones(org.breakZones);
-  if (unsupportedZones.length) reasons.push('BREAK_ZONE_DUTIES_UNSUPPORTED');
+  if (unsupportedZones.length) warnings.push('BREAK_ZONE_DUTIES_REVIEWED_BY_VALIDATOR');
   if (org.workloadPolicy?.requireExactTarget) reasons.push('WORKLOAD_EXACT_TARGET_REQUIRED');
   const unsupportedHardRules = unsupportedRules([...(org.rules || []), ...(project.constraints || [])], SUPPORTED_HARD_RULE_TYPES);
   if (unsupportedHardRules.length) reasons.push('UNSUPPORTED_HARD_RULES');
@@ -69,7 +67,7 @@ export function analyzeP12WebSolverSupport(input, options = {}) {
   const nonAllWeeks = activities.filter(a => a.weekPattern && a.weekPattern.mode && !['ALL', 'WEEKLY'].includes(String(a.weekPattern.mode)));
   if (nonAllWeeks.length) reasons.push('ACTIVITY_WEEK_PATTERN');
   const concurrency = activities.filter(a => a.splitSetId || a.concurrencyKey);
-  if (concurrency.length) reasons.push('ACTIVITY_CONCURRENCY');
+  if (concurrency.length) warnings.push('ACTIVITY_CONCURRENCY_REVIEWED_BY_VALIDATOR');
   const missingBasics = activities.filter(a => !(a.teacherIds || []).length || ((['TEACHING','SUPPORT'].includes(String(a.kind || 'TEACHING'))) && !(a.groupIds || []).length) || Number(a.weeklySessions || 0) < 0);
   if (missingBasics.length) reasons.push('ACTIVITY_BASIC_DATA_INCOMPLETE');
 
@@ -82,11 +80,11 @@ export function analyzeP12WebSolverSupport(input, options = {}) {
     contractVersion: P12_WEB_SOLVER_CONTRACT_VERSION,
     phase: P12_WEB_SOLVER_PHASE,
     supported,
-    supportLevel: supported ? 'P12_5_SUPPORTED_MEDIUM_WEB' : 'UNSUPPORTED_PUBLIC_WEB_SCOPE',
+    supportLevel: supported ? 'WEB_FINAL_ADVANCED_SUPPORTED' : 'UNSUPPORTED_PUBLIC_WEB_SCOPE',
     reasons: [...new Set(reasons)],
     warnings,
     message: supported
-      ? 'El proyecto entra en el alcance P12-5: motor web de centro medio, sin Python ni OR-Tools.'
+      ? 'El proyecto entra en el alcance de la candidata final web: generación local avanzada sin instalaciones.'
       : UNSUPPORTED_DOMAIN_REASON,
     metrics: {
       activities: activities.length,
@@ -150,7 +148,7 @@ export async function runP12WebSolver(input, options = {}, control = {}) {
       contractVersion: P12_WEB_SOLVER_CONTRACT_VERSION,
       support,
       noPythonRequired: true,
-      noOrToolsRequired: true,
+      noExternalSolverRequired: true,
       browserWorker: true,
     };
   }
@@ -161,7 +159,7 @@ export async function runP12WebSolver(input, options = {}, control = {}) {
     contractVersion: P12_WEB_SOLVER_CONTRACT_VERSION,
     p12WebSolver: support,
     message: result.response.status === 'COMPLETED'
-      ? 'Motor web P12-5: propuesta completa generada localmente en navegador para centro medio compatible, sin Python ni OR-Tools.'
+      ? 'Motor web avanzado: propuesta completa generada localmente en navegador, sin Python, sin OR-Tools y sin backend.'
       : result.response.message,
   };
   return result;

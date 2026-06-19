@@ -18,6 +18,24 @@ export const CANONICAL_REFERENCE_BASELINE = Object.freeze({
 
 export const EXAMPLE_CATALOG = Object.freeze([
   Object.freeze({
+    id:'ADVANCED_WEB_502', title:'Ejemplo avanzado web · 15 grupos', subtitle:'Centro canónico sintético de 502 sesiones',
+    centerType:'Centro avanzado sintético', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
+    purpose:'Probar generación web avanzada en navegador con 15 grupos, 29 docentes, 14 espacios y 502 sesiones sintéticas.',
+    capabilities:['Generación local avanzada','15 grupos','502 sesiones','Guardias y organización','Recreos','Reducciones/LD/DC','Validación independiente'],
+    semanticCapabilities:['generation.web_solver.advanced','organization.ld_dc','organization.break_zones','schedule.independent_validation','schedule.large_synthetic_reference'],
+    expectedCounts:{activities:502,assignments:0,groups:15,teachers:29,spaces:14,occurrences:502},
+    status:'READY_TO_GENERATE_WEB_ADVANCED',
+  }),
+  Object.freeze({
+    id:'P11_SYNTHETIC_REALISTIC', title:'Centro organizativo web · 3 grupos', subtitle:'Caso organizativo sintético avanzado',
+    centerType:'Centro organizativo sintético', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
+    purpose:'Probar generación web con servicios organizativos, recreos, docencia compartida, apoyos, desplazamientos sintéticos y relaciones sencillas.',
+    capabilities:['Generación local avanzada','Servicios organizativos','Recreos','Apoyos','Relaciones','Validación independiente'],
+    semanticCapabilities:['generation.web_solver.advanced','organization.service','activity.relation.immediate','schedule.independent_validation'],
+    expectedCounts:{activities:60,assignments:114,groups:3,teachers:10,spaces:7,occurrences:114},
+    status:'READY_TO_GENERATE_WEB_ADVANCED',
+  }),
+  Object.freeze({
     id:'P12_WEB_MEDIUM', title:'Ejemplo web P12-5', subtitle:'Centro medio sin instalación',
     centerType:'CEIP medio sintético', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
     purpose:'Probar generación web en navegador con 5 grupos, 8 docentes, disponibilidad parcial, espacios específicos, guardias simples, recreo y apoyos.',
@@ -315,12 +333,28 @@ function createStress(){
 const FACTORIES={P12_WEB_MINI:createP12WebMini,P12_ORG41_LIGHT:createP12OrgLight,P12_WEB_MEDIUM:createP12WebMedium};
 
 export function catalogForMode({technicalMode=false}={}){
-  const order=new Map([['P12_WEB_MEDIUM',0],['P12_ORG41_LIGHT',1],['P12_WEB_MINI',2]]);
+  const order=new Map([['ADVANCED_WEB_502',0],['P11_SYNTHETIC_REALISTIC',1],['P12_WEB_MEDIUM',2],['P12_ORG41_LIGHT',3],['P12_WEB_MINI',4]]);
   return EXAMPLE_CATALOG.filter(row=>row.expectedEngine==='WEB_SOLVER').sort((a,b)=>(order.get(a.id)??99)-(order.get(b.id)??99));
 }
 export function exampleDefinition(id){return EXAMPLE_CATALOG.find(row=>row.id===id)||null;}
 
 export async function loadExampleProject(id,{fetchJson=defaultFetchJson}={}){
+
+  if(id==='ADVANCED_WEB_502'){
+    const raw=await fetchJson(CANONICAL_REFERENCE_SOURCE);
+    const sourceProject=normalizeProject(raw);
+    const gate=verifyCanonicalReference(sourceProject);
+    if(!gate.ok)throw new Error(`El ejemplo avanzado web no supera ${CANONICAL_REGRESSION_GATE}: ${gate.errors.join(' · ')}`);
+    const project=normalizeProject({...sourceProject});
+    project.assignments=[];
+    project.proposals=[];
+    project.generationRuns=[];
+    project.acceptanceReceipts=[];
+    project.locks=[];
+    project.meta={...project.meta,projectId:'example_advanced_web_502',revisionId:'example_advanced_web_502_rev_001',revisionNumber:1,name:'Ejemplo avanzado web · 15 grupos',center:'Centro avanzado sintético web',status:'DRAFT',lastAcceptedAt:null,updatedAt:FIXED_DATE,structuralFingerprint:''};
+    project.meta.structuralFingerprint=structuralFingerprint(project);
+    return project;
+  }
   if(id==='CANONICAL_REFERENCE'){
     const raw=await fetchJson(CANONICAL_REFERENCE_SOURCE);
     const project=normalizeProject(raw);

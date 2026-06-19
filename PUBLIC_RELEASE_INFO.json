@@ -1,11 +1,14 @@
 {
   "name": "Gestor de Horarios Escolares Web",
-  "version": "1.0.0-web-rc.1",
-  "status": "candidata pública web",
+  "version": "1.0.0-web-final-candidate.1",
+  "status": "WEB_FINAL_CANDIDATE_STATIC_QA_OK_PHYSICAL_QA_PENDING",
   "safeForPublicRepository": true,
   "containsRealData": false,
   "ordinaryEntry": "index.html",
   "defaultExample": "P12_WEB_MEDIUM",
   "qaStatic": "pending_recomputed",
-  "qaPhysical": "pending"
+  "qaPhysical": "pending",
+  "phase": "WEB_FINAL_CANDIDATA_GENERACION_AVANZADA_LOCAL",
+  "updatedAt": "2026-06-19T12:00:00.000Z",
+  "summary": "Candidata final web con generación local avanzada para ejemplos sintéticos de hasta 502 sesiones, sin Python, sin OR-Tools y sin backend."
 }

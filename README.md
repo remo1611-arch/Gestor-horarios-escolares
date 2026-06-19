@@ -1,68 +1,38 @@
-# Gestor de Horarios Escolares · Web P12
+# Gestor de Horarios Escolares Web
 
-Aplicación web estática para crear, revisar, generar, editar, documentar y exportar horarios escolares con datos locales del navegador.
+**Versión publicada:** `1.0.0-web-final-candidate.1`  
+**Fase:** `WEB_FINAL_CANDIDATA_GENERACION_AVANZADA_LOCAL`  
+**Estado:** candidata final web con QA estática superada y QA físico pendiente.
 
-**Versión publicada:** `1.0.0-web-rc.1`  
-**Fase:** `WEB_RC1_PUBLICA_SANEADA`  
-**Estado:** app web publicable en GitHub Pages para QA real con datos sintéticos y generación motor web en casos compatibles. No es beta, RC ni release final.
+Aplicación web para crear, generar, revisar, documentar y exportar horarios escolares sintéticos o proyectos locales del usuario. Funciona desde GitHub Pages y trabaja en el navegador: no necesita Python, OR-Tools ni servidor.
 
-## Uso previsto
+## Qué genera esta candidata
 
-Esta publicación está pensada como **demo pública sintética y QA multidispositivo**:
+La biblioteca pública incluye ejemplos generables con motor web local:
 
-- abre desde GitHub Pages;
-- trabaja en el navegador del usuario;
-- no requiere Python;
-- no requiere OR-Tools;
-- no usa backend remoto;
-- los proyectos se guardan localmente mediante el navegador y archivos exportados por la persona usuaria;
-- genera con motor web los ejemplos P12 compatibles.
+- **Ejemplo avanzado web · 15 grupos**: 502 sesiones, 15 grupos, 29 docentes y 14 espacios.
+- **Centro organizativo web · 3 grupos**: servicios organizativos, recreos, apoyos y restricciones sintéticas.
+- **Ejemplo web P12-5**: centro medio de 79 sesiones.
+- **Ejemplo web P12-2/P12-1**: casos ligeros de comprobación.
 
-GitHub Pages aloja archivos HTML, CSS y JavaScript de forma estática. Por eso esta rama pública no incluye servidor Python ni motores externos como runtime de usuario.
+Todos los datos incluidos son sintéticos. No se publican datos reales de ningún centro.
 
-## Ejemplos acreditados para generar en navegador
+## Uso
 
-- `P12_WEB_MINI` · ejemplo mínimo.
-- `P12_ORG41_LIGHT` · organización ligera.
-- `P12_WEB_MEDIUM` · centro medio sintético.
+1. Abre la URL de GitHub Pages.
+2. Entra en **Biblioteca de ejemplos**.
+3. Abre **Ejemplo avanzado web · 15 grupos** o **Ejemplo web P12-5**.
+4. Pulsa **Generar horario**.
+5. Revisa la propuesta y acéptala solo si procede.
 
-## Límites conocidos
+## Límites honestos
 
-No está acreditado todavía:
+Esta candidata no acredita todavía un proyecto real de Frián ni QA físico completo en todos los dispositivos. Para datos reales, trabaja siempre con copias locales y no subas proyectos privados al repositorio.
 
-- Frián real completo en navegador;
-- ciclos A/B complejos;
-- multitramos;
-- sedes y desplazamientos;
-- desdobles y simultaneidades complejas;
-- recursos complejos;
-- recreos por zonas;
-- paridad formal con motores externos;
-- beta, RC o release.
+## Publicación
 
-Los motores externos quedan fuera del uso ordinario de esta publicación web.
-
-## Privacidad
-
-No subas proyectos reales, horarios reales, capturas, exportaciones, logs ni evidencias de centro a este repositorio público. Los ejemplos incluidos deben permanecer inequívocamente sintéticos.
-
-## Publicación en GitHub Pages
-
-1. Sube el contenido de esta carpeta a la raíz del repositorio.
-2. Comprueba que existen `index.html`, `.nojekyll`, `sw.js`, `manifest.webmanifest` y `STATIC_MANIFEST_SHA256.txt`.
-3. En GitHub: `Settings → Pages → Deploy from a branch`.
-4. Selecciona rama `main` y carpeta `/ (root)`.
-5. Abre la URL de Pages y prueba: `Biblioteca de ejemplos → Ejemplo web P12-5 → Generar horario`.
-
-## QA local antes de publicar
-
-```bash
-python scripts/verificar_manifest_publico.py .
-python scripts/verificar_static_manifest.py .
-python scripts/auditar_publicacion_web.py .
-python scripts/verificar_sintaxis_js.py .
-```
+GitHub Pages debe servirse desde `main / root`.
 
 ## Licencia
 
-Código públicamente visible para evaluación, demostración y trazabilidad. No se concede permiso de reutilización, redistribución, despliegue ni creación de obras derivadas sin autorización previa del titular. Consulta `LICENSE`.
+El código es visible públicamente, pero no es software de código abierto. La reutilización, redistribución o despliegue requiere autorización previa conforme a `LICENSE`.

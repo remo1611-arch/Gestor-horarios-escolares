@@ -1,0 +1,42 @@
+{
+  "contractVersion": "web-final-candidate-contract-1.0",
+  "productVersion": "1.0.0-web-final-candidate.1",
+  "phase": "WEB_FINAL_CANDIDATA_GENERACION_AVANZADA_LOCAL",
+  "runtime": "browser-only",
+  "pythonRequired": false,
+  "orToolsRequired": false,
+  "backendRequired": false,
+  "defaultExampleId": "ADVANCED_WEB_502",
+  "advancedWebExamples": [
+    "ADVANCED_WEB_502",
+    "P11_SYNTHETIC_REALISTIC",
+    "P12_WEB_MEDIUM",
+    "P12_ORG41_LIGHT",
+    "P12_WEB_MINI"
+  ],
+  "validatedExamples": {
+    "ADVANCED_WEB_502": {
+      "activities": 502,
+      "occurrences": 502,
+      "groups": 15,
+      "teachers": 29,
+      "spaces": 14
+    },
+    "P11_SYNTHETIC_REALISTIC": {
+      "activities": 60,
+      "occurrences": 114,
+      "groups": 3,
+      "teachers": 10,
+      "spaces": 7
+    },
+    "P12_WEB_MEDIUM": {
+      "activities": 33,
+      "occurrences": 79
+    }
+  },
+  "limitations": [
+    "No acredita datos reales de Frián",
+    "QA físico pendiente",
+    "Actividades multitramos siguen fuera del alcance navegador"
+  ]
+}

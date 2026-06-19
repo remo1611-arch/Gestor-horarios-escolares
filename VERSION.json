@@ -1,8 +1,12 @@
 {
   "appVersion": "0.6.0-alpha.25",
-  "productVersion": "1.0.0-web-rc.1",
-  "phase": "WEB_RC1_PUBLICA_SANEADA",
-  "status": "WEB_RC1_QA_ESTATICA_OK_QA_FISICA_PENDIENTE",
+  "productVersion": "1.0.0-web-final-candidate.1",
+  "phase": "WEB_FINAL_CANDIDATA_GENERACION_AVANZADA_LOCAL",
+  "status": "WEB_FINAL_CANDIDATE_STATIC_QA_OK_PHYSICAL_QA_PENDING",
   "schemaVersion": "4.0",
-  "notes": "Publicación web saneada para GitHub Pages. Genera localmente en navegador ejemplos compatibles P12; no acredita centros reales complejos."
+  "notes": "Publicación web saneada para GitHub Pages. Genera localmente en navegador ejemplos compatibles P12; no acredita centros reales complejos.",
+  "updatedAt": "2026-06-19T12:00:00.000Z",
+  "webSolverAdvanced": true,
+  "pythonRequired": false,
+  "orToolsRequired": false
 }

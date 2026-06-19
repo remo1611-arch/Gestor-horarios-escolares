@@ -1,33 +1,21 @@
-# Gestor de Horarios Escolares · Web RC1
+# Gestor de Horarios Escolares · candidata final web
 
-Versión: `1.0.0-web-rc.1`
+Versión: `1.0.0-web-final-candidate.1`
 
-Aplicación web estática para trabajar en el navegador con datos locales. No requiere Python, OR-Tools ni servidor propio para los ejemplos web compatibles.
+Esta versión funciona directamente en navegador y genera horarios mediante motor web local. No requiere Python, OR-Tools, Termux ni backend.
 
-## Uso rápido
+## Prueba recomendada
 
-1. Abrir la web.
-2. Usar el ejemplo web P12-5 que se carga por defecto, o elegir P12-2/P12-1 en la biblioteca.
-3. Pulsar **Generar horario**.
-4. Revisar la propuesta.
-5. Aceptarla solo si es correcta.
-6. Descargar copia del proyecto o documentos.
+1. Abre la aplicación.
+2. Ve a **Biblioteca de ejemplos**.
+3. Abre **Ejemplo avanzado web · 15 grupos**.
+4. Pulsa **Generar horario**.
+5. Revisa la propuesta antes de aceptarla.
 
-## Alcance acreditado
+## Protección de datos
 
-- Ejemplo web P12-5: centro medio sintético.
-- Ejemplo web P12-2: organización ligera.
-- Ejemplo web P12-1: caso mínimo.
-- Generación local en navegador para esos casos.
-- Validación independiente de la propuesta.
+La biblioteca pública solo contiene datos sintéticos. Si importas datos reales, se quedan en tu navegador, pero debes exportar y custodiar las copias localmente. No subas datos reales al repositorio.
 
-## Fuera de alcance de esta RC1
+## Estado
 
-- Frián real completo.
-- Centros con reglas complejas no cubiertas por P12-5.
-- Paridad formal con motores externos.
-- Cierre oficial sin revisión humana.
-
-## Privacidad
-
-La web trabaja en el navegador. No subas datos reales a un repositorio público. Para proyectos reales, usa copias locales y verifica siempre antes de compartir archivos.
+QA estática superada. Pendiente de QA físico final en móvil, tableta, PC y pruebas de impresión/exportación reales.

@@ -1,12 +1,14 @@
+import fs from 'node:fs';
 import { loadExampleProject } from '../assets/js/example_library.mjs';
 import { analyzeP12WebSolverSupport, runP12WebSolver } from '../assets/js/p12_web_solver.mjs';
 import { validateScheduleIndependently } from '../assets/js/product_independent_validator.mjs';
 
-const examples = ['P12_WEB_MEDIUM','P12_ORG41_LIGHT','P12_WEB_MINI'];
+const fetchJson = async (url) => JSON.parse(fs.readFileSync(url, 'utf8'));
+const examples = ['ADVANCED_WEB_502','P11_SYNTHETIC_REALISTIC','P12_WEB_MEDIUM','P12_ORG41_LIGHT','P12_WEB_MINI'];
 const issues = [];
 const results = [];
 for (const id of examples) {
-  const project = await loadExampleProject(id);
+  const project = await loadExampleProject(id, { fetchJson });
   const support = analyzeP12WebSolverSupport(project);
   if (!support.supported) issues.push(`${id}: no soportado (${support.reasons.join(', ')})`);
   const result = await runP12WebSolver(project, { requestId: `qa_${id}`, mode: 'COMPLETE', maxDurationMs: 30000, seed: 0 }, {});

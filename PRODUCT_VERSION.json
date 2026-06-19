@@ -1,7 +1,7 @@
 {
-  "productVersion": "1.0.0-web-rc.1",
-  "phase": "WEB_RC1_PUBLICA_SANEADA",
-  "status": "WEB_RC1_QA_ESTATICA_OK_QA_FISICA_PENDIENTE",
+  "productVersion": "1.0.0-web-final-candidate.1",
+  "phase": "WEB_FINAL_CANDIDATA_GENERACION_AVANZADA_LOCAL",
+  "status": "WEB_FINAL_CANDIDATE_STATIC_QA_OK_PHYSICAL_QA_PENDING",
   "publication": "GitHub Pages / web estática",
   "runtime": {
     "requiresPython": false,
@@ -26,5 +26,9 @@
     "cierre oficial sin revisión humana",
     "QA físico completo"
   ],
-  "releaseGate": "No publicar como versión final institucional hasta completar QA físico Android/tableta/PC y pruebas desde URL pública."
+  "releaseGate": "No publicar como versión final institucional hasta completar QA físico Android/tableta/PC y pruebas desde URL pública.",
+  "updatedAt": "2026-06-19T12:00:00.000Z",
+  "webSolverAdvanced": true,
+  "pythonRequired": false,
+  "orToolsRequired": false
 }

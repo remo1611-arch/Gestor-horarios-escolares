@@ -285,7 +285,7 @@ function publicStatus(v){return({DRAFT:'Borrador',CONFIRMED:'Confirmada',CANCELL
 function publicDataState(v){return({CONFIRMED:'Confirmado',PROVISIONAL:'Provisional',SIMULATED:'Simulado',PENDING:'Pendiente'})[v]||String(v||'');}
 function decisionLabel(v){return({ACCEPTANCE:'Aceptación completa',PARTIAL_ACCEPTANCE:'Aceptación parcial',REJECTION:'Rechazo'})[v]||'Decisión registrada';}
 function modeLabel(v){return({COMPLETE:'Completo',PARTIAL:'Parcial',REPAIR:'Reparación'})[v]||String(v||'');}
-function engineLabel(v){return({HEURISTIC:'Heurística web',CP_SAT:'OR-Tools CP-SAT','heuristic-web':'Heurística web','ortools-cp-sat':'OR-Tools CP-SAT'})[v]||String(v||'Motor registrado');}
+function engineLabel(v){return({HEURISTIC:'Heurística web',CP_SAT:'Motor externo de mantenimiento','heuristic-web':'Heurística web','ortools-cp-sat':'Motor externo de mantenimiento'})[v]||String(v||'Motor registrado');}
 function entityLabel(v){return({teachers:'Docentes',groups:'Grupos',subjects:'Materias',spaces:'Espacios',activities:'Actividades',availability:'Disponibilidad'})[v]||String(v||'Datos');}
 function serviceSourceLabel(v){return({COVERAGE:'Cobertura',FREE_COVERAGE:'Cobertura por disponibilidad',GUARD:'Guardia programada',PLANNED_GUARD:'Guardia programada',MANUAL:'Registro manual'})[v]||'Servicio registrado';}
 function communicationLabel(value){if(!value)return'No registrada';return[value.channel,value.at?formatDateTime(value.at):''].filter(Boolean).join(' · ')||'Registrada';}

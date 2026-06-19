@@ -1,7 +1,7 @@
 const APP_VERSION = '0.6.0-alpha.25';
-const CONTRACT_VERSION = 'service-worker-update-contract-1.2-web-rc1';
-const PRODUCT_VERSION = '1.0.0-web-rc.1';
-const CACHE_PREFIX = 'ghe-web-rc1-';
+const CONTRACT_VERSION = 'service-worker-update-contract-2.0-web-final';
+const PRODUCT_VERSION = '1.0.0-web-final-candidate.1';
+const CACHE_PREFIX = 'ghe-web-final-candidate-1-';
 const CORE_CACHE = `${CACHE_PREFIX}${APP_VERSION}-${PRODUCT_VERSION}-core`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}${APP_VERSION}-${PRODUCT_VERSION}-runtime`;
 const CORE_ASSETS = [
@@ -82,6 +82,8 @@ const CORE_ASSETS = [
   "./p12/P12_ROADMAP.md",
   "./p12/corpus/P12_T00_MINI_SINGLE_WEEK_KNOWN.json",
   "./p12/corpus/P12_T01_MINI_SHARED_TEACHER_SPACE.json",
+  "./data/fixture_centro_completo_a6.json",
+  "./data/P11-S1_SYNTHETIC_REALISTIC.json",
   "./p12/corpus/P12_T02_MINI_INFEASIBLE_OVERLOAD.json",
   "./plantillas/01_materias.csv",
   "./plantillas/02_docentes.csv",

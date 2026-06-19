@@ -516,7 +516,7 @@ export function migrateProject(input) {
     source.generationRuns = Array.isArray(source.generationRuns) ? source.generationRuns : [];
     source.meta.cpSatExecutionContractVersion = CP_SAT_EXECUTION_CONTRACT_VERSION;
     report.changed = true;
-    report.steps.push('2.7→2.8: adaptador OR-Tools CP-SAT explícito, estados formales y canal local/manual sin sustitución silenciosa.');
+    report.steps.push('2.7→2.8: adaptador Motor externo de mantenimiento explícito, estados formales y canal local/manual sin sustitución silenciosa.');
   }
 
   if (compareVersions(from, '2.9') < 0) {
@@ -1027,7 +1027,7 @@ export function validateProject(input) {
     for (const t of a.teacherIds) if (!teacherIds.has(t)) push('ERROR','ACTIVITY_TEACHER_BROKEN',`${a.name}: un docente no existe.`,a.id);
     if (!Number.isInteger(Number(a.weeklySessions)) || Number(a.weeklySessions) < 1) push('ERROR','ACTIVITY_WEEKLY_INVALID',`${a.name}: las sesiones semanales deben ser un entero positivo.`,a.id);
     if (!Number.isInteger(Number(a.durationSlots)) || Number(a.durationSlots) < 1) push('ERROR','ACTIVITY_DURATION_INVALID',`${a.name}: la duración debe ser un entero positivo.`,a.id);
-    else if (Number(a.durationSlots) > 1) push('INFO','HEURISTIC_MULTISLOT_REQUIRES_CP_SAT',`${a.name}: una actividad de ${a.durationSlots} tramos requiere OR-Tools CP-SAT; la heurística web y el editor manual no la colocan.`,a.id,{blocksGeneration:false,blocksFinalization:false,suggestedAction:'Usar el motor CP-SAT o convertir la actividad a tramos unitarios.'});
+    else if (Number(a.durationSlots) > 1) push('INFO','HEURISTIC_MULTISLOT_REQUIRES_CP_SAT',`${a.name}: una actividad de ${a.durationSlots} tramos requiere dividirse en tramos unitarios para la generación web.`,a.id,{blocksGeneration:false,blocksFinalization:false,suggestedAction:'Convertir la actividad a tramos unitarios para la generación web.'});
     for (const f of a.fixedOccurrences || []) {
       if (!dayIds.has(f.dayId) || !slotIds.has(f.slotId)) push('ERROR','FIXED_OCCURRENCE_INVALID',`${a.name}: una colocación fija usa un día o tramo inexistente.`,a.id);
     }

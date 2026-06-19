@@ -11,13 +11,13 @@ import { analyzeMultidimensionalQuality, publicQualitySummary } from './product_
 import { analyzeP12WebSolverSupport, P12_WEB_SOLVER_CONTRACT_VERSION } from './p12_web_solver.mjs';
 
 export const PRODUCT_GENERATION_CONTRACT_VERSION = 'product-generation-orchestrator-1.0';
-export const PRODUCT_GENERATION_POLICY_VERSION = 'product-generation-policy-1.3-p12-web-solver-medium';
+export const PRODUCT_GENERATION_POLICY_VERSION = 'product-generation-policy-2.0-web-final-advanced';
 
 export const PRODUCT_GENERATION_POLICY = Object.freeze({
   complexHardRules: 12,
   complexFixedOccurrences: 20,
   complexConstrainedActivities: 50,
-  complexOccurrences: 700,
+  complexOccurrences: 2000,
   ordinaryMaxDurationMs: 30000,
   cpSatWorkers: 8,
   webSolverContractVersion: P12_WEB_SOLVER_CONTRACT_VERSION,
@@ -173,7 +173,7 @@ export class ProductGenerationOrchestrator {
       const cpRequired=enginePreference==='CP_SAT'||!analysis.p12WebSolverCompatible;
       if(cpRequired){
         return this.#result(request,analysis,attempts,null,startedAt,startedMs,'UNAVAILABLE',
-          'Este proyecto no entra todavía en el alcance de generación web. Abre un ejemplo web compatible o úsalo solo para revisión y exportación.',
+          'Este proyecto contiene elementos que aún no se pueden generar en navegador. Revisa los datos o divide las actividades multitramos en sesiones unitarias.',
           {capabilities:{available:false,noFallback:true,reason:'La publicación web no usa motor externo.'},reasonCodes:['WEB_SCOPE_UNSUPPORTED',...(analysis.p12WebSolver?.reasons||[]),...(analysis.domain4EngineRequirements?.reasons||[])]});
       }
       const cpProviderAvailable=false;
@@ -242,7 +242,7 @@ export class ProductGenerationOrchestrator {
       onProgress(progressPayload('QUICK_GENERATION',startedMs,this.clock(),{
         percent:5+Math.round(local*.5),processed:progress.processed,total:progress.total,
         placed:progress.placed,unplaced:progress.unplaced,
-        message:'Generando localmente con el motor web P12-5 del navegador.',
+        message:'Generando localmente con el motor web avanzado del navegador.',
       }));
     }});
   }
@@ -301,12 +301,12 @@ function effectiveStrategy(analysis,attempts){
   return analysis.recommendedStrategy;
 }
 function strategyExplanation(strategy,reasons){
-  if(strategy==='CP_SAT_REQUIRED')return 'El proyecto contiene reglas avanzadas que esta versión web todavía no genera de forma acreditada.';
-  if(strategy==='CP_SAT_ONLY')return 'Se usará únicamente el motor avanzado solicitado desde mantenimiento.';
-  if(strategy==='WEB_SOLVER_ONLY')return 'Se usará el motor web del navegador, sin instalación adicional.';
+  if(strategy==='CP_SAT_REQUIRED')return 'El proyecto contiene elementos que deben adaptarse al motor web antes de generar.';
+  if(strategy==='CP_SAT_ONLY')return 'Esta opción queda reservada a mantenimiento y no forma parte de la web ordinaria.';
+  if(strategy==='WEB_SOLVER_ONLY')return 'Se usará el motor web avanzado del navegador, sin instalación adicional.';
   if(strategy==='HEURISTIC_ONLY')return 'Se utilizará únicamente la generación rápida solicitada desde mantenimiento.';
   if(strategy==='COMBINED')return 'Se creará una primera propuesta y se contrastará con una optimización más profunda.';
-  return 'Se intentará crear una propuesta local en el navegador y se avisará si el proyecto supera el alcance web actual.';
+  return 'Se intentará crear una propuesta local avanzada en el navegador y se avisará si algún dato requiere adaptación.';
 }
 function selectionExplanation(selected,rows){
   if(rows.length===1)return selected.diagnostics.complete?'Se obtuvo una propuesta completa y revalidada.':'Se obtuvo una propuesta parcial revalidada que requiere revisión humana.';

@@ -19,7 +19,7 @@ export function heuristicCompatibility(input, activityIds = null) {
     code: unsupported.length ? 'HEURISTIC_MULTISLOT_UNSUPPORTED' : 'OK',
     unsupportedActivityIds: unsupported.map(activity => activity.id),
     message: unsupported.length
-      ? `La heurística web no admite actividades multitramos (${unsupported.map(activity=>activity.name || activity.id).join(', ')}). Usa OR-Tools CP-SAT.`
+      ? `La heurística web no admite actividades multitramos (${unsupported.map(activity=>activity.name || activity.id).join(', ')}). Divide la actividad en tramos unitarios para la generación web.`
       : 'El alcance es compatible con la heurística web.',
   };
 }
@@ -557,7 +557,7 @@ export function revalidateProposal(input, proposalId, selectedAssignmentIds = nu
   if (['HEURISTIC','WEB_SOLVER'].includes(proposal.engine?.kind || 'HEURISTIC')) {
     const compatibility=heuristicCompatibility(draft,[...new Set(assignments.map(row=>row.activityId))]);
     if(!compatibility.ok){
-      const issue={id:uid('issue'),severity:'ERROR',code:compatibility.code,message:compatibility.message,entity:null,blocksGeneration:true,blocksFinalization:true,suggestedAction: proposal.engine?.kind === 'WEB_SOLVER' ? 'Regenerar con motor web P12 o contrastar con CP-SAT si el alcance no es compatible.' : 'Regenerar con OR-Tools CP-SAT.'};
+      const issue={id:uid('issue'),severity:'ERROR',code:compatibility.code,message:compatibility.message,entity:null,blocksGeneration:true,blocksFinalization:true,suggestedAction: proposal.engine?.kind === 'WEB_SOLVER' ? 'Regenerar con motor web P12 o revisar el alcance si no es compatible.' : 'Regenerar con motor web tras adaptar el dato.'};
       validation.issues.unshift(issue);validation.errors.unshift(issue);validation.canGenerate=false;validation.canFinalize=false;
     }
   }
@@ -638,7 +638,7 @@ export function checkMove(input,assignmentId,dayId,slotId,spaceId) {
   if(p.locks.some(l=>l.active!==false&&l.assignmentId===assignmentId))return{ok:false,reasons:['La sesión está bloqueada. Debe desbloquearse con motivo y responsable antes de moverla.']};
   const activity=p.activities.find(x=>x.id===assignment.activityId);
   if(!activity)return{ok:false,reasons:['La actividad de la sesión no existe.']};
-  if(Number(activity.durationSlots||1)>1)return{ok:false,reasons:['El editor manual no mueve actividades multitramos. Usa OR-Tools CP-SAT o divide la actividad en tramos unitarios.'],code:'MANUAL_MULTISLOT_UNSUPPORTED'};
+  if(Number(activity.durationSlots||1)>1)return{ok:false,reasons:['El editor manual no mueve actividades multitramos. Usa Motor externo de mantenimiento o divide la actividad en tramos unitarios.'],code:'MANUAL_MULTISLOT_UNSUPPORTED'};
   const remaining=p.assignments.filter(x=>x.id!==assignmentId);
   const occupancy=buildOccupancy(p,remaining);
   const reasons=hardCandidateConflicts(p,activity,dayId,slotId,spaceId,occupancy,remaining);

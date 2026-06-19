@@ -1,8 +1,8 @@
 {
   "name": "Gestor de Horarios Escolares",
-  "productVersion": "0.6.0-product-alpha.32",
-  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
-  "status": "PRODUCT_ALPHA_P12_6_WEB_PUBLIC_QA_GATE_PREPARADO_QA_REAL_PENDIENTE",
+  "productVersion": "0.6.0-product-alpha.32.1",
+  "phase": "P12_6_1_SANEAMENTO_UX_PUBLICA",
+  "status": "PRODUCT_ALPHA_P12_6_1_SANEAMENTO_UX_PUBLICA_PREPARADO_QA_REAL_PENDIENTE",
   "date": "2026-06-19",
   "technicalCore": {
     "version": "0.6.0-alpha.25",
@@ -61,13 +61,13 @@
     "P11_C5_1_DISTRIBUCION_LIMPIA_USUARIO_FINAL",
     "P11_C5_2_HOTFIX_CP_SAT_UTF8_FECHAS_LOCALES",
     "P11_C5_3_SANEAMIENTO_FINAL_HISTORIAL_FECHAS_HOST",
-    "P12_0_WEB_SOLVER_CONTRACT",
+    "P12_6_1_SANEAMENTO_UX_PUBLICA",
     "P12_1_WEB_WORKER_SOLVER_MINIMO_ACREDITADO",
     "P12_2_WEB_SOLVER_DOMINIO_ORGANIZATIVO_LIGERO",
     "P12_3_PARIDAD_CP_SAT_ORACULO_PREPARADA",
     "P12_5_WEB_SOLVER_CENTRO_MEDIO",
     "P12_5_WEB_SOLVER_CENTRO_MEDIO",
-    "P12_6_WEB_PUBLIC_QA_GATE"
+    "P12_6_1_SANEAMENTO_UX_PUBLICA"
   ],
   "projectWizard": {
     "contractVersion": "product-project-wizard-1.0",
@@ -847,7 +847,7 @@
     "rcAuthorized": false,
     "releaseAuthorized": false
   },
-  "version": "0.6.0-product-alpha.26",
+  "version": "0.6.0-product-alpha.32.1",
   "notes": "P12-0 abre la línea de motor web local: CP-SAT queda como oráculo de comparación, no como dependencia obligatoria del usuario final futuro. Esta entrega no modifica el solver ni activa generación web avanzada.",
   "maintenanceCorrectionC53": {
     "id": "P11-C5-3",

@@ -1,7 +1,7 @@
 {
   "id": "p12-6-github-pages-static-export",
-  "productVersion": "0.6.0-product-alpha.32",
-  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
+  "productVersion": "0.6.0-product-alpha.32.1",
+  "phase": "P12_6_1_SANEAMENTO_UX_PUBLICA",
   "createdFor": "GitHub Pages upload",
   "pythonFilesIncluded": false,
   "solverServerIncluded": false,

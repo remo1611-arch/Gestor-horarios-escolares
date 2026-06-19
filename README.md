@@ -2,9 +2,9 @@
 
 Aplicación web estática para crear, revisar, generar, editar, documentar y exportar horarios escolares con datos locales del navegador.
 
-**Versión publicada:** `0.6.0-product-alpha.32`  
-**Fase:** `P12_6_WEB_PUBLIC_QA_GATE`  
-**Estado:** app web publicable en GitHub Pages para QA real con datos sintéticos y generación `WEB_SOLVER` en casos compatibles. No es beta, RC ni release final.
+**Versión publicada:** `0.6.0-product-alpha.32.1`  
+**Fase:** `P12_6_1_SANEAMENTO_UX_PUBLICA`  
+**Estado:** app web publicable en GitHub Pages para QA real con datos sintéticos y generación motor web en casos compatibles. No es beta, RC ni release final.
 
 ## Uso previsto
 
@@ -16,7 +16,7 @@ Esta publicación está pensada como **demo pública sintética y QA multidispos
 - no requiere OR-Tools;
 - no usa backend remoto;
 - los proyectos se guardan localmente mediante el navegador y archivos exportados por la persona usuaria;
-- genera con `WEB_SOLVER` los ejemplos P12 compatibles.
+- genera con motor web los ejemplos P12 compatibles.
 
 GitHub Pages aloja archivos HTML, CSS y JavaScript de forma estática. Por eso esta rama pública no incluye servidor Python ni CP-SAT como runtime de usuario.
 

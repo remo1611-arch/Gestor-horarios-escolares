@@ -57,7 +57,7 @@ No migra todavía todos los diálogos nativos `prompt()`/`confirm()` a modales p
 
 ## P12-0 · Contrato de motor web local
 
-Añadido en `0.6.0-product-alpha.32`:
+Añadido en `0.6.0-product-alpha.32.1`:
 
 - `p12/P12_0_WEB_SOLVER_CONTRACT.json`
 - `p12/P12_0_TEST_CORPUS.json`
@@ -87,7 +87,7 @@ Se añade un arnés de comparación web vs CP-SAT. Si CP-SAT no está instalado,
 
 ## P12-5 · Publicación web estática
 
-Esta entrega prepara la app para GitHub Pages: abre desde enlace, trabaja localmente en el navegador y genera ejemplos P12 compatibles con `WEB_SOLVER` sin Python ni OR-Tools. CP-SAT queda como oráculo externo de desarrollo; Frián real y casos complejos siguen pendientes.
+Esta entrega prepara la app para GitHub Pages: abre desde enlace, trabaja localmente en el navegador y genera ejemplos P12 compatibles con motor web sin Python ni OR-Tools. CP-SAT queda como oráculo externo de desarrollo; Frián real y casos complejos siguen pendientes.
 
 
 ## P12-5 · Motor web centro medio

@@ -60,7 +60,7 @@ export function analyzeProductGeneration(input, {
     contractVersion:PRODUCT_GENERATION_CONTRACT_VERSION,
     policyVersion:PRODUCT_GENERATION_POLICY_VERSION,
     enginePreference,mode,targetActivityIds:[...selectedIds],
-    heuristicCompatible:compatibility.ok&&!domain4.required,heuristicCompatibility:domain4.required?{ok:false,code:'DOMAIN4_REQUIRES_CP_SAT',message:'Este proyecto utiliza capacidades educativas 4.0 y debe resolverse mediante CP-SAT con contrato de paridad P10M-4.',reasons:domain4.reasons}:compatibility,
+    heuristicCompatible:compatibility.ok&&!domain4.required,heuristicCompatibility:domain4.required?{ok:false,code:'DOMAIN4_REQUIRES_CP_SAT',message:'Este proyecto usa reglas avanzadas que aún no están acreditadas en la versión web pública.',reasons:domain4.reasons}:compatibility,
     p12WebSolverCompatible:p12WebSolver.supported,p12WebSolver,
     domain4EngineRequirements:domain4,
     complex,complexityReasons,semanticReasons:complexityReasons.map(code=>semanticizeIssue({code,message:'La configuración requiere una comprobación más profunda.',severity:'INFO',blocksGeneration:false,blocksFinalization:false})),
@@ -117,7 +117,7 @@ export function compareProductGenerationCandidates(input, candidates=[]) {
 export class ProductGenerationOrchestrator {
   constructor({generationRunner,cpSatClient,clock=()=>Date.now(),heartbeatMs=500}={}) {
     if(!generationRunner)throw new Error('Falta el ejecutor de generación rápida.');
-    if(!cpSatClient)throw new Error('Falta el cliente CP-SAT local.');
+    if(!cpSatClient)throw new Error('Falta el conector del motor avanzado local.');
     this.generationRunner=generationRunner;
     this.cpSatClient=cpSatClient;
     this.clock=clock;
@@ -176,7 +176,7 @@ export class ProductGenerationOrchestrator {
       const cpAvailable=cpProviderAvailable&&(!analysis.domain4EngineRequirements?.required||cpSatSupportsP10M4(capabilities));
       if(cpRequired&&!cpAvailable){
         return this.#result(request,analysis,attempts,null,startedAt,startedMs,'UNAVAILABLE',
-          'Este proyecto necesita la optimización avanzada local, pero no está disponible en el dispositivo actual.',
+          'Este proyecto no puede generarse todavía con la versión web. Abre un ejemplo web compatible o revisa el proyecto desde esta vista.',
           {capabilities,reasonCodes:['CP_SAT_REQUIRED',cpProviderAvailable?'CP_SAT_PARITY_CONTRACT_MISMATCH':'CP_SAT_UNAVAILABLE',...(analysis.domain4EngineRequirements?.reasons||[])]});
       }
       let heuristicAttempt=null;
@@ -302,12 +302,12 @@ function effectiveStrategy(analysis,attempts){
   return analysis.recommendedStrategy;
 }
 function strategyExplanation(strategy,reasons){
-  if(strategy==='CP_SAT_REQUIRED')return 'El proyecto contiene capacidades educativas 4.0 o bloques de varios periodos que requieren CP-SAT local con paridad semántica acreditada.';
-  if(strategy==='CP_SAT_ONLY')return 'Se utilizará únicamente la optimización avanzada solicitada desde mantenimiento.';
-  if(strategy==='WEB_SOLVER_ONLY')return 'Se utilizará el motor web P12-2 en navegador, sin Python ni OR-Tools.';
+  if(strategy==='CP_SAT_REQUIRED')return 'El proyecto contiene reglas avanzadas que esta versión web todavía no genera de forma acreditada.';
+  if(strategy==='CP_SAT_ONLY')return 'Se usará únicamente el motor avanzado solicitado desde mantenimiento.';
+  if(strategy==='WEB_SOLVER_ONLY')return 'Se usará el motor web del navegador, sin instalación adicional.';
   if(strategy==='HEURISTIC_ONLY')return 'Se utilizará únicamente la generación rápida solicitada desde mantenimiento.';
   if(strategy==='COMBINED')return 'Se creará una primera propuesta y se contrastará con una optimización más profunda.';
-  return 'Se intentará primero una propuesta rápida y se ampliará el análisis si no resulta suficiente.';
+  return 'Se intentará crear una propuesta local en el navegador y se avisará si el proyecto supera el alcance web actual.';
 }
 function selectionExplanation(selected,rows){
   if(rows.length===1)return selected.diagnostics.complete?'Se obtuvo una propuesta completa y revalidada.':'Se obtuvo una propuesta parcial revalidada que requiere revisión humana.';

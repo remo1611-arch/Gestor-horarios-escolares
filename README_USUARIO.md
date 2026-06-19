@@ -1,6 +1,6 @@
 # Gestor de Horarios Escolares · P12-0
 
-Versión de producto: `0.6.0-product-alpha.32`  
+Versión de producto: `0.6.0-product-alpha.32.1`  
 Núcleo técnico: `0.6.0-alpha.25`  
 Fase: `P12_0_WEB_SOLVER_CONTRACT`
 
@@ -60,7 +60,7 @@ Se añade un arnés de comparación web vs CP-SAT. Si CP-SAT no está instalado,
 
 ## P12-5 · Publicación web estática
 
-Esta entrega prepara la app para GitHub Pages: abre desde enlace, trabaja localmente en el navegador y genera ejemplos P12 compatibles con `WEB_SOLVER` sin Python ni OR-Tools. CP-SAT queda como oráculo externo de desarrollo; Frián real y casos complejos siguen pendientes.
+Esta entrega prepara la app para GitHub Pages: abre desde enlace, trabaja localmente en el navegador y genera ejemplos P12 compatibles con motor web sin Python ni OR-Tools. CP-SAT queda como oráculo externo de desarrollo; Frián real y casos complejos siguen pendientes.
 
 
 ## P12-5 · Motor web centro medio

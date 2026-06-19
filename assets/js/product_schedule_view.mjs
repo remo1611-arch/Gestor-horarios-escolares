@@ -123,7 +123,7 @@ function filterOption(value, label, current) {
 }
 
 export function renderScheduleControls(project = {}, { current = 'ALL', search = '', editor = false, technicalMode = false } = {}) {
-  const allOption = technicalMode ? filterOption('ALL', 'Vista global técnica', current) : '';
+  const allOption = technicalMode ? filterOption('ALL', 'Vista global de mantenimiento', current) : '';
   const groups = (project.groups || []).map(g => filterOption(`G:${g.id}`, `Grupo · ${g.name}`, current)).join('');
   const teachers = (project.teachers || []).map(t => filterOption(`T:${t.id}`, `Docente · ${publicTeacherName(t.name)}`, current)).join('');
   const spaces = (project.spaces || []).map(sp => filterOption(`S:${sp.id}`, `Espacio · ${publicSpaceName(sp.name)}`, current)).join('');
@@ -134,7 +134,7 @@ export function renderScheduleControls(project = {}, { current = 'ALL', search =
   return `<section class="schedule-controls" aria-label="Filtros del horario">
     <label>Vista<select id="scheduleFilter">${allOption}<optgroup label="Grupos">${groups}</optgroup><optgroup label="Docentes">${teachers}</optgroup><optgroup label="Espacios">${spaces}</optgroup></select></label>
     <label>Buscar<input id="editorSearch" value="${escapeHtml(search)}" placeholder="Materia, grupo, docente o espacio"></label>
-    <div class="schedule-controls-actions">${button}${technicalMode ? '<span class="badge warn">Modo técnico</span>' : ''}</div>
+    <div class="schedule-controls-actions">${button}${technicalMode ? '<span class="badge warn">Mantenimiento</span>' : ''}</div>
   </section>`;
 }
 
@@ -221,7 +221,7 @@ function groupContext(project = {}, assignments = [], filter = 'ALL') {
 }
 
 function filterCaption(project = {}, filter = 'ALL') {
-  if (filter === 'ALL') return 'Vista global técnica';
+  if (filter === 'ALL') return 'Vista global de mantenimiento';
   if (filter.startsWith('G:')) return `Horario del grupo ${nameOf(project.groups || [], filter.slice(2))}`;
   if (filter.startsWith('T:')) return `Horario de ${publicTeacherName(nameOf(project.teachers || [], filter.slice(2)))}`;
   if (filter.startsWith('S:')) return `Ocupación de ${publicSpaceName(nameOf(project.spaces || [], filter.slice(2)))}`;

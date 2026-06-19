@@ -71,7 +71,7 @@ export function generationStatusLabel(status) {
     COMPLETED:'Completada', PARTIAL:'Completada con sesiones sin colocar', CANCELLED:'Cancelada',
     TIME_LIMIT_WITH_SOLUTION:'Límite temporal con propuesta parcial',
     TIME_LIMIT_WITHOUT_SOLUTION:'Límite temporal sin propuesta', ERROR:'Error controlado', RUNNING:'En ejecución',
-    OPTIMAL:'CP-SAT óptima', FEASIBLE:'CP-SAT factible', INFEASIBLE:'CP-SAT demuestra inviabilidad',
-    UNKNOWN:'CP-SAT sin conclusión', MODEL_INVALID:'Modelo CP-SAT inválido', UNAVAILABLE:'CP-SAT no disponible',
+    OPTIMAL:'Solución óptima', FEASIBLE:'Solución factible', INFEASIBLE:'Inviabilidad demostrada',
+    UNKNOWN:'Sin conclusión', MODEL_INVALID:'Modelo avanzado inválido', UNAVAILABLE:'No disponible en esta versión web',
   })[status] || status || 'Sin estado';
 }

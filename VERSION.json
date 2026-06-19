@@ -1,6 +1,6 @@
 {
   "name": "Gestor de Horarios Escolares",
-  "version": "0.6.0-product-alpha.32",
+  "version": "0.6.0-product-alpha.32.1",
   "schemaVersion": "3.0",
   "contractVersion": "2.2",
   "historyContractVersion": "history-contract-1.0",
@@ -13,8 +13,8 @@
   "dailyOperationsContractVersion": "daily-operations-contract-1.0",
   "releaseLine": "reconstruccion-limpia",
   "date": "2026-06-19",
-  "phase": "P12_6_WEB_PUBLIC_QA_GATE",
-  "status": "PRODUCT_ALPHA_P12_6_WEB_PUBLIC_QA_GATE_PREPARADO_QA_REAL_PENDIENTE",
+  "phase": "P12_6_1_SANEAMENTO_UX_PUBLICA",
+  "status": "PRODUCT_ALPHA_P12_6_1_SANEAMENTO_UX_PUBLICA_PREPARADO_QA_REAL_PENDIENTE",
   "previousVersion": "0.6.0-alpha.24",
   "previousSha256": "f2b4d99884482da0614f1690ba178e9a7202fb48fb34063ad813c67564fcd6a3",
   "packageRevision": "a15.1.1",

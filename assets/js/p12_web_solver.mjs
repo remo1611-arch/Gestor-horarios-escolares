@@ -5,7 +5,7 @@ export const P12_WEB_SOLVER_CONTRACT_VERSION = 'web-solver-runtime-1.2';
 export const P12_WEB_SOLVER_ENGINE_ID = 'p12-web-worker-solver';
 export const P12_WEB_SOLVER_PHASE = 'P12_5_WEB_SOLVER_CENTRO_MEDIO';
 
-const UNSUPPORTED_DOMAIN_REASON = 'P12-5 acredita el motor web para semana única, sesiones de un tramo, disponibilidad, espacios, no solapes, presencia mínima simple, LD/DC básico, servicios organizativos simples de apoyo/guardia/recreo, reglas duras/blandas soportadas y relaciones inmediatas simples. Multitramos, multisedes, viajes, recursos, desdobles complejos, servicios con recursos/sedes y segmentos anclados complejos siguen requiriendo CP-SAT como oráculo.';
+const UNSUPPORTED_DOMAIN_REASON = 'P12-5 acredita el motor web para semana única, sesiones de un tramo, disponibilidad, espacios, no solapes, presencia mínima simple, LD/DC básico, servicios organizativos simples de apoyo/guardia/recreo, reglas duras/blandas soportadas y relaciones inmediatas simples. Multitramos, multisedes, viajes, recursos, desdobles complejos, servicios con recursos/sedes y segmentos anclados complejos siguen fuera del alcance acreditado de la versión web pública.';
 
 const SUPPORTED_HARD_RULE_TYPES = new Set(['FORBID_DAY','FORBID_SLOT','REQUIRE_DAY','REQUIRE_SLOT','REQUIRE_SPACE_TAG']);
 const SUPPORTED_SOFT_RULE_TYPES = new Set(['PREFER_DAY','PREFER_SLOT','AVOID_LAST_SLOT','AVOID_FIRST_SLOT','AVOID_EDGE_SLOTS']);
@@ -82,7 +82,7 @@ export function analyzeP12WebSolverSupport(input, options = {}) {
     contractVersion: P12_WEB_SOLVER_CONTRACT_VERSION,
     phase: P12_WEB_SOLVER_PHASE,
     supported,
-    supportLevel: supported ? 'P12_5_SUPPORTED_MEDIUM_WEB' : 'UNSUPPORTED_REQUIRES_CP_SAT_ORACLE',
+    supportLevel: supported ? 'P12_5_SUPPORTED_MEDIUM_WEB' : 'UNSUPPORTED_PUBLIC_WEB_SCOPE',
     reasons: [...new Set(reasons)],
     warnings,
     message: supported

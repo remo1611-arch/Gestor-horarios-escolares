@@ -19,7 +19,7 @@ export const CANONICAL_REFERENCE_BASELINE = Object.freeze({
 export const EXAMPLE_CATALOG = Object.freeze([
   Object.freeze({
     id:'CANONICAL_REFERENCE', title:'Centro canónico de referencia', subtitle:'Referencia sintética principal',
-    centerType:'CEIP de referencia', visibility:'ORDINARY', expectedEngine:'AUTO',
+    centerType:'CEIP de referencia', visibility:'TECHNICAL', expectedEngine:'AUTO',
     purpose:'Gate de regresión y recorrido integral con 502 asignaciones ya aceptadas.',
     capabilities:['LD y DC','Recreos por zonas','Coberturas','Documentos','Escala realista'],
     semanticCapabilities:['organization.workload','organization.service','daily.coverage','closure.validation','data.confirmation'],
@@ -28,7 +28,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'P11_SYNTHETIC_REALISTIC', title:'Centro sintético realista', subtitle:'Organización compleja ya generada',
-    centerType:'Centro público sintético', visibility:'ORDINARY', expectedEngine:'AUTO',
+    centerType:'Centro público sintético', visibility:'TECHNICAL', expectedEngine:'AUTO',
     purpose:'Probar de extremo a extremo presencia explícita, servicios, segmentos anclados, sedes, itinerancia, apoyos, guardias, ausencia y coberturas sin datos reales.',
     capabilities:['Presencia explícita','Servicios configurables','Segmentos anclados','Dos sedes','Itinerancia','Ausencias y coberturas'],
     semanticCapabilities:['organization.presence','organization.service','activity.relation','teacher.itinerary','daily.coverage','closure.validation'],
@@ -65,7 +65,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'CEIP_RURAL', title:'CEIP rural', subtitle:'Unidades mixtas e itinerancias',
-    centerType:'CEIP rural', visibility:'ORDINARY', expectedEngine:'AUTO',
+    centerType:'CEIP rural', visibility:'TECHNICAL', expectedEngine:'AUTO',
     purpose:'Probar un centro pequeño con profesorado compartido, disponibilidad parcial y pocos espacios.',
     capabilities:['Unidades mixtas','Itinerancia','Disponibilidad parcial','Espacios limitados','Docentes compartidos'],
     semanticCapabilities:['teacher.itinerary','teacher.availability','activity.space_compatibility','schedule.teacher_occupancy'],
@@ -73,7 +73,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'CEIP_URBAN_LARGE', title:'CEIP urbano grande', subtitle:'Escala, especialistas y recreos zonificados',
-    centerType:'CEIP urbano', visibility:'ORDINARY', expectedEngine:'AUTO',
+    centerType:'CEIP urbano', visibility:'TECHNICAL', expectedEngine:'AUTO',
     purpose:'Comprobar varias líneas, especialistas, apoyos, espacios compartidos y carga documental.',
     capabilities:['18 grupos','Especialistas','Apoyos','Recreos por zonas','Espacios compartidos'],
     semanticCapabilities:['organization.service','organization.presence','schedule.space_occupancy','schedule.group_occupancy'],
@@ -81,7 +81,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'IES_SMALL', title:'IES pequeño', subtitle:'Optativas, desdobles y laboratorios',
-    centerType:'IES', visibility:'ORDINARY', expectedEngine:'AUTO',
+    centerType:'IES', visibility:'TECHNICAL', expectedEngine:'AUTO',
     purpose:'Probar optativas, desdobles, tutorías, guardias, laboratorios y profesorado compartido.',
     capabilities:['Optativas','Desdobles','Laboratorios','Guardias','Tutorías'],
     semanticCapabilities:['activity.identity','activity.space_compatibility','organization.service','schedule.group_occupancy'],
@@ -89,7 +89,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'CIFP_SYNTHETIC', title:'CIFP sintético', subtitle:'Talleres, turnos y bloques multitramos',
-    centerType:'CIFP', visibility:'ORDINARY', expectedEngine:'CP_SAT_REQUIRED',
+    centerType:'CIFP', visibility:'TECHNICAL', expectedEngine:'CP_SAT_REQUIRED',
     purpose:'Probar módulos profesionales, talleres restrictivos, turnos y actividades multitramos.',
     capabilities:['Módulos','Talleres','Turnos','Bloques multitramos','Espacios restrictivos'],
     semanticCapabilities:['activity.multislot','activity.space_compatibility','calendar.framework','generation.readiness'],
@@ -97,7 +97,7 @@ export const EXAMPLE_CATALOG = Object.freeze([
   }),
   Object.freeze({
     id:'IMPOSSIBLE', title:'Caso imposible', subtitle:'Inviabilidad deliberada y explicable',
-    centerType:'Caso diagnóstico', visibility:'ORDINARY', expectedEngine:'CP_SAT_RECOMMENDED',
+    centerType:'Caso diagnóstico', visibility:'TECHNICAL', expectedEngine:'CP_SAT_RECOMMENDED',
     purpose:'Comprobar que el sistema diagnostica falta de capacidad y no presenta propuestas completas falsas.',
     capabilities:['Inviabilidad real','Capacidad insuficiente','Diagnóstico','Sin propuesta falsa'],
     semanticCapabilities:['generation.capacity','generation.inconsistent_results','closure.pending_sessions'],
@@ -381,7 +381,12 @@ function createStress(){
 
 const FACTORIES={P12_WEB_MINI:createP12WebMini,P12_ORG41_LIGHT:createP12OrgLight,P12_WEB_MEDIUM:createP12WebMedium,CEIP_RURAL:createCeipRural,CEIP_URBAN_LARGE:createCeipUrbanLarge,IES_SMALL:createIesSmall,CIFP_SYNTHETIC:createCifp,IMPOSSIBLE:createImpossible,STRESS_1200:createStress};
 
-export function catalogForMode({technicalMode=false}={}){return EXAMPLE_CATALOG.filter(row=>row.visibility==='ORDINARY'||technicalMode);}
+export function catalogForMode({technicalMode=false}={}){
+  const rows=EXAMPLE_CATALOG.filter(row=>row.visibility==='ORDINARY'||technicalMode);
+  if(technicalMode)return rows;
+  const order=new Map([['P12_WEB_MEDIUM',0],['P12_ORG41_LIGHT',1],['P12_WEB_MINI',2]]);
+  return rows.filter(row=>row.expectedEngine==='WEB_SOLVER').sort((a,b)=>(order.get(a.id)??99)-(order.get(b.id)??99));
+}
 export function exampleDefinition(id){return EXAMPLE_CATALOG.find(row=>row.id===id)||null;}
 
 export async function loadExampleProject(id,{fetchJson=defaultFetchJson}={}){

@@ -2,7 +2,7 @@
 
 ## Dictamen de sustitución
 
-La versión anterior del repositorio (`0.6.3`, `P6-0F.2`) tenía buenas prácticas de publicación —modo público sintético, privacidad, licencia, auditoría y CI—, pero queda funcionalmente superada por P12-6 para el objetivo actual: aplicación web estática con `WEB_SOLVER` y uso desde enlace sin Python ni OR-Tools.
+La versión anterior del repositorio (`0.6.3`, `P6-0F.2`) tenía buenas prácticas de publicación —modo público sintético, privacidad, licencia, auditoría y CI—, pero queda funcionalmente superada por P12-6 para el objetivo actual: aplicación web estática con motor web y uso desde enlace sin Python ni OR-Tools.
 
 ## Qué se conserva de la versión anterior
 

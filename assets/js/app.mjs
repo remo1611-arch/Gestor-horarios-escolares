@@ -109,6 +109,7 @@ import {
   EXAMPLE_LIBRARY_CONTRACT_VERSION, CANONICAL_REGRESSION_GATE, catalogForMode, exampleDefinition,
   loadExampleProject, exampleMetrics, verifyCanonicalReference,
 } from './example_library.mjs';
+import { analyzeP12WebSolverSupport } from './p12_web_solver.mjs';
 
 const host=document.querySelector('#pageHost');
 const titleEl=document.querySelector('#pageTitle');
@@ -156,6 +157,7 @@ let storageStatus=null;
 let localErrorRows=[];
 let lastFocusedBeforeModal=null;
 let generationState={status:'IDLE',engine:'',phase:'',progress:null,elapsedMs:0,cancelRequested:false,message:''};
+const PUBLIC_DEFAULT_EXAMPLE_ID='P12_WEB_MEDIUM';
 const getGenerationRunner=()=>generationRunner||(generationRunner=new GenerationRunner());
 const getCpSatClient=()=>cpSatClient||(cpSatClient=new CpSatClient());
 const getProductGenerationOrchestrator=()=>productGenerationOrchestrator||(productGenerationOrchestrator=new ProductGenerationOrchestrator({generationRunner:getGenerationRunner(),cpSatClient:getCpSatClient()}));
@@ -180,6 +182,7 @@ async function init(){
   updateConnectivityBadge();
   project=await measureAsync('loadProject',()=>loadActive(),{});
   if(project)project=normalizeProject(project);
+  await ensurePublicStartupProject();
   storageStatus=await getStorageStatus();
   document.querySelector('#storageBadge').textContent=storageStatus.mode==='INDEXED_DB'?'IndexedDB verificado':'Almacenamiento de reserva';
   await registerServiceWorker();
@@ -190,6 +193,30 @@ async function init(){
     notice(recovery.message,recovery.action==='UNRECOVERABLE'?'error':'warning');
   }
 }
+
+async function ensurePublicStartupProject(){
+  if(technicalMode)return;
+  let params=new URLSearchParams();
+  try{params=new URLSearchParams(location.search||'');}catch{}
+  if(params.get('conservarProyecto')==='1')return;
+  const openDefault=async(reason='')=>{
+    const fallback=await loadExampleProject(PUBLIC_DEFAULT_EXAMPLE_ID);
+    project=normalizeProject(fallback);
+    try{await saveActive(project);}catch(error){await recordLocalError(error,'public-startup-default');}
+    if(reason)notice(reason,'warning');
+  };
+  if(!project){await openDefault('Se abrió automáticamente el ejemplo web P12-5 para que puedas probar la generación local sin instalaciones.');return;}
+  const support=analyzeP12WebSolverSupport(project);
+  if(support.supported)return;
+  const privacy=String(project.meta?.privacyClass||'');
+  const projectId=String(project.meta?.projectId||'');
+  const syntheticLegacy=privacy==='SYNTHETIC'||['project_fixture_a6','example_p11_synthetic_realistic'].includes(projectId);
+  if(syntheticLegacy){
+    try{await createBackup(project,'Copia automática del ejemplo anterior antes de abrir la versión web RC1');}catch(error){await recordLocalError(error,'public-startup-backup');}
+    await openDefault('Se sustituyó el ejemplo técnico anterior por un ejemplo web compatible. Las copias locales anteriores se conservan como respaldo.');
+  }
+}
+
 function bindGlobalEvents(){
   const mainNav=document.querySelector('#mainNav');
   mainNav.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(!b)return;page=b.dataset.page;setActiveNav();render();});
@@ -246,6 +273,7 @@ function setActiveNav(){document.querySelectorAll('#mainNav button').forEach(x=>
 function render(){
   const started=globalThis.performance?.now?.()||Date.now();
   const titles={home:'Inicio',data:'Datos',organization:'Organización',schedule:'Horario',daily:'Gestión diaria',documents:'Documentos',system:'Sistema',wizard:'Crear proyecto',examples:'Centros de ejemplo'};
+  if(page==='system'&&!technicalMode)page='home';
   if(!titles[page])page='home';
   titleEl.textContent=titles[page];
   document.title=`${titles[page]} · Gestor de Horarios Escolares`;
@@ -262,7 +290,7 @@ function render(){
   recordPerformance(page==='schedule'&&(project?.assignments?.length||0)>=500?'renderSchedule502':`renderPage:${page}`,elapsed,projectScale(project));
   if(page==='system'&&technicalMode)queueMicrotask(()=>refreshSystemDiagnostics());
 }
-function noProject(){return `<div class="card empty"><h2>No hay un proyecto activo</h2><p>Crea un proyecto con el asistente, abre una copia o utiliza un centro sintético para recorrer la aplicación.</p><div class="toolbar center"><button class="btn" data-action="new-project">${projectWizard?'Continuar creación':'Crear proyecto'}</button><button class="btn secondary" data-action="open-project">Abrir copia</button><button class="btn ghost" data-example-action="library">Centros de ejemplo</button></div></div>`;}
+function noProject(){return `<div class="card empty"><h2>No hay un proyecto activo</h2><p>Abre una copia o utiliza un ejemplo preparado para generar directamente en el navegador.</p><div class="toolbar center"><button class="btn" data-action="new-project">${projectWizard?'Continuar creación':'Crear proyecto'}</button><button class="btn secondary" data-action="open-project">Abrir copia</button><button class="btn ghost" data-example-action="library">Centros de ejemplo</button></div></div>`;}
 function metric(value,label,detail=''){return `<div class="card metric-card"><div class="metric">${esc(value)}</div><div class="metric-label">${esc(label)}</div>${detail?`<small>${esc(detail)}</small>`:''}</div>`;}
 function stateOptions(selected){return ['CONFIRMED','PROVISIONAL','SIMULATED','PENDING'].map(x=>`<option value="${x}" ${x===selected?'selected':''}>${statusLabel(x)}</option>`).join('');}
 function privacyOptions(selected){return ['REAL','ANONYMIZED','SYNTHETIC'].map(x=>`<option value="${x}" ${x===selected?'selected':''}>${privacyLabel(x)}</option>`).join('');}
@@ -445,7 +473,7 @@ function schedulePublicSummary(assignments){
 function publicGenerationMessage(run){
   const r=run?.response||{};
   if(!run)return 'Todavía no se ha generado ninguna propuesta.';
-  if(r.status==='ERROR')return 'No se pudo completar la generación avanzada. El horario guardado no se ha modificado. Puedes revisar el horario vigente, volver a generar o consultar el detalle en Mantenimiento avanzado.';
+  if(r.status==='ERROR')return 'No se pudo completar la generación. El horario guardado no se ha modificado.';
   if(r.status==='UNAVAILABLE')return 'Este proyecto supera el alcance de generación de la versión web actual. Abre un ejemplo web compatible o usa esta vista solo para revisar el horario.';
   if(r.status==='CANCELLED')return 'La generación fue cancelada. El horario guardado no se ha modificado.';
   return r.message||'Generación finalizada.';
@@ -463,8 +491,10 @@ function renderGenerationPanel(){
   const latestRun=project.generationRuns?.at(-1)||null;
   const currentFilter=effectiveScheduleFilter();
   const advancedForm=`<form data-form="generate"><div class="field-row"><label>Política<select name="engine"><option value="AUTO">Selección automática de producto</option><option value="HEURISTIC">Solo generación rápida</option><option value="CP_SAT">Solo optimización CP-SAT</option></select></label><label>Alcance<select name="mode"><option value="COMPLETE">Horario completo</option><option value="PARTIAL">Completar actividades seleccionadas</option><option value="REPAIR">Reparar actividades seleccionadas</option></select></label><label>Actividades para alcance parcial<select name="targetActivityIds" multiple size="6">${project.activities.map(a=>`<option value="${a.id}">${esc(a.name)} · ${activityKindLabel(a.kind)}</option>`).join('')}</select></label><label>Semilla<input type="number" min="0" name="seed" value="0"></label><label>Límite temporal por intento (segundos)<input type="number" min="1" max="3600" name="maxDurationSeconds" value="30"></label><label>Procesos CP-SAT<input type="number" min="1" max="32" name="numWorkers" value="8"></label><label class="checkline"><input type="checkbox" name="forceGlobalOptimization"> Contrastar siempre con optimización avanzada</label></div><div class="toolbar"><button class="btn" type="submit" ${v.canGenerate&&!proposal&&!running?'':'disabled'}>Generar horario</button>${running?`<button class="btn danger" type="button" data-action="cancel-generation" ${generationState.cancelRequested?'disabled':''}>${generationState.cancelRequested?'Cancelación solicitada':'Cancelar generación'}</button>`:''}<button class="btn secondary" type="button" data-action="export-cp-sat-request" ${v.canGenerate&&!proposal&&!running?'':'disabled'}>Exportar solicitud CP-SAT</button><button class="btn secondary" type="button" data-action="import-cp-sat-response" ${!proposal&&!running?'':'disabled'}>Importar respuesta CP-SAT</button><input type="file" id="cpSatResponseFile" accept=".json,application/json" hidden></div></form>`;
-  const productForm=`<form data-form="generate"><input type="hidden" name="engine" value="AUTO"><input type="hidden" name="mode" value="COMPLETE"><input type="hidden" name="seed" value="0"><input type="hidden" name="maxDurationSeconds" value="30"><input type="hidden" name="numWorkers" value="8"><div class="product-generate-action"><div><h2>Crear una propuesta de horario</h2><p>La aplicación generará en el navegador cuando el proyecto sea compatible. El horario vigente no cambia hasta que revises y aceptes la propuesta.</p></div><button class="btn primary-large" type="submit" ${v.canGenerate&&!proposal&&!running?'':'disabled'}>${running?'Generando…':'Generar horario'}</button>${running?`<button class="btn danger" type="button" data-action="cancel-generation" ${generationState.cancelRequested?'disabled':''}>${generationState.cancelRequested?'Cancelando…':'Cancelar'}</button>`:''}</div></form>`;
-  return `<div class="schedule-product-page">${project.assignments.length?schedulePublicSummary(project.assignments):''}<section class="card product-generation-card schedule-generation-card"><div class="toolbar"><div><p class="eyebrow">Generación</p><h2 style="margin:0">Crear propuesta revisable</h2><p class="muted">Genera solo una propuesta. El horario vigente no cambia hasta que la revises y la aceptes.</p></div><span class="spacer"></span><span class="badge ${v.canGenerate?'ok':'danger'}">${v.canGenerate?'Preparado para generar':'Hay datos que impiden generar'}</span></div>${technicalMode?advancedForm:productForm}${renderGenerationExecution(latestRun)}</section>${proposal?renderProposal(proposal):''}<section class="card schedule-board-card"><div class="toolbar schedule-board-head"><div><p class="eyebrow">Horario vigente</p><h2 style="margin:0">Vista de revisión</h2><p class="muted">Trabaja por grupo, docente o espacio.</p></div></div>${project.assignments.length?renderScheduleViewControls(currentFilter)+renderScheduleGrid(project.assignments,currentFilter,{interactive:false}):'<div class="empty">Todavía no hay sesiones aceptadas.</div>'}</section></div>`;
+  const productForm=`<form data-form="generate"><input type="hidden" name="engine" value="AUTO"><input type="hidden" name="mode" value="COMPLETE"><input type="hidden" name="seed" value="0"><input type="hidden" name="maxDurationSeconds" value="30"><input type="hidden" name="numWorkers" value="8"><div class="product-generate-action"><div><h2>Crear una propuesta de horario</h2><p>La aplicación generará localmente en el navegador si el proyecto es compatible. El horario vigente no cambia hasta que revises y aceptes la propuesta.</p></div><button class="btn primary-large" type="submit" ${v.canGenerate&&!proposal&&!running?'':'disabled'}>${running?'Generando…':'Generar horario'}</button>${running?`<button class="btn danger" type="button" data-action="cancel-generation" ${generationState.cancelRequested?'disabled':''}>${generationState.cancelRequested?'Cancelando…':'Cancelar'}</button>`:''}</div></form>`;
+  const support=analyzeP12WebSolverSupport(project);
+  const scopeNotice=(!technicalMode&&!support.supported)?`<div class="notice warning"><b>Proyecto fuera del alcance web actual.</b><br>Esta versión pública genera en navegador los ejemplos web preparados. Este proyecto puede revisarse o exportarse, pero no se presentará como generable sin una fase posterior del motor.</div>`:'';
+  return `<div class="schedule-product-page">${scopeNotice}${project.assignments.length?schedulePublicSummary(project.assignments):''}<section class="card product-generation-card schedule-generation-card"><div class="toolbar"><div><p class="eyebrow">Generación local</p><h2 style="margin:0">Crear propuesta revisable</h2><p class="muted">Genera una propuesta en tu navegador cuando el proyecto entra en el alcance web. El horario vigente no cambia hasta que la revises y la aceptes.</p></div><span class="spacer"></span><span class="badge ${v.canGenerate&&support.supported?'ok':'warn'}">${v.canGenerate&&support.supported?'Preparado para generar en navegador':support.supported?'Revisa los datos':'Solo revisión'}</span></div>${technicalMode?advancedForm:productForm}${renderGenerationExecution(latestRun)}</section>${proposal?renderProposal(proposal):''}<section class="card schedule-board-card"><div class="toolbar schedule-board-head"><div><p class="eyebrow">Horario vigente</p><h2 style="margin:0">Vista de revisión</h2><p class="muted">Trabaja por grupo, docente o espacio.</p></div></div>${project.assignments.length?renderScheduleViewControls(currentFilter)+renderScheduleGrid(project.assignments,currentFilter,{interactive:false}):'<div class="empty">Todavía no hay sesiones aceptadas.</div>'}</section></div>`;
 }
 
 function renderScheduleEditor(){
@@ -501,7 +531,7 @@ function renderQualityDimensions(profile,{compact=false}={}){
   const rows=profile.dimensions.map(row=>`<div class="status-row quality-dimension"><span><b>${esc(row.id==='EDGE_SLOTS'?QUALITY_EDGE_DIAGNOSTIC_LABEL:row.label)}</b><br><small>${esc(row.explanation||'')}</small></span><span><b>${esc(qualityPrimaryText(row.primary))}</b><br><span class="badge ${qualityBadgeClass(row.status)}">${esc(qualityStatusLabel(row.status))}</span></span></div>`).join('');
   return `${compact?'':`<div class="notice info"><b>${esc(profile.overall?.label||'Análisis multidimensional')}</b><br>${esc(profile.overall?.summary||'')}<br><small>${esc(profile.overall?.note||'')}</small></div>`}${rows}`;
 }
-function renderProposal(p){const profile=p.quality?.dimensions?p.quality:analyzeMultidimensionalQuality({...project,assignments:p.assignments},p.assignments,{mode:'CANDIDATE',source:p.engine?.kind||'UNKNOWN',baselineAssignments:project.assignments});return `<section class="card proposal-card" style="margin-top:16px"><div class="toolbar"><div><h2 style="margin:0">Propuesta pendiente · ${p.mode==='COMPLETE'?'completa':p.mode==='PARTIAL'?'parcial':'reparación'}</h2><p class="muted">${p.summary.placed} sesiones en el alcance · ${p.summary.unplaced} sin colocar${technicalMode?` · ${esc(p.engine.id)} ${esc(p.engine.version)} · ${esc(generationStatusLabel(p.executionStatus||''))}`:''}</p></div><span class="spacer"></span><button class="btn" data-action="accept-proposal" data-id="${p.id}">Aceptar</button><button class="btn danger" data-action="reject-proposal" data-id="${p.id}">Descartar</button></div>${p.unplaced.length?`<div class="notice warning">${p.unplaced.map(u=>`<b>${esc(nameOf(project.activities,u.activityId))}</b>: ${esc((u.reasons||[]).map(semanticReasonText).join(' '))}`).join('<br>')}</div>`:''}<details><summary>Ver análisis multidimensional y vista previa</summary>${renderQualityDimensions(profile)}<div class="grid cards">${metric(p.summary.preserved,'Sesiones preservadas')}${metric(p.summary.complete?'Sí':'No','Alcance completo')}</div>${renderScheduleGrid(p.assignments,scheduleFilter,{interactive:false})}</details></section>`;}
+function renderProposal(p){const profile=p.quality?.dimensions?p.quality:analyzeMultidimensionalQuality({...project,assignments:p.assignments},p.assignments,{mode:'CANDIDATE',source:p.engine?.kind||'UNKNOWN',baselineAssignments:project.assignments});return `<section class="card proposal-card" style="margin-top:16px"><div class="toolbar"><div><h2 style="margin:0">Propuesta pendiente · ${p.mode==='COMPLETE'?'completa':p.mode==='PARTIAL'?'parcial':'reparación'}</h2><p class="muted">${p.summary.placed} sesiones en el alcance · ${p.summary.unplaced} sin colocar${technicalMode?` · ${esc(p.engine.id)} ${esc(p.engine.version)} · ${esc(generationStatusLabel(p.executionStatus||''))}`:''}</p></div><span class="spacer"></span><button class="btn" data-action="accept-proposal" data-id="${p.id}">Aceptar</button><button class="btn danger" data-action="reject-proposal" data-id="${p.id}">Descartar</button></div>${p.unplaced.length?`<div class="notice warning">${p.unplaced.map(u=>`<b>${esc(nameOf(project.activities,u.activityId))}</b>: ${esc((u.reasons||[]).map(semanticReasonText).join(' '))}`).join('<br>')}</div>`:''}<details><summary>Ver análisis multidimensional y vista previa</summary>${renderQualityDimensions(profile)}<div class="grid cards">${metric(p.summary.preserved,'Sesiones preservadas')}${metric(p.summary.complete?'Sí':'No','Alcance completo')}</div>${renderScheduleGrid(p.assignments,effectiveScheduleFilter(),{interactive:false})}</details></section>`;}
 
 function renderEditorToolbar(selected,history){
   const visible=visibleEditorAssignmentIds();

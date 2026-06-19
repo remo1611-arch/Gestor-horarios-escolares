@@ -1,73 +1,33 @@
-# Gestor de Horarios Escolares · P12-0
+# Gestor de Horarios Escolares · Web RC1
 
-Versión de producto: `0.6.0-product-alpha.32.1`  
-Núcleo técnico: `0.6.0-alpha.25`  
-Fase: `P12_0_WEB_SOLVER_CONTRACT`
+Versión: `1.0.0-web-rc.1`
 
-Este ZIP conserva la aplicación de uso ordinario de P11-C5-3 y añade la apertura contractual de P12 para un futuro motor web local. No implementa todavía el solver navegador ni elimina CP-SAT del paquete actual.
+Aplicación web estática para trabajar en el navegador con datos locales. No requiere Python, OR-Tools ni servidor propio para los ejemplos web compatibles.
 
-## Uso actual
+## Uso rápido
 
-1. Descomprime el ZIP.
-2. Arranca el servidor local con `python tools/serve.py 8765`.
-3. Abre `http://127.0.0.1:8765/?v=P12_0`.
+1. Abrir la web.
+2. Usar el ejemplo web P12-5 que se carga por defecto, o elegir P12-2/P12-1 en la biblioteca.
+3. Pulsar **Generar horario**.
+4. Revisar la propuesta.
+5. Aceptarla solo si es correcta.
+6. Descargar copia del proyecto o documentos.
 
-## Qué cambia en P12-0
+## Alcance acreditado
 
-- Se define `p12/P12_0_WEB_SOLVER_CONTRACT.json`.
-- Se define `p12/P12_0_TEST_CORPUS.json` con casos mínimos y referencias conocidas.
-- Se define `p12/P12_0_GATE_MATRIX.csv`.
-- Se documenta `p12/P12_ROADMAP.md`.
-- CP-SAT queda declarado como oráculo técnico de comparación, no como dependencia objetivo del usuario final futuro.
+- Ejemplo web P12-5: centro medio sintético.
+- Ejemplo web P12-2: organización ligera.
+- Ejemplo web P12-1: caso mínimo.
+- Generación local en navegador para esos casos.
+- Validación independiente de la propuesta.
 
-## Qué no cambia
+## Fuera de alcance de esta RC1
 
-- No cambia el solver actual.
-- No cambia la interfaz ordinaria.
-- No cambia XADE, documentos, XLSX ni ZIP de salida.
-- No incluye datos reales.
-- No autoriza beta, RC ni release.
+- Frián real completo.
+- Centros con reglas complejas no cubiertas por P12-5.
+- Paridad formal con motores externos.
+- Cierre oficial sin revisión humana.
 
-## Validación contractual
+## Privacidad
 
-Puedes ejecutar:
-
-```bash
-python tools/p12_0_preflight.py
-```
-
-Resultado esperado:
-
-```text
-P12-0 PREFLIGHT: PASS
-```
-
-
-## P12-1 · Generación web mínima
-
-Esta versión incorpora un motor web P12-1 para generar en navegador proyectos simples compatibles, sin instalar Python ni OR-Tools. Los proyectos complejos siguen usando CP-SAT como oráculo/vía avanzada y no deben considerarse cubiertos por P12-1.
-
-
-## P12-2 · Dominio organizativo ligero
-
-Se incorpora un ejemplo y un preflight del motor web para presencia mínima, reglas simples, preferencias e inmediato antes/después. No cubre todavía Frián completo ni proyectos multisedes/multitramos/desdobles.
-
-
-## P12-3 · Paridad CP-SAT como oráculo
-
-Se añade un arnés de comparación web vs CP-SAT. Si CP-SAT no está instalado, la comparación se marca como omitida y no se acredita paridad. No cambia XADE, documentos, XLSX ni el alcance funcional del motor web.
-
-
-## P12-5 · Publicación web estática
-
-Esta entrega prepara la app para GitHub Pages: abre desde enlace, trabaja localmente en el navegador y genera ejemplos P12 compatibles con motor web sin Python ni OR-Tools. CP-SAT queda como oráculo externo de desarrollo; Frián real y casos complejos siguen pendientes.
-
-
-## P12-5 · Motor web centro medio
-
-Añade el ejemplo `P12_WEB_MEDIUM` y acredita generación web local sin Python ni OR-Tools para un caso medio sintético con servicios organizativos simples. No acredita Frián real completo ni paridad CP-SAT real.
-
-
-## P12-6 · Publicación web y gate QA
-
-Se añade `dist/github_pages/` como carpeta estática publicable en GitHub Pages. No amplía el motor; prepara QA real desde URL pública. Los ejemplos P12 compatibles siguen generando con WEB_SOLVER sin Python ni OR-Tools.
+La web trabaja en el navegador. No subas datos reales a un repositorio público. Para proyectos reales, usa copias locales y verifica siempre antes de compartir archivos.

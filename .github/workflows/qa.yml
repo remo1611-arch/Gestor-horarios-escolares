@@ -26,3 +26,5 @@ jobs:
         run: python scripts/auditar_publicacion_web.py .
       - name: Verificar sintaxis JavaScript
         run: python scripts/verificar_sintaxis_js.py .
+      - name: Verificar motor web público
+        run: node scripts/verificar_motor_web_publico.mjs

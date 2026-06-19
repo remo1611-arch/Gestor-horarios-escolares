@@ -1,9 +1,9 @@
 {
   "name": "Gestor de Horarios Escolares · Web",
   "short_name": "Horarios Web",
-  "start_url": "./?v=P12_6_WEB",
+  "start_url": "./?v=WEB_RC1",
   "display": "standalone",
   "background_color": "#edf2f6",
   "theme_color": "#183f63",
-  "description": "Gestor web local de horarios escolares. P12-6 prepara publicación GitHub Pages sin Python ni OR-Tools para casos compatibles."
+  "description": "Gestor web local de horarios escolares. Genera en navegador los ejemplos compatibles y guarda los datos localmente."
 }

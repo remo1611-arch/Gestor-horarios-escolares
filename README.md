@@ -2,8 +2,8 @@
 
 Aplicación web estática para crear, revisar, generar, editar, documentar y exportar horarios escolares con datos locales del navegador.
 
-**Versión publicada:** `0.6.0-product-alpha.32.1`  
-**Fase:** `P12_6_1_SANEAMENTO_UX_PUBLICA`  
+**Versión publicada:** `1.0.0-web-rc.1`  
+**Fase:** `WEB_RC1_PUBLICA_SANEADA`  
 **Estado:** app web publicable en GitHub Pages para QA real con datos sintéticos y generación motor web en casos compatibles. No es beta, RC ni release final.
 
 ## Uso previsto
@@ -18,7 +18,7 @@ Esta publicación está pensada como **demo pública sintética y QA multidispos
 - los proyectos se guardan localmente mediante el navegador y archivos exportados por la persona usuaria;
 - genera con motor web los ejemplos P12 compatibles.
 
-GitHub Pages aloja archivos HTML, CSS y JavaScript de forma estática. Por eso esta rama pública no incluye servidor Python ni CP-SAT como runtime de usuario.
+GitHub Pages aloja archivos HTML, CSS y JavaScript de forma estática. Por eso esta rama pública no incluye servidor Python ni motores externos como runtime de usuario.
 
 ## Ejemplos acreditados para generar en navegador
 
@@ -37,10 +37,10 @@ No está acreditado todavía:
 - desdobles y simultaneidades complejas;
 - recursos complejos;
 - recreos por zonas;
-- paridad real ejecutada contra CP-SAT en Windows;
+- paridad formal con motores externos;
 - beta, RC o release.
 
-CP-SAT se conserva como **oráculo técnico externo de comparación**, no como dependencia de esta publicación web.
+Los motores externos quedan fuera del uso ordinario de esta publicación web.
 
 ## Privacidad
 

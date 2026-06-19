@@ -57,7 +57,7 @@ No migra todavía todos los diálogos nativos `prompt()`/`confirm()` a modales p
 
 ## P12-0 · Contrato de motor web local
 
-Añadido en `0.6.0-product-alpha.32.1`:
+Añadido en `1.0.0-web-rc.1`:
 
 - `p12/P12_0_WEB_SOLVER_CONTRACT.json`
 - `p12/P12_0_TEST_CORPUS.json`

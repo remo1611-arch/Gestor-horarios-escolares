@@ -169,16 +169,15 @@ export class ProductGenerationOrchestrator {
         return this.#result(request,analysis,attempts,null,startedAt,startedMs,'ERROR',
           analysis.p12WebSolver?.message || analysis.heuristicCompatibility.message,{reasonCodes:['WEB_SOLVER_INCOMPATIBLE']});
       }
-      if(enginePreference!=='HEURISTIC')capabilities=await this.#capabilities();
       const canWebSolver=analysis.p12WebSolverCompatible&&enginePreference!=='CP_SAT';
       const cpRequired=enginePreference==='CP_SAT'||!analysis.p12WebSolverCompatible;
-      const cpProviderAvailable=Boolean(capabilities?.available);
-      const cpAvailable=cpProviderAvailable&&(!analysis.domain4EngineRequirements?.required||cpSatSupportsP10M4(capabilities));
-      if(cpRequired&&!cpAvailable){
+      if(cpRequired){
         return this.#result(request,analysis,attempts,null,startedAt,startedMs,'UNAVAILABLE',
-          'Este proyecto no puede generarse todavía con la versión web. Abre un ejemplo web compatible o revisa el proyecto desde esta vista.',
-          {capabilities,reasonCodes:['CP_SAT_REQUIRED',cpProviderAvailable?'CP_SAT_PARITY_CONTRACT_MISMATCH':'CP_SAT_UNAVAILABLE',...(analysis.domain4EngineRequirements?.reasons||[])]});
+          'Este proyecto no entra todavía en el alcance de generación web. Abre un ejemplo web compatible o úsalo solo para revisión y exportación.',
+          {capabilities:{available:false,noFallback:true,reason:'La publicación web no usa motor externo.'},reasonCodes:['WEB_SCOPE_UNSUPPORTED',...(analysis.p12WebSolver?.reasons||[]),...(analysis.domain4EngineRequirements?.reasons||[])]});
       }
+      const cpProviderAvailable=false;
+      const cpAvailable=false;
       let heuristicAttempt=null;
       if(canWebSolver){
         heuristicAttempt=await this.#runHeuristic(source,{requestId:`${requestId}_web_solver`,mode,targetActivityIds,seed:request.seed,maxDurationMs,engineKind:'P12_WEB_SOLVER'},onProgress,startedMs);

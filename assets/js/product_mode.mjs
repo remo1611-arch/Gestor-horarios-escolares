@@ -1,10 +1,10 @@
-export const PRODUCT_VERSION = '0.6.0-product-alpha.32.1';
-export const PRODUCT_PHASE = 'P12_6_1_SANEAMENTO_UX_PUBLICA';
+export const PRODUCT_VERSION = '1.0.0-web-rc.1';
+export const PRODUCT_PHASE = 'WEB_RC1_PUBLICA_SANEADA';
 export const PRODUCT_NAV = Object.freeze([
   ['home','Inicio'],['data','Datos'],['organization','Organización'],['schedule','Horario'],
   ['daily','Gestión diaria'],['documents','Documentos'],['system','Sistema'],
 ]);
-const STORAGE_KEY='ghe.product.maintenanceMode.p12_6_1';
+const STORAGE_KEY='ghe.product.maintenanceMode.web_rc1';
 export function readTechnicalMode(locationLike=globalThis.location,storage=globalThis.sessionStorage){
   try{
     const params=new URLSearchParams(locationLike?.search||'');

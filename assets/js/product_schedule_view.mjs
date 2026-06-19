@@ -90,7 +90,7 @@ export function renderScheduleOverview(project = {}, assignments = [], { technic
       <div>
         <p class="eyebrow">Resumen para revisión</p>
         <h2 id="scheduleHeroTitle">Horario provisional</h2>
-        <p>Revisa primero grupos, docentes, servicios y pendientes. La vista global queda reservada al modo técnico.</p>
+        <p>Revisa primero por grupo, docente o espacio para evitar una tabla excesivamente grande.</p>
       </div>
       <span class="badge ${canClose ? 'ok' : 'warn'}">${canClose ? 'Sin bloqueos de cierre' : 'No apto para cierre oficial'}</span>
     </div>
@@ -123,7 +123,7 @@ function filterOption(value, label, current) {
 }
 
 export function renderScheduleControls(project = {}, { current = 'ALL', search = '', editor = false, technicalMode = false } = {}) {
-  const allOption = technicalMode ? filterOption('ALL', 'Vista global de mantenimiento', current) : '';
+  const allOption = technicalMode ? filterOption('ALL', 'Vista completa', current) : '';
   const groups = (project.groups || []).map(g => filterOption(`G:${g.id}`, `Grupo · ${g.name}`, current)).join('');
   const teachers = (project.teachers || []).map(t => filterOption(`T:${t.id}`, `Docente · ${publicTeacherName(t.name)}`, current)).join('');
   const spaces = (project.spaces || []).map(sp => filterOption(`S:${sp.id}`, `Espacio · ${publicSpaceName(sp.name)}`, current)).join('');
@@ -221,7 +221,7 @@ function groupContext(project = {}, assignments = [], filter = 'ALL') {
 }
 
 function filterCaption(project = {}, filter = 'ALL') {
-  if (filter === 'ALL') return 'Vista global de mantenimiento';
+  if (filter === 'ALL') return 'Vista completa';
   if (filter.startsWith('G:')) return `Horario del grupo ${nameOf(project.groups || [], filter.slice(2))}`;
   if (filter.startsWith('T:')) return `Horario de ${publicTeacherName(nameOf(project.teachers || [], filter.slice(2)))}`;
   if (filter.startsWith('S:')) return `Ocupación de ${publicSpaceName(nameOf(project.spaces || [], filter.slice(2)))}`;

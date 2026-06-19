@@ -18,98 +18,31 @@ export const CANONICAL_REFERENCE_BASELINE = Object.freeze({
 
 export const EXAMPLE_CATALOG = Object.freeze([
   Object.freeze({
-    id:'CANONICAL_REFERENCE', title:'Centro canónico de referencia', subtitle:'Referencia sintética principal',
-    centerType:'CEIP de referencia', visibility:'TECHNICAL', expectedEngine:'AUTO',
-    purpose:'Gate de regresión y recorrido integral con 502 asignaciones ya aceptadas.',
-    capabilities:['LD y DC','Recreos por zonas','Coberturas','Documentos','Escala realista'],
-    semanticCapabilities:['organization.workload','organization.service','daily.coverage','closure.validation','data.confirmation'],
-    expectedCounts:{activities:502,assignments:502,groups:15,teachers:29,spaces:14},
-    status:'REFERENCE', source:CANONICAL_REFERENCE_SOURCE,
-  }),
-  Object.freeze({
-    id:'P11_SYNTHETIC_REALISTIC', title:'Centro sintético realista', subtitle:'Organización compleja ya generada',
-    centerType:'Centro público sintético', visibility:'TECHNICAL', expectedEngine:'AUTO',
-    purpose:'Probar de extremo a extremo presencia explícita, servicios, segmentos anclados, sedes, itinerancia, apoyos, guardias, ausencia y coberturas sin datos reales.',
-    capabilities:['Presencia explícita','Servicios configurables','Segmentos anclados','Dos sedes','Itinerancia','Ausencias y coberturas'],
-    semanticCapabilities:['organization.presence','organization.service','activity.relation','teacher.itinerary','daily.coverage','closure.validation'],
-    expectedCounts:{activities:60,assignments:114,groups:3,teachers:10,spaces:7,occurrences:114},
-    status:'READY_ACCEPTED_SYNTHETIC', source:'data/P11-S1_SYNTHETIC_REALISTIC.json',
-  }),
-  Object.freeze({
-    id:'P12_WEB_MINI', title:'Ejemplo web P12-1', subtitle:'Generación local en navegador sin CP-SAT',
-    centerType:'Caso mínimo P12', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
-    purpose:'Probar que la app genera desde el navegador un horario simple sin Python ni OR-Tools.',
-    capabilities:['Motor web P12-1','Sin CP-SAT','No solapes básicos','Disponibilidad','Espacios compatibles'],
-    semanticCapabilities:['generation.web_solver','schedule.teacher_occupancy','schedule.group_occupancy','schedule.space_occupancy'],
-    expectedCounts:{activities:6,assignments:0,groups:2,teachers:3,spaces:3,occurrences:16},
-    status:'READY_TO_GENERATE_WEB',
-  }),
-
-  Object.freeze({
-    id:'P12_ORG41_LIGHT', title:'Ejemplo web P12-2', subtitle:'Dominio organizativo ligero sin CP-SAT',
-    centerType:'Caso P12 organizativo ligero', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
-    purpose:'Probar generación web con presencia mínima, reglas organizativas simples, preferencias e inmediato antes/después sin Python ni OR-Tools.',
-    capabilities:['Motor web P12-2','Presencia mínima','Reglas duras/blandas simples','Relación inmediata','Disponibilidad','Espacios compatibles'],
-    semanticCapabilities:['generation.web_solver','organization.minimum_presence','organization.rules','activity.relation.immediate','schedule.independent_validation'],
-    expectedCounts:{activities:8,assignments:0,groups:2,teachers:4,spaces:3,occurrences:18},
-    status:'READY_TO_GENERATE_WEB_ORG_LIGHT',
-  }),
-  Object.freeze({
-    id:'P12_WEB_MEDIUM', title:'Ejemplo web P12-5', subtitle:'Centro medio sin CP-SAT',
+    id:'P12_WEB_MEDIUM', title:'Ejemplo web P12-5', subtitle:'Centro medio sin instalación',
     centerType:'CEIP medio sintético', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
-    purpose:'Probar generación web en navegador con 5 grupos, 8 docentes, disponibilidad parcial, espacios específicos, guardias simples, recreo y apoyos sin Python ni OR-Tools.',
-    capabilities:['Motor web P12-5','Centro medio','Guardias simples','Recreo','Apoyos','Disponibilidad parcial','Espacios específicos'],
+    purpose:'Probar generación web en navegador con 5 grupos, 8 docentes, disponibilidad parcial, espacios específicos, guardias simples, recreo y apoyos.',
+    capabilities:['Generación local','Centro medio','Guardias simples','Recreo','Apoyos','Disponibilidad parcial','Espacios específicos'],
     semanticCapabilities:['generation.web_solver','organization.service.simple','organization.minimum_presence','schedule.independent_validation','schedule.space_occupancy'],
     expectedCounts:{activities:33,assignments:0,groups:5,teachers:8,spaces:8,occurrences:79},
     status:'READY_TO_GENERATE_WEB_MEDIUM',
   }),
   Object.freeze({
-    id:'CEIP_RURAL', title:'CEIP rural', subtitle:'Unidades mixtas e itinerancias',
-    centerType:'CEIP rural', visibility:'TECHNICAL', expectedEngine:'AUTO',
-    purpose:'Probar un centro pequeño con profesorado compartido, disponibilidad parcial y pocos espacios.',
-    capabilities:['Unidades mixtas','Itinerancia','Disponibilidad parcial','Espacios limitados','Docentes compartidos'],
-    semanticCapabilities:['teacher.itinerary','teacher.availability','activity.space_compatibility','schedule.teacher_occupancy'],
-    expectedCounts:{groups:4,teachers:7,spaces:6}, status:'READY_TO_GENERATE',
+    id:'P12_ORG41_LIGHT', title:'Ejemplo web P12-2', subtitle:'Organización ligera sin instalación',
+    centerType:'Caso organizativo ligero', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
+    purpose:'Probar generación web con presencia mínima, reglas organizativas simples, preferencias e inmediato antes/después.',
+    capabilities:['Generación local','Presencia mínima','Reglas simples','Relación inmediata','Disponibilidad','Espacios compatibles'],
+    semanticCapabilities:['generation.web_solver','organization.minimum_presence','organization.rules','activity.relation.immediate','schedule.independent_validation'],
+    expectedCounts:{activities:8,assignments:0,groups:2,teachers:4,spaces:3,occurrences:18},
+    status:'READY_TO_GENERATE_WEB_ORG_LIGHT',
   }),
   Object.freeze({
-    id:'CEIP_URBAN_LARGE', title:'CEIP urbano grande', subtitle:'Escala, especialistas y recreos zonificados',
-    centerType:'CEIP urbano', visibility:'TECHNICAL', expectedEngine:'AUTO',
-    purpose:'Comprobar varias líneas, especialistas, apoyos, espacios compartidos y carga documental.',
-    capabilities:['18 grupos','Especialistas','Apoyos','Recreos por zonas','Espacios compartidos'],
-    semanticCapabilities:['organization.service','organization.presence','schedule.space_occupancy','schedule.group_occupancy'],
-    expectedCounts:{groups:18,teachers:30,spaces:22}, status:'READY_TO_GENERATE',
-  }),
-  Object.freeze({
-    id:'IES_SMALL', title:'IES pequeño', subtitle:'Optativas, desdobles y laboratorios',
-    centerType:'IES', visibility:'TECHNICAL', expectedEngine:'AUTO',
-    purpose:'Probar optativas, desdobles, tutorías, guardias, laboratorios y profesorado compartido.',
-    capabilities:['Optativas','Desdobles','Laboratorios','Guardias','Tutorías'],
-    semanticCapabilities:['activity.identity','activity.space_compatibility','organization.service','schedule.group_occupancy'],
-    expectedCounts:{groups:8,teachers:20,spaces:14}, status:'READY_TO_GENERATE',
-  }),
-  Object.freeze({
-    id:'CIFP_SYNTHETIC', title:'CIFP sintético', subtitle:'Talleres, turnos y bloques multitramos',
-    centerType:'CIFP', visibility:'TECHNICAL', expectedEngine:'CP_SAT_REQUIRED',
-    purpose:'Probar módulos profesionales, talleres restrictivos, turnos y actividades multitramos.',
-    capabilities:['Módulos','Talleres','Turnos','Bloques multitramos','Espacios restrictivos'],
-    semanticCapabilities:['activity.multislot','activity.space_compatibility','calendar.framework','generation.readiness'],
-    expectedCounts:{groups:6,teachers:18,spaces:14}, status:'READY_TO_GENERATE',
-  }),
-  Object.freeze({
-    id:'IMPOSSIBLE', title:'Caso imposible', subtitle:'Inviabilidad deliberada y explicable',
-    centerType:'Caso diagnóstico', visibility:'TECHNICAL', expectedEngine:'CP_SAT_RECOMMENDED',
-    purpose:'Comprobar que el sistema diagnostica falta de capacidad y no presenta propuestas completas falsas.',
-    capabilities:['Inviabilidad real','Capacidad insuficiente','Diagnóstico','Sin propuesta falsa'],
-    semanticCapabilities:['generation.capacity','generation.inconsistent_results','closure.pending_sessions'],
-    expectedCounts:{groups:1,teachers:1,spaces:1}, status:'EXPECTED_INFEASIBLE',
-  }),
-  Object.freeze({
-    id:'STRESS_1200', title:'Escenario de estrés', subtitle:'1.200 sesiones semanales solicitadas',
-    centerType:'Prueba técnica', visibility:'TECHNICAL', expectedEngine:'CP_SAT_REQUIRED',
-    purpose:'Medir tiempo, memoria, almacenamiento y documentación masiva. No es un centro pedagógico modelo.',
-    capabilities:['1.200 sesiones','80 docentes','50 grupos','60 espacios','Carga masiva'],
-    semanticCapabilities:['generation.readiness','schedule.teacher_occupancy','schedule.group_occupancy','schedule.space_occupancy'],
-    expectedCounts:{groups:50,teachers:80,spaces:60,occurrences:1200}, status:'MAINTENANCE_ONLY',
+    id:'P12_WEB_MINI', title:'Ejemplo web P12-1', subtitle:'Caso mínimo sin instalación',
+    centerType:'Caso mínimo', visibility:'ORDINARY', expectedEngine:'WEB_SOLVER',
+    purpose:'Probar que la app genera desde el navegador un horario simple sin instalaciones técnicas.',
+    capabilities:['Generación local','No solapes básicos','Disponibilidad','Espacios compatibles'],
+    semanticCapabilities:['generation.web_solver','schedule.teacher_occupancy','schedule.group_occupancy','schedule.space_occupancy'],
+    expectedCounts:{activities:6,assignments:0,groups:2,teachers:3,spaces:3,occurrences:16},
+    status:'READY_TO_GENERATE_WEB',
   }),
 ]);
 
@@ -379,13 +312,11 @@ function createStress(){
   return finalize(p);
 }
 
-const FACTORIES={P12_WEB_MINI:createP12WebMini,P12_ORG41_LIGHT:createP12OrgLight,P12_WEB_MEDIUM:createP12WebMedium,CEIP_RURAL:createCeipRural,CEIP_URBAN_LARGE:createCeipUrbanLarge,IES_SMALL:createIesSmall,CIFP_SYNTHETIC:createCifp,IMPOSSIBLE:createImpossible,STRESS_1200:createStress};
+const FACTORIES={P12_WEB_MINI:createP12WebMini,P12_ORG41_LIGHT:createP12OrgLight,P12_WEB_MEDIUM:createP12WebMedium};
 
 export function catalogForMode({technicalMode=false}={}){
-  const rows=EXAMPLE_CATALOG.filter(row=>row.visibility==='ORDINARY'||technicalMode);
-  if(technicalMode)return rows;
   const order=new Map([['P12_WEB_MEDIUM',0],['P12_ORG41_LIGHT',1],['P12_WEB_MINI',2]]);
-  return rows.filter(row=>row.expectedEngine==='WEB_SOLVER').sort((a,b)=>(order.get(a.id)??99)-(order.get(b.id)??99));
+  return EXAMPLE_CATALOG.filter(row=>row.expectedEngine==='WEB_SOLVER').sort((a,b)=>(order.get(a.id)??99)-(order.get(b.id)??99));
 }
 export function exampleDefinition(id){return EXAMPLE_CATALOG.find(row=>row.id===id)||null;}
 

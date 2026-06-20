@@ -1,0 +1,15 @@
+{
+  "producto": "Generador de Horarios Escolares",
+  "base_funcional": "v1.4.1",
+  "fase": "FASE_2_DISENO_TRADUCCION_CP_SAT",
+  "estado": "FASE_2_DISENO_TRADUCCION_NODE_PASS_BROWSER_QA_PENDIENTE",
+  "fecha": "2026-06-20",
+  "descripcion": "Diseño y prototipo aislado de traducción del modelo escolar actual a CP-SAT sobre el spike WASM de Fase 1B. No sustituye el motor funcional ni modifica la interfaz ordinaria.",
+  "gates_pendientes": [
+    "QA navegador",
+    "QA físico Android/tableta/PC",
+    "GitHub Pages real",
+    "validación cruzada completa",
+    "equivalencia de calidad frente al motor v1.4.1"
+  ]
+}

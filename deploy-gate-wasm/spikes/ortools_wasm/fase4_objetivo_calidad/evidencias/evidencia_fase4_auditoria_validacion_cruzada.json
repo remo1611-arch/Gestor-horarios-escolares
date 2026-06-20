@@ -1,0 +1,12 @@
+{
+  "fase": "FASE_4_AUDITORIA_EVIDENCIA_VALIDACION_CRUZADA",
+  "status": "PASS",
+  "dictamen": "NO_AUTORIZA_SUSTITUCION_DEL_MOTOR",
+  "resumen": {
+    "ejemplos": 7,
+    "ejemplosSinErroresGravesFase4": 7,
+    "ejemplosNoMenosSesionesQueActual": 6,
+    "bloqueosSustitucion": 6
+  },
+  "nota": "Este test audita la evidencia completa ya generada. La ejecución completa está disponible en fase4_validacion_cruzada_ejemplos_completa.mjs y puede tardar o colgar según el solver WASM."
+}

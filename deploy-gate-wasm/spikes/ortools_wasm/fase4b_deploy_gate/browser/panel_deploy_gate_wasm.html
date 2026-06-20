@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fase 4B-DEPLOY-GATE · WASM</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:20px;line-height:1.45;color:#202124;background:#fff;max-width:1100px}
+    h1{font-size:1.35rem;margin-bottom:.25rem}.card{border:1px solid #ddd;border-radius:12px;padding:14px;margin:12px 0;box-shadow:0 1px 2px #0001}.warn{background:#fff8e1;border-color:#f5c542}.ok{background:#e8f5e9;border-color:#81c784}.bad{background:#ffebee;border-color:#ef9a9a}button{font:inherit;padding:10px 14px;border-radius:10px;border:1px solid #777;background:#f7f7f7;margin:4px 6px 4px 0}pre{white-space:pre-wrap;overflow:auto;background:#f6f8fa;border-radius:10px;padding:12px;font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.small{font-size:.9rem;color:#555}
+  </style>
+</head>
+<body>
+  <h1>Fase 4B-DEPLOY-GATE · WASM</h1>
+  <p class="small">Panel de compatibilidad para OR-Tools/CP-SAT WebAssembly. No sustituye el motor actual ni calcula horarios reales.</p>
+  <div class="card warn"><strong>Uso:</strong> ejecutar en HTTP local, GitHub Pages, Android, tableta y PC. Exportar la evidencia JSON de cada perfil.</div>
+  <div class="card">
+    <button id="run">Ejecutar gate de despliegue WASM</button>
+    <button id="download" disabled>Descargar evidencia JSON</button>
+    <button id="copy" disabled>Copiar JSON</button>
+  </div>
+  <div id="summary" class="card">Pendiente.</div>
+  <pre id="output">Sin ejecutar.</pre>
+<script type="module">
+let lastEvidence = null;
+const $ = (id) => document.getElementById(id);
+const criticalResources = [
+  '../../vendor/cpsat-js/build/cpsat.wasm',
+  '../../vendor/cpsat-js/build/cpsat.mjs',
+  '../../vendor/cpsat-js/dist/index.js',
+  './worker_deploy_gate_wasm.mjs',
+  './panel_deploy_gate_wasm.html'
+];
+function nowIso(){ return new Date().toISOString(); }
+function basicEnv(){
+  return {
+    phase: 'FASE_4B_DEPLOY_GATE_WASM_BROWSER',
+    timestamp: nowIso(),
+    location: String(location.href),
+    protocol: location.protocol,
+    origin: location.origin,
+    userAgent: navigator.userAgent,
+    language: navigator.language,
+    platform: navigator.platform,
+    hardwareConcurrency: navigator.hardwareConcurrency ?? null,
+    deviceMemory: navigator.deviceMemory ?? null,
+    screen: { width: screen.width, height: screen.height, availWidth: screen.availWidth, availHeight: screen.availHeight, pixelRatio: devicePixelRatio },
+    capabilities: {
+      isSecureContext: globalThis.isSecureContext === true,
+      crossOriginIsolated: globalThis.crossOriginIsolated === true,
+      hasWebAssembly: typeof WebAssembly !== 'undefined',
+      hasWorker: typeof Worker !== 'undefined',
+      hasModuleScript: true,
+      hasFetch: typeof fetch !== 'undefined',
+      hasSharedArrayBuffer: typeof SharedArrayBuffer !== 'undefined',
+      hasAtomics: typeof Atomics !== 'undefined',
+    }
+  };
+}
+async function probeResource(url){
+  const started = performance.now();
+  try {
+    const r = await fetch(url, { cache: 'no-store' });
+    const buf = await r.arrayBuffer();
+    return {
+      url,
+      ok: r.ok,
+      status: r.status,
+      contentType: r.headers.get('content-type'),
+      bytes: buf.byteLength,
+      durationMs: Math.round(performance.now() - started),
+      wasmCompiles: url.endsWith('.wasm') ? await WebAssembly.compile(buf).then(() => true, () => false) : null,
+    };
+  } catch (error) {
+    return { url, ok: false, error: error?.message || String(error), durationMs: Math.round(performance.now() - started) };
+  }
+}
+async function solveMainThread(){
+  const started = performance.now();
+  try {
+    const { CpModel, CpSolver, CpSolverStatus } = await import('../../vendor/cpsat-js/dist/index.js');
+    const solver = await CpSolver.create();
+    const loadMs = performance.now() - started;
+    const model = new CpModel();
+    const x = model.newIntVar(0, 10, 'x');
+    const y = model.newIntVar(0, 10, 'y');
+    model.add(x.plus(y).le(10));
+    model.maximize(x.times(2).plus(y.times(1)));
+    const solveStarted = performance.now();
+    const result = solver.solve(model, { maxTimeInSeconds: 2, numWorkers: 1 });
+    const solveMs = performance.now() - solveStarted;
+    return {
+      ok: result.status === CpSolverStatus.OPTIMAL && result.objectiveValue === 20 && result.value(x) === 10 && result.value(y) === 0,
+      solverStatus: result.status,
+      actual: { objectiveValue: result.objectiveValue, x: result.value(x), y: result.value(y) },
+      timingsMs: { load: Math.round(loadMs), solve: Math.round(solveMs), total: Math.round(performance.now() - started), solverWallTimeReportedMs: Math.round((result.wallTime ?? 0) * 1000) }
+    };
+  } catch (error) {
+    return { ok: false, error: error?.message || String(error), stack: error?.stack || '', timingsMs: { total: Math.round(performance.now() - started) } };
+  }
+}
+async function solveWorker(){
+  const started = performance.now();
+  if (typeof Worker === 'undefined') return { ok: false, error: 'Worker no disponible' };
+  return await new Promise((resolve) => {
+    let finished = false;
+    const worker = new Worker('./worker_deploy_gate_wasm.mjs?v=deploy-gate', { type: 'module' });
+    const timeout = setTimeout(() => {
+      if (!finished) {
+        finished = true;
+        try { worker.terminate(); } catch {}
+        resolve({ ok: false, error: 'Timeout de worker', timingsMs: { total: Math.round(performance.now() - started) } });
+      }
+    }, 12000);
+    worker.onmessage = (ev) => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
+      worker.terminate();
+      resolve({ ...ev.data, timingsMs: { ...(ev.data?.timingsMs || {}), panelTotal: Math.round(performance.now() - started) } });
+    };
+    worker.onerror = (err) => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
+      worker.terminate();
+      resolve({ ok: false, error: err?.message || String(err), timingsMs: { total: Math.round(performance.now() - started) } });
+    };
+    worker.postMessage({ run: true });
+  });
+}
+function computeDictamen(evidence){
+  const resourcesOk = evidence.resources.every(r => r.ok && (!r.url.endsWith('.wasm') || r.wasmCompiles === true));
+  const protocolOk = evidence.environment.protocol === 'http:' || evidence.environment.protocol === 'https:';
+  const runtimeOk = evidence.environment.capabilities.hasWebAssembly && evidence.environment.capabilities.hasWorker;
+  const mainOk = evidence.mainThreadSolve.ok === true;
+  const workerOk = evidence.workerSolve.ok === true;
+  const ok = resourcesOk && protocolOk && runtimeOk && mainOk && workerOk;
+  const warnings = [];
+  if (evidence.environment.protocol === 'file:') warnings.push('Ejecución file://: puede fallar por fetch/módulos/WASM y no acredita despliegue GitHub Pages.');
+  if (!evidence.environment.capabilities.crossOriginIsolated) warnings.push('crossOriginIsolated=false. Aceptable si el build es monohilo; bloqueante si se migra a build multihilo.');
+  if (evidence.environment.capabilities.hasSharedArrayBuffer && !evidence.environment.capabilities.crossOriginIsolated) warnings.push('SharedArrayBuffer aparece disponible sin aislamiento; revisar navegador/contexto antes de inferir multihilo.');
+  return { ok, status: ok ? 'PASS_DEPLOY_GATE_NAVEGADOR' : 'FAIL_DEPLOY_GATE_NAVEGADOR', warnings };
+}
+async function runGate(){
+  $('summary').className = 'card';
+  $('summary').textContent = 'Ejecutando...';
+  $('output').textContent = 'Probando entorno, recursos, hilo principal y worker...';
+  const evidence = { environment: basicEnv(), resources: [], mainThreadSolve: null, workerSolve: null, dictamen: null };
+  for (const url of criticalResources) evidence.resources.push(await probeResource(url));
+  evidence.mainThreadSolve = await solveMainThread();
+  evidence.workerSolve = await solveWorker();
+  evidence.dictamen = computeDictamen(evidence);
+  lastEvidence = evidence;
+  $('summary').className = 'card ' + (evidence.dictamen.ok ? 'ok' : 'bad');
+  $('summary').textContent = evidence.dictamen.status + (evidence.dictamen.warnings.length ? ' · avisos: ' + evidence.dictamen.warnings.join(' | ') : '');
+  $('output').textContent = JSON.stringify(evidence, null, 2);
+  $('download').disabled = false;
+  $('copy').disabled = false;
+}
+$('run').addEventListener('click', runGate);
+$('download').addEventListener('click', () => {
+  if (!lastEvidence) return;
+  const blob = new Blob([JSON.stringify(lastEvidence, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `evidencia_fase4b_deploy_gate_${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+});
+$('copy').addEventListener('click', async () => {
+  if (!lastEvidence) return;
+  await navigator.clipboard.writeText(JSON.stringify(lastEvidence, null, 2));
+});
+</script>
+</body>
+</html>

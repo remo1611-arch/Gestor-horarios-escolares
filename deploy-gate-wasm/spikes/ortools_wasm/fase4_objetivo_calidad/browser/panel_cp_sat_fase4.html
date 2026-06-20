@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fase 4 · Objetivo de calidad CP-SAT</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:1rem;line-height:1.45;background:#f8fafc;color:#0f172a}
+    main{max-width:1024px;margin:auto;background:white;border:1px solid #cbd5e1;border-radius:12px;padding:1rem}
+    button,select,input{font:inherit;padding:.6rem .8rem;border-radius:8px;border:1px solid #94a3b8;background:white}
+    button{background:#0f172a;color:white;cursor:pointer}
+    button:disabled{opacity:.6;cursor:wait}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:1rem;overflow:auto;max-height:55vh}
+    .aviso{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:.75rem;margin:.75rem 0}
+    .bloqueo{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:.75rem;margin:.75rem 0}
+    .fila{display:flex;gap:.5rem;flex-wrap:wrap;align-items:end;margin:.75rem 0}
+    label{display:grid;gap:.25rem}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Fase 4 · Objetivo de calidad CP-SAT</h1>
+  <p class="aviso"><strong>No es la app funcional.</strong> Este panel prueba OR-Tools/CP-SAT WASM con penalización experimental de huecos, últimas horas y desequilibrio básico. El botón ordinario «Calcular horario» sigue usando el motor JavaScript v1.4.1.</p>
+  <p class="bloqueo"><strong>Sustitución bloqueada.</strong> En Node la Fase 4 no iguala todavía la calidad del motor actual en todos los ejemplos y puede colocar menos sesiones en el centro exigente con límite corto.</p>
+  <div class="fila">
+    <label>Ejemplo
+      <select id="ejemplo">
+        <option value="ejemplo_ies_sencillo.json">IES sencillo</option>
+        <option value="ejemplo_ceip_sencillo.json">CEIP sencillo</option>
+        <option value="ejemplo_cifp_talleres.json">CIFP talleres</option>
+        <option value="ejemplo_cpi_sencillo.json">CPI sencillo</option>
+        <option value="ejemplo_cee_sencillo.json">CEE sencillo</option>
+        <option value="ejemplo_centro_complejo_sintetico.json">Centro complejo sintético</option>
+        <option value="ejemplo_centro_exigente_sintetico.json">Centro exigente sintético</option>
+      </select>
+    </label>
+    <label>Límite CP-SAT, segundos
+      <input id="segundos" type="number" min="1" max="20" value="4">
+    </label>
+    <button id="btn">Ejecutar Fase 4 experimental</button>
+  </div>
+  <pre id="salida">Pendiente de ejecución.</pre>
+</main>
+<script type="module">
+const salida = document.getElementById('salida');
+const boton = document.getElementById('btn');
+const selector = document.getElementById('ejemplo');
+const segundos = document.getElementById('segundos');
+boton.addEventListener('click', async () => {
+  boton.disabled = true;
+  salida.textContent = 'Cargando ejemplo y worker CP-SAT Fase 4...';
+  try {
+    const ejemplo = selector.value;
+    const respuesta = await fetch(`../../../../ejemplos/${ejemplo}`);
+    if (!respuesta.ok) throw new Error(`No se pudo cargar ${ejemplo}: HTTP ${respuesta.status}`);
+    const proyecto = await respuesta.json();
+    const worker = new Worker('./worker_cp_sat_fase4.mjs', { type: 'module' });
+    const t0 = performance.now();
+    worker.onmessage = (event) => {
+      const totalMs = Math.round(performance.now() - t0);
+      worker.terminate();
+      boton.disabled = false;
+      const resultado = event.data?.resultado;
+      salida.textContent = JSON.stringify({
+        ejemplo,
+        totalMs,
+        estado: resultado?.estado,
+        autorizadoParaInterfaz: resultado?.autorizadoParaInterfaz,
+        metricas: resultado?.metricas,
+        advertencias: resultado?.advertencias,
+        evento: event.data
+      }, null, 2);
+    };
+    worker.onerror = (error) => {
+      worker.terminate();
+      boton.disabled = false;
+      salida.textContent = JSON.stringify({ tipo:'error_worker', message:error.message, filename:error.filename, lineno:error.lineno }, null, 2);
+    };
+    worker.postMessage({ tipo: 'calcular', proyecto, opciones: { maxTimeInSeconds: Number(segundos.value || 4) } });
+  } catch (error) {
+    boton.disabled = false;
+    salida.textContent = JSON.stringify({ tipo:'error', message:error?.message || String(error), stack:error?.stack || '' }, null, 2);
+  }
+});
+</script>
+</body>
+</html>

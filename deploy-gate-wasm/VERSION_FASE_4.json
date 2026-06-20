@@ -1,0 +1,14 @@
+{
+  "producto": "Generador_Horarios_Escolares",
+  "base_funcional": "v1.4.1",
+  "fase": "FASE_4_OBJETIVO_CALIDAD_CP_SAT",
+  "estado": "FASE_4_EXPERIMENTAL_NODE_PASS_SUSTITUCION_BLOQUEADA",
+  "motor_funcional_interfaz": "javascript_web_avanzado_v1_4_1",
+  "motor_experimental": "or_tools_cp_sat_wasm_fase4_objetivo_calidad",
+  "autorizado_para_interfaz": false,
+  "cambia_esquema": false,
+  "cambia_motor_productivo": false,
+  "qa_node": "PASS_CON_BLOQUEOS_DE_SUSTITUCION",
+  "qa_browser_fisico": "PENDIENTE",
+  "dictamen": "No autoriza Fase 5 ni sustitución del motor. El objetivo de calidad CP-SAT probado no iguala al motor actual en todos los ejemplos."
+}

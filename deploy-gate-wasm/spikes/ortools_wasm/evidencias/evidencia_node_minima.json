@@ -1,0 +1,19 @@
+{
+  "spike": "OR_TOOLS_WASM_FASE_1B_NODE_MINIMO",
+  "status": "PASS",
+  "solverStatus": 4,
+  "objectiveValue": 20,
+  "values": {
+    "x": 10,
+    "y": 0
+  },
+  "timingsMs": {
+    "load": 67,
+    "solve": 176,
+    "solverWallTimeReportedMs": 152
+  },
+  "notes": [
+    "Prueba mínima aislada. No usa el motor de horarios ni modifica la interfaz.",
+    "Acredita carga WASM y llamada CP-SAT en Node; no acredita navegador, GitHub Pages ni dispositivos físicos."
+  ]
+}

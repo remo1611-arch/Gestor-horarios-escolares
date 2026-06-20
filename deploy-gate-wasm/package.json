@@ -1,0 +1,9 @@
+{
+  "name": "generador-horarios-escolares",
+  "version": "1.4.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node tests/validador.test.mjs && node tests/motor.test.mjs && node tests/editor_manual.test.mjs && node tests/persistencia.test.mjs && node tests/exportacion.test.mjs && node tests/estabilidad_interfaz.test.mjs && node tests/condiciones_docentes.test.mjs && node tests/edicion_tactil.test.mjs && node tests/auditoria_tactil.test.mjs && node tests/seguridad_navegacion.test.mjs && node tests/pantalla_completa.test.mjs && node tests/modelo_organizativo.test.mjs && node tests/semantica_dc.test.mjs && node tests/carga_docente.test.mjs && node tests/asistente_creacion.test.mjs && node tests/explicacion_bloqueos.test.mjs && node tests/centro_exigente.test.mjs && node tests/tramos_reales.test.mjs && node tests/rc0_producto.test.mjs && node tests/motor_incremental.test.mjs && node tests/rc1_motor.test.mjs && node tests/calidad_horario.test.mjs && node tests/v11_producto.test.mjs && node tests/importacion_csv.test.mjs && node tests/v12_producto.test.mjs && node tests/gestion_diaria.test.mjs && node tests/v13_producto.test.mjs && node tests/coherencia_version.test.mjs && node tests/auditoria_consolidacion.test.mjs && node tests/motor_web_avanzado.test.mjs && node tests/benchmark_motor_v14.test.mjs && node tests/v14_producto.test.mjs && node tests/coherencia_carga.test.mjs && node tests/v141_producto.test.mjs"
+  }
+}

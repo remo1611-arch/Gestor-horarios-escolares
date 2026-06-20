@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fase 4B · CP-SAT lexicográfico experimental</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;line-height:1.45;color:#202124;background:#fff}
+    .card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 1px 2px #0001}
+    button{font:inherit;padding:10px 14px;border-radius:10px;border:1px solid #999;background:#f7f7f7}
+    pre{white-space:pre-wrap;overflow:auto;background:#f6f8fa;border-radius:10px;padding:12px}
+    .warn{background:#fff8e1;border-color:#f5c542}
+  </style>
+</head>
+<body>
+  <h1>Fase 4B · CP-SAT lexicográfico experimental</h1>
+  <div class="card warn">
+    <strong>No es el motor de producción.</strong> Este panel no sustituye el botón ordinario “Calcular horario”. Sirve para QA navegador/Android/tableta/PC.
+  </div>
+  <div class="card">
+    <label>Ejemplo: <select id="ejemplo">
+      <option value="ejemplo_ies_sencillo.json">IES sencillo</option>
+      <option value="ejemplo_ceip_sencillo.json">CEIP sencillo</option>
+      <option value="ejemplo_cifp_talleres.json">CIFP talleres</option>
+      <option value="ejemplo_cpi_sencillo.json">CPI sencillo</option>
+      <option value="ejemplo_cee_sencillo.json">CEE sencillo</option>
+      <option value="ejemplo_centro_complejo_sintetico.json">Centro complejo sintético</option>
+      <option value="ejemplo_centro_exigente_sintetico.json">Centro exigente sintético</option>
+    </select></label>
+    <button id="probar">Probar Fase 4B</button>
+  </div>
+  <pre id="salida">Pendiente de ejecución.</pre>
+<script type="module">
+const salida = document.getElementById('salida');
+document.getElementById('probar').addEventListener('click', async () => {
+  const nombre = document.getElementById('ejemplo').value;
+  salida.textContent = 'Cargando ejemplo y worker...';
+  try {
+    const proyecto = await fetch(`../../../../ejemplos/${nombre}`).then(r => r.json());
+    const worker = new Worker('./worker_cp_sat_fase4b.mjs', { type: 'module' });
+    const inicio = performance.now();
+    worker.onmessage = (ev) => {
+      const fin = performance.now();
+      worker.terminate();
+      salida.textContent = JSON.stringify({ duracion_ms_panel: Math.round(fin-inicio), ...ev.data }, null, 2);
+    };
+    worker.onerror = (err) => {
+      worker.terminate();
+      salida.textContent = `ERROR WORKER: ${err.message || err}`;
+    };
+    worker.postMessage({ proyecto, opciones: { maxTimeEtapa1Seconds: 6, maxTimeEtapa2Seconds: 8 } });
+  } catch (error) {
+    salida.textContent = `ERROR: ${error?.message || error}`;
+  }
+});
+</script>
+</body>
+</html>

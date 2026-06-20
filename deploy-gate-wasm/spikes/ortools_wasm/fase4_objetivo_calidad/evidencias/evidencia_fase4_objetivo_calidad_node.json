@@ -1,0 +1,56 @@
+{
+  "fase": "FASE_4_OBJETIVO_CALIDAD_NODE",
+  "status": "PASS",
+  "ejemplo": "ejemplo_ies_sencillo.json",
+  "solver": "FEASIBLE",
+  "colocadas": 16,
+  "previstas": 16,
+  "pendientes": 0,
+  "errores_graves": 0,
+  "calidad": {
+    "nivel": "mejorable",
+    "puntuacion_penalizacion": 6,
+    "sesiones_pendientes": 0,
+    "huecos_docentes": 0,
+    "huecos_grupos": 0,
+    "primeras_horas_docente": 4,
+    "ultimas_horas_docente": 1,
+    "ultimas_horas_grupo": 1,
+    "desequilibrio_diario_docente": 2,
+    "reparto_servicios": {
+      "min": 0,
+      "max": 0,
+      "diferencia": 0
+    },
+    "reparto_dc": {
+      "min": 0,
+      "max": 0,
+      "diferencia": 0
+    }
+  },
+  "diagnostico_modelo": {
+    "actividades": 5,
+    "fijas": 0,
+    "candidatos": 480,
+    "variablesPorSesion": 16,
+    "restriccionesEstimadas": 2156,
+    "descartes": {},
+    "objetivoCalidad": {
+      "penalizadores": {
+        "huecos": 140,
+        "ultimas": 35,
+        "desequilibrio": 80
+      },
+      "pesos": {
+        "colocacion": 100000,
+        "hueco_docente": 700,
+        "hueco_grupo": 450,
+        "ultima_docente": 140,
+        "ultima_grupo": 120,
+        "desequilibrio_docente": 8
+      }
+    },
+    "aviso": "Modelo experimental de Fase 4. Añade penalización CP-SAT de huecos, últimas horas y desequilibrio básico, pero no sustituye el motor actual."
+  },
+  "autorizado_para_interfaz": false
+}

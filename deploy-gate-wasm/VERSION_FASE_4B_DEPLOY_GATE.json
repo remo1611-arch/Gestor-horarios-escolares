@@ -1,0 +1,15 @@
+{
+  "nombre": "Generador Horarios Escolares",
+  "base": "v1.4.1 + Fase 4B experimental",
+  "fase": "FASE_4B_DEPLOY_GATE_WASM",
+  "estado": "DEPLOY_GATE_PREPARADO_QA_NAVEGADOR_FISICO_PENDIENTE",
+  "fecha": "2026-06-20",
+  "dictamen": "No sustituye el motor actual. Prepara y valida parcialmente un gate de despliegue WASM; queda pendiente ejecución física en navegador, GitHub Pages, Android, tableta y PC.",
+  "motor_produccion": "JavaScript v1.4.1 intacto",
+  "motor_wasm": {
+    "paquete": "cpsat-js vendorizado",
+    "version_declared": "1.0.0",
+    "license_declared": "Apache-2.0",
+    "mode": "aparentemente monohilo por inspección estática; requiere validación navegador"
+  }
+}

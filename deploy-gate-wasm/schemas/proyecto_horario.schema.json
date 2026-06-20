@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/generador-horarios/proyecto-horario-1.7.schema.json",
+  "title": "Proyecto de horario escolar",
+  "type": "object",
+  "required": [
+    "version_formato",
+    "centro",
+    "dias",
+    "tramos",
+    "personas",
+    "grupos",
+    "espacios",
+    "actividades",
+    "horario"
+  ],
+  "properties": {
+    "version_formato": {
+      "type": "string"
+    },
+    "centro": {
+      "type": "object",
+      "required": [
+        "nombre",
+        "tipo",
+        "curso_academico"
+      ],
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "IES",
+            "CEIP",
+            "CPI",
+            "CIFP",
+            "CEE",
+            "Otro"
+          ]
+        },
+        "curso_academico": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "dias": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dia"
+      }
+    },
+    "tramos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tramo"
+      }
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/persona"
+      }
+    },
+    "grupos": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/grupo"
+      }
+    },
+    "espacios": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/espacio"
+      }
+    },
+    "actividades": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/actividad"
+      }
+    },
+    "horario": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/colocacion"
+      }
+    },
+    "preferencias": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "dia": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre",
+        "orden"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "orden": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": true
+    },
+    "tramo": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre",
+        "orden"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "orden": {
+          "type": "number"
+        },
+        "inicio": {
+          "type": "string"
+        },
+        "fin": {
+          "type": "string"
+        },
+        "duracion_minutos": {
+          "type": "number"
+        },
+        "tipo_tramo": {
+          "type": "string",
+          "enum": ["Lectivo", "Entrada", "Recreo", "Salida", "Transporte", "Comida", "Reunión", "No disponible"]
+        },
+        "admite_clase": {
+          "type": "boolean"
+        },
+        "admite_servicios": {
+          "type": "boolean"
+        },
+        "computa_permanencia": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "persona": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "departamento": {
+          "type": "string"
+        },
+        "horas_maximas": {
+          "type": "number"
+        },
+        "horas_lectivas_objetivo": {
+          "type": "number"
+        },
+        "horas_dc_objetivo": {
+          "type": "number"
+        },
+        "horas_permanencia_objetivo": {
+          "type": "number"
+        },
+        "disponibilidad": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "grupo": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "ensenanza": {
+          "type": "string"
+        },
+        "nivel": {
+          "type": "string"
+        },
+        "grupo_matriz_id": {
+          "type": "string"
+        },
+        "tipo_agrupamiento": {
+          "type": "string"
+        },
+        "permite_paralelo_con_matriz": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "espacio": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "capacidad": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "disponibilidad": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "actividad": {
+      "type": "object",
+      "required": [
+        "id",
+        "nombre",
+        "tipo",
+        "persona_id",
+        "sesiones_semanales",
+        "duracion_tramos"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "grupo_id": {
+          "type": "string"
+        },
+        "persona_id": {
+          "type": "string"
+        },
+        "espacio_id": {
+          "type": "string"
+        },
+        "sesiones_semanales": {
+          "type": "number",
+          "minimum": 1
+        },
+        "duracion_tramos": {
+          "type": "number",
+          "minimum": 1
+        },
+        "requiere_espacio": {
+          "type": "boolean"
+        },
+        "condiciones": {
+          "$ref": "#/$defs/condiciones_actividad"
+        },
+        "clasificacion_horaria": {
+          "type": "string",
+          "enum": [
+            "Lectiva",
+            "Docencia complementaria",
+            "Servicio de centro",
+            "No lectiva"
+          ]
+        },
+        "requiere_grupo": {
+          "type": "boolean"
+        },
+        "docentes_acompanantes_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "docentes_necesarios": {
+          "type": "number",
+          "minimum": 1
+        },
+        "computa_lectivo": {
+          "type": "boolean"
+        },
+        "computa_no_lectivo": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "colocacion": {
+      "type": "object",
+      "required": [
+        "id",
+        "actividad_id",
+        "dia_id",
+        "tramo_id",
+        "duracion_tramos"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "actividad_id": {
+          "type": "string"
+        },
+        "dia_id": {
+          "type": "string"
+        },
+        "tramo_id": {
+          "type": "string"
+        },
+        "grupo_id": {
+          "type": "string"
+        },
+        "persona_id": {
+          "type": "string"
+        },
+        "espacio_id": {
+          "type": "string"
+        },
+        "duracion_tramos": {
+          "type": "number",
+          "minimum": 1
+        },
+        "fija": {
+          "type": "boolean"
+        },
+        "docentes_acompanantes_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "condiciones_actividad": {
+      "type": "object",
+      "properties": {
+        "dias_prohibidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tramos_prohibidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "huecos_prohibidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dias_preferidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tramos_preferidos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "una_sesion_por_dia": {
+          "type": "boolean"
+        },
+        "prohibir_ultima_hora": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

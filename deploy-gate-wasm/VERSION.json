@@ -1,0 +1,10 @@
+{
+  "nombre": "Generador de Horarios Escolares",
+  "version": "1.4.1",
+  "version_formato": "1.7",
+  "formato_proyecto": "horario-escolar-json-1.7",
+  "base_tecnica": "1.0-rc1 motor incremental + v1.3.1 consolidada + calidad + importacion CSV + gestion diaria",
+  "estado": "CANDIDATA_V1_4_1_AUDITORIA_CARGA_CATEGORIAS_MOTOR_WEB_AVANZADO_PENDIENTE_QA_FISICO",
+  "fecha": "2026-06-20",
+  "descripcion": "Auditoría real de coherencia de carga y categorías: no oculta avisos, diferencia horario completo de carga docente incoherente, cuenta DC/servicios correctamente y diagnostica si las actividades definidas permiten alcanzar los objetivos docentes."
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fase 3 · Motor CP-SAT aislado</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:1rem;line-height:1.45;background:#f8fafc;color:#0f172a}
+    main{max-width:960px;margin:auto;background:white;border:1px solid #cbd5e1;border-radius:12px;padding:1rem}
+    button,select{font:inherit;padding:.6rem .8rem;border-radius:8px;border:1px solid #94a3b8;background:white}
+    button{background:#0f172a;color:white;cursor:pointer}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:1rem;overflow:auto}
+    .aviso{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:.75rem;margin:.75rem 0}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Fase 3 · Motor CP-SAT aislado</h1>
+  <p class="aviso"><strong>No es la app funcional.</strong> Este panel prueba el motor OR-Tools/CP-SAT WASM de forma aislada. El botón ordinario «Calcular horario» de la app sigue usando el motor JavaScript v1.4.1.</p>
+  <label>Ejemplo:
+    <select id="ejemplo">
+      <option value="ejemplo_ies_sencillo.json">IES sencillo</option>
+      <option value="ejemplo_ceip_sencillo.json">CEIP sencillo</option>
+      <option value="ejemplo_cifp_talleres.json">CIFP talleres</option>
+      <option value="ejemplo_cpi_sencillo.json">CPI sencillo</option>
+      <option value="ejemplo_cee_sencillo.json">CEE sencillo</option>
+      <option value="ejemplo_centro_complejo_sintetico.json">Centro complejo sintético</option>
+      <option value="ejemplo_centro_exigente_sintetico.json">Centro exigente sintético</option>
+    </select>
+  </label>
+  <button id="btn">Ejecutar CP-SAT aislado</button>
+  <pre id="salida">Pendiente de ejecución.</pre>
+</main>
+<script type="module">
+const salida = document.getElementById('salida');
+const boton = document.getElementById('btn');
+const selector = document.getElementById('ejemplo');
+boton.addEventListener('click', async () => {
+  boton.disabled = true;
+  salida.textContent = 'Cargando ejemplo y worker CP-SAT aislado...';
+  try {
+    const ejemplo = selector.value;
+    const respuesta = await fetch(`../../../../ejemplos/${ejemplo}`);
+    if (!respuesta.ok) throw new Error(`No se pudo cargar ${ejemplo}: HTTP ${respuesta.status}`);
+    const proyecto = await respuesta.json();
+    const worker = new Worker('./worker_cp_sat_aislado.mjs', { type: 'module' });
+    const t0 = performance.now();
+    worker.onmessage = (event) => {
+      const totalMs = Math.round(performance.now() - t0);
+      worker.terminate();
+      boton.disabled = false;
+      salida.textContent = JSON.stringify({ ejemplo, totalMs, ...event.data }, null, 2);
+    };
+    worker.onerror = (error) => {
+      worker.terminate();
+      boton.disabled = false;
+      salida.textContent = JSON.stringify({ tipo:'error_worker', message:error.message, filename:error.filename, lineno:error.lineno }, null, 2);
+    };
+    worker.postMessage({ tipo: 'calcular', proyecto, opciones: { maxTimeInSeconds: 5 } });
+  } catch (error) {
+    boton.disabled = false;
+    salida.textContent = JSON.stringify({ tipo:'error', message:error?.message || String(error), stack:error?.stack || '' }, null, 2);
+  }
+});
+</script>
+</body>
+</html>

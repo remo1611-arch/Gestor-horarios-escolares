@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de Horarios Escolares</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera__superior">
+      <div class="marca">
+        <strong>Generador de Horarios Escolares</strong>
+        <span>Crear · calcular · revisar · exportar</span>
+      </div>
+      <div class="cabecera__acciones">
+        <button id="boton-pantalla-completa" class="boton-pantalla-completa" type="button" aria-pressed="false" title="Pantalla completa">⛶ Pantalla completa</button>
+        <div id="estado-corto" class="estado-corto">Sin proyecto guardado</div>
+      </div>
+    </div>
+    <nav id="navegacion" class="navegacion" aria-label="Secciones principales"></nav>
+  </header>
+  <main id="app" class="contenedor" tabindex="-1"></main>
+  <footer class="pie">Aplicación local y estática. Los datos permanecen en el navegador salvo exportación voluntaria.</footer>
+  <script type="module" src="assets/js/aplicacion.js"></script>
+</body>
+</html>

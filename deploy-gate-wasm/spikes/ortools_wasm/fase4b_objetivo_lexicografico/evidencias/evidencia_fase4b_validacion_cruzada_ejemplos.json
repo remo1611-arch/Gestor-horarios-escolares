@@ -1,0 +1,405 @@
+{
+  "fase": "FASE_4B_VALIDACION_CRUZADA_OBJETIVO_LEXICOGRAFICO",
+  "status": "PASS_CON_BLOQUEOS_DE_SUSTITUCION",
+  "dictamen": "NO_AUTORIZA_SUSTITUCION_DEL_MOTOR",
+  "resumen": {
+    "ejemplos": 7,
+    "ejemplosSinErroresGravesFase4B": 7,
+    "ejemplosNoMenosSesionesQueActual": 6,
+    "ejemplosCalidadNoPeorQueActual": 4,
+    "bloqueosSustitucion": 4
+  },
+  "bloqueosSustitucion": [
+    {
+      "ejemplo": "ejemplo_ies_sencillo.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 1
+    },
+    {
+      "ejemplo": "ejemplo_centro_complejo_sintetico.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 88
+    },
+    {
+      "ejemplo": "ejemplo_centro_exigente_sintetico.json",
+      "tipo": "MENOS_SESIONES_QUE_MOTOR_ACTUAL"
+    },
+    {
+      "ejemplo": "ejemplo_centro_exigente_sintetico.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 242
+    }
+  ],
+  "resultados": [
+    {
+      "ejemplo": "ejemplo_ies_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 1,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "COMPLETO",
+        "solver": "FEASIBLE",
+        "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 16,
+          "tiempo_ms": 2111,
+          "objetivo": 15999315
+        },
+        "etapa2": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 16,
+          "tiempo_ms": 3048,
+          "objetivo": 15976168,
+          "usada": true
+        },
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 2,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0,
+        "tiempoMs": 5159
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": false,
+        "deltaFase4BVsActual": 1
+      }
+    },
+    {
+      "ejemplo": "ejemplo_ceip_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 4,
+        "huecosDocentes": 0,
+        "huecosGrupos": 1,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "COMPLETO",
+        "solver": "FEASIBLE",
+        "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 16,
+          "tiempo_ms": 2027,
+          "objetivo": 15999476
+        },
+        "etapa2": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 16,
+          "tiempo_ms": 3035,
+          "objetivo": 15990186,
+          "usada": true
+        },
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0,
+        "tiempoMs": 5062
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": true,
+        "deltaFase4BVsActual": -4
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cifp_talleres.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 11,
+        "previstas": 11,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "COMPLETO",
+        "solver": "FEASIBLE",
+        "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 11,
+          "tiempo_ms": 2029,
+          "objetivo": 10999768
+        },
+        "etapa2": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 11,
+          "tiempo_ms": 3036,
+          "objetivo": 10968129,
+          "usada": true
+        },
+        "colocadas": 11,
+        "previstas": 11,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0,
+        "tiempoMs": 5065
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": true,
+        "deltaFase4BVsActual": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cpi_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 13,
+        "previstas": 13,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "COMPLETO",
+        "solver": "FEASIBLE",
+        "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 13,
+          "tiempo_ms": 2031,
+          "objetivo": 12999601
+        },
+        "etapa2": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 13,
+          "tiempo_ms": 3031,
+          "objetivo": 12980154,
+          "usada": true
+        },
+        "colocadas": 13,
+        "previstas": 13,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0,
+        "tiempoMs": 5062
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": true,
+        "deltaFase4BVsActual": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cee_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 10,
+        "previstas": 10,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "COMPLETO",
+        "solver": "FEASIBLE",
+        "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 10,
+          "tiempo_ms": 2023,
+          "objetivo": 9999954
+        },
+        "etapa2": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 10,
+          "tiempo_ms": 3033,
+          "objetivo": 9980120,
+          "usada": true
+        },
+        "colocadas": 10,
+        "previstas": 10,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0,
+        "tiempoMs": 5056
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": true,
+        "deltaFase4BVsActual": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_centro_complejo_sintetico.json",
+      "motorActual": {
+        "estado": "PARCIAL",
+        "colocadas": 23,
+        "previstas": 33,
+        "pendientes": 10,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 102,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "ultimasDocentes": 0,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "PARCIAL",
+        "solver": "FEASIBLE",
+        "etapaElegida": "COBERTURA_MAXIMA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 23,
+          "tiempo_ms": 2058,
+          "objetivo": 22990505
+        },
+        "etapa2": {
+          "solver": "SKIPPED_MODEL_TOO_LARGE",
+          "solver_codigo": "SKIPPED_MODEL_TOO_LARGE",
+          "generadas": 0,
+          "tiempo_ms": 0,
+          "objetivo": null,
+          "usada": null
+        },
+        "colocadas": 23,
+        "previstas": 33,
+        "pendientes": 10,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 190,
+        "huecosDocentes": 7,
+        "huecosGrupos": 8,
+        "ultimasDocentes": 3,
+        "ultimasGrupos": 3,
+        "tiempoMs": 2058
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": true,
+        "penalizacionFase4BMenorOIgualActual": false,
+        "deltaFase4BVsActual": 88
+      }
+    },
+    {
+      "ejemplo": "ejemplo_centro_exigente_sintetico.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 78,
+        "previstas": 78,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 162,
+        "huecosDocentes": 3,
+        "huecosGrupos": 23,
+        "ultimasDocentes": 10,
+        "ultimasGrupos": 0
+      },
+      "cpSatFase4B": {
+        "estado": "PARCIAL",
+        "solver": "FEASIBLE",
+        "etapaElegida": "COBERTURA_MAXIMA",
+        "etapa1": {
+          "solver": "FEASIBLE",
+          "solver_codigo": 2,
+          "generadas": 75,
+          "tiempo_ms": 2117,
+          "objetivo": 74961973
+        },
+        "etapa2": {
+          "solver": "SKIPPED_MODEL_TOO_LARGE",
+          "solver_codigo": "SKIPPED_MODEL_TOO_LARGE",
+          "generadas": 0,
+          "tiempo_ms": 0,
+          "objetivo": null,
+          "usada": null
+        },
+        "colocadas": 75,
+        "previstas": 78,
+        "pendientes": 3,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 404,
+        "huecosDocentes": 38,
+        "huecosGrupos": 22,
+        "ultimasDocentes": 10,
+        "ultimasGrupos": 0,
+        "tiempoMs": 2117
+      },
+      "comparacion": {
+        "noMenosColocadasQueActual": false,
+        "penalizacionFase4BMenorOIgualActual": false,
+        "deltaFase4BVsActual": 242
+      }
+    }
+  ],
+  "advertencias": [
+    "La prueba acredita objetivo lexicográfico en Node, no integración de producto.",
+    "La Fase 4B no se conecta al botón Calcular horario.",
+    "Cualquier empeoramiento de calidad frente al motor actual bloquea Fase 5.",
+    "Aunque no hubiera bloqueos en Node, faltaría navegador real, Android, tableta, PC y GitHub Pages."
+  ]
+}

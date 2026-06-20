@@ -1,0 +1,9 @@
+HTTP resource probe local server, 2026-06-20, container:
+200 2481 /spikes/ortools_wasm/browser/spike_ortools_wasm.html
+200 1953 /spikes/ortools_wasm/browser/worker_ortools_spike.mjs
+200 429 /spikes/ortools_wasm/vendor/cpsat-js/dist/index.js
+200 67735 /spikes/ortools_wasm/vendor/cpsat-js/build/cpsat.mjs
+200 6128920 /spikes/ortools_wasm/vendor/cpsat-js/build/cpsat.wasm
+200 1192 /spikes/ortools_wasm/vendor/@bufbuild/protobuf/dist/esm/index.js
+
+Scope: only proves files are served by a simple local HTTP server. It does not prove browser execution because Chromium headless in this container failed due container-level DBus/NETLINK/inotify/zygote restrictions.

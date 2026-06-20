@@ -1,0 +1,36 @@
+{
+  "fase": "FASE_3_MOTOR_CP_SAT_AISLADO",
+  "status": "PASS",
+  "caso": "minimo_node",
+  "resumen": {
+    "estado": "COMPLETO",
+    "estadoSolver": "OPTIMAL",
+    "colocadas": 3,
+    "previstas": 3,
+    "pendientes": 0,
+    "erroresGraves": 0,
+    "calidad": {
+      "nivel": "mejorable",
+      "puntuacion_penalizacion": 4,
+      "sesiones_pendientes": 0,
+      "huecos_docentes": 0,
+      "huecos_grupos": 0,
+      "primeras_horas_docente": 2,
+      "ultimas_horas_docente": 1,
+      "ultimas_horas_grupo": 1,
+      "desequilibrio_diario_docente": 0,
+      "reparto_servicios": {
+        "min": 0,
+        "max": 0,
+        "diferencia": 0
+      },
+      "reparto_dc": {
+        "min": 0,
+        "max": 0,
+        "diferencia": 0
+      }
+    },
+    "tiempoMs": 332
+  },
+  "advertencia": "Prueba aislada. No conecta el motor con la interfaz ordinaria."
+}

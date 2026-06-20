@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spike OR-Tools WASM · Fase 1B</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 1.25rem; line-height: 1.45; }
+    main { max-width: 920px; margin: auto; }
+    button { font-size: 1rem; padding: .7rem 1rem; }
+    pre { white-space: pre-wrap; background: #f5f5f5; padding: 1rem; border: 1px solid #ddd; overflow-wrap: anywhere; }
+    .warn { border-left: 4px solid #999; padding-left: .75rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Spike OR-Tools WASM · Fase 1B</h1>
+  <p class="warn"><strong>Uso:</strong> esta página no forma parte de la app funcional. Solo comprueba si el solver CP-SAT WASM puede cargarse y resolver un modelo mínimo dentro de un Web Worker.</p>
+  <button id="run">Ejecutar prueba mínima</button>
+  <h2>Resultado</h2>
+  <pre id="out">Pendiente.</pre>
+</main>
+<script type="module">
+const out = document.querySelector('#out');
+const run = document.querySelector('#run');
+function log(data) { out.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2); }
+async function runSpike() {
+  log('Ejecutando…');
+  try {
+    const worker = new Worker('./worker_ortools_spike.mjs', { type: 'module' });
+    const timeout = setTimeout(() => {
+      worker.terminate();
+      log({ status: 'TIMEOUT', message: 'No hubo respuesta del worker en 15 segundos.' });
+    }, 15000);
+    worker.onmessage = (event) => {
+      clearTimeout(timeout);
+      worker.terminate();
+      log(event.data);
+    };
+    worker.onerror = (error) => {
+      clearTimeout(timeout);
+      worker.terminate();
+      log({ status: 'ERROR', message: error.message, filename: error.filename, lineno: error.lineno, colno: error.colno });
+    };
+    worker.postMessage({ type: 'RUN_SPIKE' });
+  } catch (error) {
+    log({ status: 'ERROR', message: String(error?.stack || error?.message || error) });
+  }
+}
+run.addEventListener('click', runSpike);
+log({
+  status: 'READY',
+  environment: {
+    userAgent: navigator.userAgent,
+    crossOriginIsolated: window.crossOriginIsolated === true,
+    hasSharedArrayBuffer: typeof SharedArrayBuffer !== 'undefined',
+    hasWebAssembly: typeof WebAssembly !== 'undefined',
+    protocol: location.protocol,
+  },
+  next: 'Pulsa Ejecutar prueba mínima.'
+});
+if (new URLSearchParams(location.search).get('autorun') === '1') {
+  runSpike();
+}
+</script>
+</body>
+</html>

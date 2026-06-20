@@ -1,0 +1,44 @@
+{
+  "phase": "FASE_4B_DEPLOY_GATE_HTTP_PROBE_NODE",
+  "status": "PASS",
+  "baseUrl": "http://127.0.0.1:9305",
+  "resources": [
+    {
+      "resource": "/spikes/ortools_wasm/fase4b_deploy_gate/browser/panel_deploy_gate_wasm.html",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 9090
+    },
+    {
+      "resource": "/spikes/ortools_wasm/fase4b_deploy_gate/browser/worker_deploy_gate_wasm.mjs",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "bytes": 1551
+    },
+    {
+      "resource": "/spikes/ortools_wasm/vendor/cpsat-js/build/cpsat.wasm",
+      "ok": true,
+      "status": 200,
+      "contentType": "application/wasm",
+      "bytes": 6128920,
+      "webAssemblyCompile": true
+    },
+    {
+      "resource": "/spikes/ortools_wasm/vendor/cpsat-js/build/cpsat.mjs",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "bytes": 67735
+    },
+    {
+      "resource": "/spikes/ortools_wasm/vendor/cpsat-js/dist/index.js",
+      "ok": true,
+      "status": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "bytes": 429
+    }
+  ],
+  "dictamen": "PASS_HTTP_RECURSOS_NODE_NO_ACREDITA_NAVEGADOR_FISICO"
+}

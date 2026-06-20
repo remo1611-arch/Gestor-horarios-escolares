@@ -1,0 +1,29 @@
+{
+  "fase": "FASE_4B_OBJETIVO_LEXICOGRAFICO_NODE_BASICA",
+  "status": "PASS",
+  "resultados": [
+    {
+      "ejemplo": "ejemplo_ies_sencillo.json",
+      "estado": "COMPLETO",
+      "colocadas": 16,
+      "previstas": 16,
+      "pendientes": 0,
+      "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+      "solver1": "FEASIBLE",
+      "solver2": "FEASIBLE",
+      "penalizacion": 1
+    },
+    {
+      "ejemplo": "ejemplo_cifp_talleres.json",
+      "estado": "COMPLETO",
+      "colocadas": 11,
+      "previstas": 11,
+      "pendientes": 0,
+      "etapaElegida": "CALIDAD_CON_COBERTURA_FIJADA",
+      "solver1": "FEASIBLE",
+      "solver2": "FEASIBLE",
+      "penalizacion": 0
+    }
+  ],
+  "nota": "Prueba aislada de seguridad: Fase 4B no conecta interfaz y no produce errores graves en casos básicos."
+}

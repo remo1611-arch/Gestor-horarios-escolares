@@ -1,0 +1,109 @@
+{
+  "fase": "FASE_2_TRADUCCION_CP_SAT",
+  "status": "PASS",
+  "descripcion": "Validación de diseño con casos pequeños. No sustituye el motor funcional.",
+  "casos": [
+    {
+      "caso": "completo_basico",
+      "resumen": {
+        "estadoSolver": 4,
+        "sesionesPrevistas": 3,
+        "sesionesColocadas": 3,
+        "sesionesPendientes": 0,
+        "erroresGraves": 0,
+        "candidatos": 12,
+        "restricciones": 17,
+        "tiempoMs": 243,
+        "wallTimeSolverMs": 216
+      }
+    },
+    {
+      "caso": "parcial_seguro",
+      "resumen": {
+        "estadoSolver": 4,
+        "sesionesPrevistas": 2,
+        "sesionesColocadas": 1,
+        "sesionesPendientes": 1,
+        "erroresGraves": 0,
+        "candidatos": 2,
+        "restricciones": 5,
+        "tiempoMs": 11,
+        "wallTimeSolverMs": 6
+      }
+    },
+    {
+      "caso": "condiciones",
+      "resumen": {
+        "estadoSolver": 4,
+        "sesionesPrevistas": 1,
+        "sesionesColocadas": 1,
+        "sesionesPendientes": 0,
+        "erroresGraves": 0,
+        "candidatos": 1,
+        "restricciones": 1,
+        "tiempoMs": 8,
+        "wallTimeSolverMs": 4
+      },
+      "horario": [
+        {
+          "id": "ort_fase2_cond_1_dia_2_tramo_1",
+          "actividad_id": "cond",
+          "dia_id": "dia_2",
+          "tramo_id": "tramo_1",
+          "grupo_id": "g1",
+          "persona_id": "p1",
+          "docentes_acompanantes_ids": [],
+          "espacio_id": "a1",
+          "duracion_tramos": 1,
+          "fija": false,
+          "generado_por": "OR_TOOLS_WASM_FASE2_TRADUCCION_EXPERIMENTAL"
+        }
+      ]
+    },
+    {
+      "caso": "sesiones_fijas",
+      "resumen": {
+        "estadoSolver": 4,
+        "sesionesPrevistas": 2,
+        "sesionesColocadas": 2,
+        "sesionesPendientes": 0,
+        "erroresGraves": 0,
+        "candidatos": 3,
+        "restricciones": 1,
+        "tiempoMs": 6,
+        "wallTimeSolverMs": 4
+      },
+      "horario": [
+        {
+          "id": "sesion_fija_1",
+          "actividad_id": "fija",
+          "dia_id": "dia_1",
+          "tramo_id": "tramo_1",
+          "grupo_id": "g1",
+          "persona_id": "p1",
+          "espacio_id": "a1",
+          "duracion_tramos": 1,
+          "fija": true
+        },
+        {
+          "id": "ort_fase2_nueva_1_dia_2_tramo_1",
+          "actividad_id": "nueva",
+          "dia_id": "dia_2",
+          "tramo_id": "tramo_1",
+          "grupo_id": "g1",
+          "persona_id": "p1",
+          "docentes_acompanantes_ids": [],
+          "espacio_id": "a1",
+          "duracion_tramos": 1,
+          "fija": false,
+          "generado_por": "OR_TOOLS_WASM_FASE2_TRADUCCION_EXPERIMENTAL"
+        }
+      ]
+    }
+  ],
+  "advertencias": [
+    "No acredita equivalencia con los siete ejemplos completos.",
+    "No acredita navegador, Android, tableta, PC ni GitHub Pages.",
+    "No convierte carga objetivo en restricción dura."
+  ]
+}

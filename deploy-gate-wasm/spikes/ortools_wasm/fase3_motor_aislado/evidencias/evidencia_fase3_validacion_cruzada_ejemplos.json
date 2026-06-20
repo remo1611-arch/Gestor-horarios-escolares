@@ -1,0 +1,280 @@
+{
+  "fase": "FASE_3_VALIDACION_CRUZADA_EJEMPLOS",
+  "status": "PASS_CON_BLOQUEOS_DE_SUSTITUCION",
+  "dictamen": "NO_AUTORIZA_SUSTITUCION_DEL_MOTOR",
+  "resumen": {
+    "ejemplos": 7,
+    "ejemplosSinErroresGravesCpSat": 7,
+    "ejemplosMismasSesiones": 7,
+    "bloqueosSustitucion": 3
+  },
+  "bloqueosSustitucion": [
+    {
+      "ejemplo": "ejemplo_ceip_sencillo.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 3
+    },
+    {
+      "ejemplo": "ejemplo_centro_complejo_sintetico.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 1
+    },
+    {
+      "ejemplo": "ejemplo_centro_exigente_sintetico.json",
+      "tipo": "CALIDAD_PEOR_QUE_MOTOR_ACTUAL",
+      "deltaPenalizacion": 239
+    }
+  ],
+  "resultados": [
+    {
+      "ejemplo": "ejemplo_ies_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 1,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 1,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 581,
+        "candidatos": 480,
+        "restricciones": 346
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": true,
+        "deltaPenalizacion": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_ceip_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 16,
+        "previstas": 16,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 3,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 1193,
+        "candidatos": 480,
+        "restricciones": 316
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": false,
+        "deltaPenalizacion": 3
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cifp_talleres.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 11,
+        "previstas": 11,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 11,
+        "previstas": 11,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 107,
+        "candidatos": 295,
+        "restricciones": 311
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": true,
+        "deltaPenalizacion": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cpi_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 13,
+        "previstas": 13,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 13,
+        "previstas": 13,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 121,
+        "candidatos": 380,
+        "restricciones": 338
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": true,
+        "deltaPenalizacion": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_cee_sencillo.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 10,
+        "previstas": 10,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 10,
+        "previstas": 10,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "buena",
+        "penalizacion": 0,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 90,
+        "candidatos": 280,
+        "restricciones": 270
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": true,
+        "deltaPenalizacion": 0
+      }
+    },
+    {
+      "ejemplo": "ejemplo_centro_complejo_sintetico.json",
+      "motorActual": {
+        "estado": "PARCIAL",
+        "colocadas": 23,
+        "previstas": 33,
+        "pendientes": 10,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 102,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0
+      },
+      "cpSatAislado": {
+        "estado": "PARCIAL",
+        "solver": "OPTIMAL",
+        "colocadas": 23,
+        "previstas": 33,
+        "pendientes": 10,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 103,
+        "huecosDocentes": 0,
+        "huecosGrupos": 0,
+        "tiempoMs": 183,
+        "candidatos": 646,
+        "restricciones": 552
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": false,
+        "deltaPenalizacion": 1
+      }
+    },
+    {
+      "ejemplo": "ejemplo_centro_exigente_sintetico.json",
+      "motorActual": {
+        "estado": "COMPLETO",
+        "colocadas": 78,
+        "previstas": 78,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 165,
+        "huecosDocentes": 3,
+        "huecosGrupos": 24
+      },
+      "cpSatAislado": {
+        "estado": "COMPLETO",
+        "solver": "OPTIMAL",
+        "colocadas": 78,
+        "previstas": 78,
+        "pendientes": 0,
+        "graves": 0,
+        "calidad": "revisar",
+        "penalizacion": 404,
+        "huecosDocentes": 51,
+        "huecosGrupos": 11,
+        "tiempoMs": 399,
+        "candidatos": 1435,
+        "restricciones": 843
+      },
+      "comparacion": {
+        "mismasColocadasQueActual": true,
+        "noMenosColocadasQueActual": true,
+        "penalizacionCpSatMenorOIgual": false,
+        "deltaPenalizacion": 239
+      }
+    }
+  ],
+  "advertencias": [
+    "La prueba acredita implementación aislada sobre ejemplos, no integración de producto.",
+    "El motor CP-SAT aislado no se conecta al botón Calcular horario.",
+    "Cualquier empeoramiento de calidad bloquea la Fase 5 aunque coloque las mismas sesiones."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "phase": "FASE_4B_DEPLOY_GATE_STATIC_NODE",
+  "status": "PASS",
+  "package": {
+    "name": "cpsat-js",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "repository": "git+ssh://git@github.com/owen-lacey/ortools-wasm.git"
+  },
+  "wasm": {
+    "bytes": 6128920,
+    "webAssemblyCompile": true
+  },
+  "staticScan": {
+    "forbiddenPatterns": [
+      "SharedArrayBuffer",
+      "Atomics",
+      "pthread",
+      "PTHREAD",
+      "USE_PTHREADS",
+      "PROXY_TO_PTHREAD"
+    ],
+    "runtimeFindings": [],
+    "panelDiagnosticMentions": [
+      {
+        "file": "spikes\\ortools_wasm\\fase4b_deploy_gate\\browser\\panel_deploy_gate_wasm.html",
+        "pattern": "SharedArrayBuffer"
+      },
+      {
+        "file": "spikes\\ortools_wasm\\fase4b_deploy_gate\\browser\\panel_deploy_gate_wasm.html",
+        "pattern": "Atomics"
+      }
+    ]
+  },
+  "solve": {
+    "solverStatus": 4,
+    "objectiveValue": 20,
+    "values": {
+      "x": 10,
+      "y": 0
+    }
+  },
+  "timingsMs": {
+    "load": 57,
+    "solve": 125,
+    "solverWallTimeReportedMs": 110
+  },
+  "dictamen": "PASS_NODE_ESTATICO_NO_ACREDITA_NAVEGADOR_FISICO"
+}
